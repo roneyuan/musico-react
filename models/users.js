@@ -38,12 +38,19 @@ const UserSchema = mongoose.Schema({
 	// }
 });
 
-
-UserSchema.methods.apiRepr = function() {
+// Use methods becuase why need to research later and difference between
+// other call or methods function - static
+UserSchema.methods.getUserInfo = function() {
 	return {
 		id: this.id,
 		username: this.username,
 		nickname: this.nickname,
+	}
+}
+
+UserSchema.methods.getUserEvents = function() {
+	return {
+		id: this.id,
 		events: this.events
 	}
 }
