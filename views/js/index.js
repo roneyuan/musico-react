@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 
-import Person from './components/person';
+import Event from './components/event';
 
 document.addEventListener('DOMContentLoaded', () =>
-    ReactDOM.render(<Person />, document.getElementById('app'))
+    ReactDOM.render(<Event />, document.getElementById('app'))
 ); 
