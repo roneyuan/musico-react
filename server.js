@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
-const {	DATABASE_URL, PORT} = require('./config');
+const {DATABASE_URL, PORT} = require('./config');
 
 const app = express();
 
@@ -13,9 +13,17 @@ app.use(express.static('views/build'));
 // Use ES6 promise instead of mongoose promise, but why? Need to research later.
 mongoose.Promise = global.Promise;
 
+// Get router
+// const eventRouter = require('./router/eventRouter');
+// const userRouter = require('./router/userRouter');
+
+
 app.get('/', (req, res) => {
 	res.redirect(301, 'index.html') 
-})
+});
+
+// app.use('/user', userRouter);
+// app.use('/event', eventRouter);
 
 
 let server;
