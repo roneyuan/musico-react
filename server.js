@@ -8,10 +8,15 @@ const app = express();
 // Read JSON
 app.use(bodyParser.json());
 // Read the static file from public
-app.use(express.static('public'));
+app.use(express.static('views/build'));
 
 // Use ES6 promise instead of mongoose promise, but why? Need to research later.
 mongoose.Promise = global.Promise;
+
+app.get('/', (req, res) => {
+	res.redirect(301, 'index.html') 
+})
+
 
 let server;
 
@@ -60,7 +65,7 @@ function closeServer() {
 	});
 }
 
-// To run the application
+// To run the application, Need to ask why?
 if (require.main === module) {
 	runServer().catch(err => console.log(err));
 }
