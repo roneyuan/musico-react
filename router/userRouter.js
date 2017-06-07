@@ -30,6 +30,11 @@ passport.use(new GoogleStrategy({
 		})
 }));
 
+
+// TODO - Basic Login Strategy
+
+
+
 passport.use(new BearerStrategy(function(token, done) {
 	User.findOne({password: token}, function(err, user) {
 		if (err) return done(err);
@@ -47,8 +52,6 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 		res.redirect('index.html?token=' + req.user.password);
 });
 
-
-// TODO
 
 // Get the users event. The info will be public so does not need use passport. 
 router.get('/:username', (req, res) => {

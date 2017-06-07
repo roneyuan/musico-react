@@ -4,6 +4,7 @@ const passport = require('passport');
 const router = express.Router();
 const jsonParser = require('body-parser').json();
 const {Event} = require('../models/events');
+const {User} = require('../models/users');
 
 router.use(jsonParser);
 router.use(passport.initialize());
@@ -50,7 +51,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 
 
 // TODO
-router.get('/all', (res, req) => {
+router.get('/all', (req, res) => {
 	// Get all events
 	// Return all events here
 	// Use MongoDB query to return all events
@@ -60,13 +61,42 @@ router.get('/all', (res, req) => {
 		});
 });
 
+router.post('/', (req, res) => {
+	// Post a new event
+	return Event
+		.create({
+			name: req.body.name,
+			location: req.body.location,
+			time: req.body.time,
+			description: req.body.description
+		})
+		.then(event => {
+			// Chain to the user
+			return User
+				.findOneAndUpdate({username: req.user.username},
+				{
+					$push: {
+						'eventsCreated.event': event._id
+					}
+				})
+				.exec() // Need to know what happen if no exec()
+				.then(user => {
+					res.json(user);
+				})
+				.catch(err => {
+					console.log("Error when updating event to the account.", err);
+				});
+		})
+		.catch(err => {
+			console.log("Error when creating an event.", err);
+		})
+});
+
 router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// 1. Find the event with the given event Id
 	// 2. Update the event's information
 });
-router.post('/', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// Post a new event
-});
+
 router.delete('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Delete a event with the given eventId
 	// 1. Find the event
