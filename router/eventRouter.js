@@ -61,6 +61,7 @@ router.get('/all', (req, res) => {
 		});
 });
 
+// TODO put passport.authenticate('bearer', {session: false}) back when production
 router.post('/', (req, res) => {
 	// Post a new event
 	return Event
