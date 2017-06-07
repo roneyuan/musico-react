@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const
 Schema = mongoose.Schema;
 
 const UserSchema = Schema({
@@ -15,9 +15,12 @@ const UserSchema = Schema({
 		type: String,
 		require: true
 	},
-	eventsCreated: {
-		events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
-	},	
+	eventsCreated: [{
+		event: {
+			type: Schema.Types.ObjectId,
+			ref: 'Event'
+		}
+	}],	
 	// Future feature
 	// eventsInterested: {
 	// }
@@ -42,4 +45,5 @@ UserSchema.methods.getUserEvents = function() {
 
 const User = mongoose.model('User', UserSchema);
 
+// When to use {} when to not use?
 module.exports = {User}
