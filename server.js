@@ -14,16 +14,17 @@ app.use(express.static('views/build'));
 mongoose.Promise = global.Promise;
 
 // Get router
-// const eventRouter = require('./router/eventRouter');
-// const userRouter = require('./router/userRouter');
+// Need to research on {} return. Why it will give type error?
+const eventRouter = require('./router/eventRouter');
+const userRouter = require('./router/userRouter');
 
 
 app.get('/', (req, res) => {
 	res.redirect(301, 'index.html') 
 });
 
-// app.use('/user', userRouter);
-// app.use('/event', eventRouter);
+app.use('/user', userRouter);
+app.use('/event', eventRouter);
 
 
 let server;

@@ -8,14 +8,14 @@ const {User} = require('../models/users');
 router.use(jsonParser);
 router.use(passport.initialize());
 
-const GoogleStrategy = reuiqre('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 
 
 passport.use(new GoogleStrategy({
-	clientID: '',
-	clientSecret: '',
-	callbackURL: ''
+	clientID: '603515610903-ov1hu4kjoghb028raqlmb2ndd4761re1.apps.googleusercontent.com',
+	clientSecret: 'K5NBv_fDAp6YcyZJQfNofxVb',
+	callbackURL: '/users/auth/google/callback'
 }, function(accessToken, refreshToken, profile, done) {
 	return User
 		.findOrCreate({
@@ -40,9 +40,12 @@ passport.use(new BearerStrategy(function(token, done) {
 	});
 }));
 
+router.get('/auth/google', passport.authenticate('google', {scope: ['email profile']}));
 
-// Basic Login
-
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
+	function(req, res) {
+		res.redirect('index.html?token=' + req.user.password);
+});
 
 
 // TODO
@@ -55,4 +58,6 @@ router.get('/:username', (req, res) => {
 // Update the user's information
 router.put('/:username', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Find the user
-})
+});
+
+module.exports = router
