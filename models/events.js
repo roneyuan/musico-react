@@ -18,6 +18,10 @@ const EventSchema = Schema({
 	description : {
 		type: String
 	},
+	createdBy: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	}
 	// Future feature
 	// image: {
 	// 	type: 
