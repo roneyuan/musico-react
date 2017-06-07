@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 Schema = mongoose.Schema;
 
-const UserSchema = mongoose.Schema({
+const UserSchema = Schema({
 	username: {
 		type: String,
 		require: true
@@ -15,26 +15,11 @@ const UserSchema = mongoose.Schema({
 		type: String,
 		require: true
 	},
-	events: [{
-		time: { 
-			type: String, 
-			require: true
-		},
-		name: {
-			type: String,
-			require: true
-		},
-		description: {
-			type: String,
-			require: true
-		}
-	}]
+	eventsCreated: {
+		events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
+	},	
 	// Future feature
-	// eventsCreated: {
-	// 	events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
-	// },
 	// eventsInterested: {
-
 	// }
 });
 
