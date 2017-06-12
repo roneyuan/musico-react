@@ -5,24 +5,50 @@ const {TEST_DATABASE_URL} = require('../config');
 
 mongoose.Promise = global.Promise;
 
-describe('Create an event', function() {
+describe('User', function() {
 	before(function() {
 		return connectDB();
-	})
+	});
 
 	afterEach(function() {
 		return tearDownDB();
-	})
+	});
 
 	after(function() {
 		return closeDB();
-	})
+	});
 
-	describe('An event', function() {
+	describe('Get Info', function() {
+		it('should return user info', function() {
+			// TODO 
+		});
+	});
+
+	describe('Get Events', function() {
+		it('should return user events', function() {
+			// TODO 
+		});
+	});
+});
+
+describe('Event', function() {
+	before(function() {
+		return connectDB();
+	});
+
+	afterEach(function() {
+		return tearDownDB();
+	});
+
+	after(function() {
+		return closeDB();
+	});
+
+	describe('Get apiRepr', function() {
 		it('should return an event object', function() {
 			// TODO 
-		})
-	})
+		});
+	});
 });
 
 function tearDownDB() {
