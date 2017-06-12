@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "run-p watch serve",
-    "test": "nyc mocha --timeout=3000 --recursive --compilers js:babel-core/register",
+    "test": "nyc mocha --recursive --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",    
     "build": "run-s build:*",
     "clean": "rimraf build",
