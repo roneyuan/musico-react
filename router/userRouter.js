@@ -52,7 +52,14 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 		res.redirect('index.html?token=' + req.user.password);
 });
 
+// RSVP an event
+router.put('/:eventId', password.authenticate('bearer', {session: false}), (req, res) => {
 
+});
+
+
+
+// Furture features
 // Get the users event. The info will be public so does not need use passport. 
 router.get('/:username', (req, res) => {
 	// Return the user that corresponds to /:username

@@ -21,6 +21,12 @@ const UserSchema = Schema({
 			ref: 'Event'
 		}
 	}],	
+	eventsRsvp: [{
+		event: {
+			type: Schema.Types.ObjectId,
+			ref: 'Event'
+		}		
+	}]
 	// Future feature
 	// eventsInterested: {
 	// }

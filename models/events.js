@@ -14,7 +14,15 @@ const EventSchema = Schema({
 	time: {
 		type: Date,
 		require: true
-	}, 
+	},
+	price: {
+		type: Number,
+		default: 0
+	} ,
+	tag: {
+		type: String,
+		require: true
+	}
 	description : {
 		type: String
 	},

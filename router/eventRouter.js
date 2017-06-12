@@ -51,6 +51,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 
 
 // TODO
+// User should be able to browse all the events
 router.get('/all', (req, res) => {
 	// Get all events
 	// Return all events here
@@ -62,6 +63,7 @@ router.get('/all', (req, res) => {
 });
 
 // TODO put passport.authenticate('bearer', {session: false}) back when production
+// User should be able to post an event
 router.post('/', (req, res) => {
 	// Post a new event
 	return Event
@@ -69,7 +71,9 @@ router.post('/', (req, res) => {
 			name: req.body.name,
 			location: req.body.location,
 			time: req.body.time,
-			description: req.body.description
+			description: req.body.description,
+			tag: req.body.tag,
+			price:, req.body.price
 		})
 		.then(event => {
 			// Chain to the user
@@ -93,11 +97,14 @@ router.post('/', (req, res) => {
 		})
 });
 
+
+// Future Features
+// User should be able to update an event
 router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// 1. Find the event with the given event Id
 	// 2. Update the event's information
 });
-
+// User should be able to delete an event
 router.delete('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Delete a event with the given eventId
 	// 1. Find the event
