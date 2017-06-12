@@ -8,7 +8,6 @@
     "test": "nyc mocha --recursive --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",    
     "build": "run-s build:*",
-    "heroku-postbuild": "next build",
     "clean": "rimraf build",
     "serve": "npm start",
     "watch": "run-p watch:*",
