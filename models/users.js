@@ -16,16 +16,12 @@ const UserSchema = Schema({
 		require: true
 	},
 	eventsCreated: [{
-		event: {
-			type: Schema.Types.ObjectId,
-			ref: 'Event'
-		}
+		type: Schema.Types.ObjectId,
+		ref: 'Event'
 	}],	
 	eventsRsvp: [{
-		event: {
-			type: Schema.Types.ObjectId,
-			ref: 'Event'
-		}		
+		type: Schema.Types.ObjectId,
+		ref: 'Event'
 	}]
 	// Future feature
 	// eventsInterested: {

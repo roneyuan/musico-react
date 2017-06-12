@@ -73,15 +73,15 @@ router.post('/', (req, res) => {
 			time: req.body.time,
 			description: req.body.description,
 			tag: req.body.tag,
-			price:, req.body.price
+			price: req.body.price
 		})
 		.then(event => {
 			// Chain to the user
 			return User
-				.findOneAndUpdate({username: req.user.username},
+				.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
 				{
 					$push: {
-						'eventsCreated.event': event._id
+						'eventsCreated': event._id
 					}
 				})
 				.exec() // Need to know what happen if no exec()

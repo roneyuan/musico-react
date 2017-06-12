@@ -26,6 +26,7 @@ passport.use(new GoogleStrategy({
 			nickname: profile.displayName
 		}, (err, user) => {
 			// Need to find out why use null
+			console.log("User created.")
 			return done(null, user);
 		})
 }));
@@ -49,12 +50,60 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email profi
 
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
 	function(req, res) {
+		console.log("Callback from Google")
 		res.redirect('index.html?token=' + req.user.password);
 });
 
 // RSVP an event
-router.put('/:eventId', password.authenticate('bearer', {session: false}), (req, res) => {
+router.put('/:eventId', (req, res) => {
+	let event = req.params.eventId;
 
+	return User
+		.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
+		{
+			$push: {
+				'eventsRsvp': event
+			}
+		})
+		.exec() // Need to know what happen if no exec()
+		.then(user => {
+			res.json(user);
+		})
+		.catch(err => {
+			console.log("Error when updating event to the account.", err);
+		});				
+	// Updated to User event
+});
+
+
+// TEST only
+router.post('/:user', (req, res) => {
+	return User
+		.create({
+			username: req.body.username,
+			password: req.body.password,
+			nickname: req.body.nickname
+		})
+		.then(user => {
+			res.status(201).json(user);
+		}
+		)
+		.catch(err => {
+			console.log("User create error")
+		}
+		)
+});
+
+router.get('/allUser', (req, res) => {
+	return User
+		.find({})
+		.exec()
+		.then(user => {
+			res.status(200).json(user);
+		})
+		.catch(err => {
+			console.log(err);
+		})
 });
 
 

@@ -22,7 +22,7 @@ const EventSchema = Schema({
 	tag: {
 		type: String,
 		require: true
-	}
+	},
 	description : {
 		type: String
 	},
