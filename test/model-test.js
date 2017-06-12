@@ -1,6 +1,6 @@
 const chai = require('chai');
 const mongoose = require('mongoose');
-const shoud = chai.shoud();
+const should = chai.should();
 const {TEST_DATABASE_URL} = require('../config');
 
 mongoose.Promise = global.Promise;
