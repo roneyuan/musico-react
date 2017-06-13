@@ -1,23 +1,16 @@
 import React from 'react';
 
-export default function Event() {
-  const name = 'Concert';
-  const imageUrl = 'https://scontent.cdninstagram.com/t51.2885-19/11377856_626372960798542_1396263462_a.jpg';
-  const tag = "Piano"
-  const description = 'Come here';
-  const price = 0;
-  const location = "NY";
-
+export default function Event(props) {
   return (
     <div className="event">
-      <div className="event-name">{name}</div>
-      <img className="event-img" src={imageUrl} />
+      <div className="event-name">{props.name}</div>
       <div className="event-description">
-          Description: {description}
+          Description: {props.description}
       </div>
-      <div className="event-tag">Tag: {tag}</div>
-      <div className="event-price">Price: {price}</div>
-      <div className="event-location">Location: {location}</div>
+      <div className="event-tag">Tag: {props.tag}</div>
+      <div className="event-price">Price: {props.price}</div>
+      <div className="event-location">Location: {props.location}</div>
+      <button className="event-rsvp">RSVP</button>
     </div>
   );
 }

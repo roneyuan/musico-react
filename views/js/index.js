@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 
-import Event from './components/event';
+import EventList from './components/event-list';
 
 document.addEventListener('DOMContentLoaded', () =>
-  ReactDOM.render(<Event />, document.getElementById('app'))
+  ReactDOM.render(<EventList />, document.getElementById('app'))
 ); 
