@@ -109,14 +109,14 @@ router.get('/allUser', (req, res) => {
 
 
 // Furture features
-// Get the users event. The info will be public so does not need use passport. 
-router.get('/:username', (req, res) => {
-	// Return the user that corresponds to /:username
-});
+// // Get the users event. The info will be public so does not need use passport. 
+// router.get('/:username', (req, res) => {
+// 	// Return the user that corresponds to /:username
+// });
 
-// Update the user's information
-router.put('/:username', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// Find the user
-});
+// // Update the user's information
+// router.put('/:username', passport.authenticate('bearer', {session: false}), (req, res) => {
+// 	// Find the user
+// });
 
 module.exports = router
