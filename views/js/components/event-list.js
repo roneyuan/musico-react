@@ -1,24 +1,33 @@
-import React from 'react';
+import React , {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Event from './event';
 
-export default function EventList(props) {
-	return (
-		<div className='event-list'>
-			<Event name="Piano Convert"
-						 tag="Piano"
-						 price="0"
-						 description="Hello"
-						 location="NY" />
-			<Event name="Violin Convert"
-						 tag="Violin"
-						 price="10"
-						 description="World"
-						 location="NY" />
-			<Event name="Auto Convert"
-						 tag="auto"
-						 price="0"
-						 description="Hey"
-						 location="NY" />						 						 
-		</div>
-	);		
+
+class EventList extends Component {
+	createEventList() {
+		return this.props.events.map(event => {
+			return (
+				<div key={event.id}>
+					<li>{event.name}</li>
+				</div>
+			)
+		})
+	}
+
+	render() {
+		return(
+			<div className='event-list'>
+				{this.createEventList()}					 						 
+			</div>			
+		)
+	}
 }
+
+function mapStateToProps(state) {
+	return {
+		events: state.events
+	}
+}
+
+export default connect(mapStateToProps)(EventList);
