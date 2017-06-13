@@ -11,6 +11,7 @@ const expect = chai.expect;
 
 // Make HTTP requests using chai
 chai.use(chaiHttp);
+chai.use(require('chai-passport-strategy'));
 
 mongoose.Promise = global.Promise;
 
@@ -97,6 +98,25 @@ describe('Event Server Test', function() {
 		return closeServer();
 	});
 
+	// How to test with Google Strategy???
+	// xdescribe('Token Strategy', function() {
+	// 	let strategy = new Strategy(function(token, done) {
+	// 		if (token == '') {
+	// 			return done(null, {},{});
+	// 		}
+	// 		return done(null, false);
+	// 	});
+
+	// 	xdescribe('Google Oauth', function() {
+	// 		it('should login to Google', function() {
+	// 			return chai.request(app)
+	// 				.get('/event/auth/google')
+	// 				.then(function(res) {
+	// 					console.log("Google", res)
+	// 				})
+	// 		});
+	// 	});
+	// });
 
 	describe('GET endpoint', function() {
 		it('should go to index page', function() {

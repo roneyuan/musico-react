@@ -152,7 +152,7 @@ describe('User Server Test', function() {
 
 	describe('PUT endpoint', function() {
 		it('should rsvp an event', function() {
-
+			// TEST with schema
 		});	
 	});
 });
