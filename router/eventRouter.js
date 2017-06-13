@@ -86,7 +86,7 @@ router.post('/', (req, res) => {
 				})
 				.exec() // Need to know what happen if no exec()
 				.then(user => {
-					res.json(user);
+					res.status(201).json(event); // user?
 				})
 				.catch(err => {
 					console.log("Error when updating event to the account.", err);
@@ -100,15 +100,15 @@ router.post('/', (req, res) => {
 
 // Future Features
 // User should be able to update an event
-router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// 1. Find the event with the given event Id
-	// 2. Update the event's information
-});
-// User should be able to delete an event
-router.delete('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// Delete a event with the given eventId
-	// 1. Find the event
-	// 2. Delete the event
-});
+// router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
+// 	// 1. Find the event with the given event Id
+// 	// 2. Update the event's information
+// });
+// // User should be able to delete an event
+// router.delete('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
+// 	// Delete a event with the given eventId
+// 	// 1. Find the event
+// 	// 2. Delete the event
+// });
 
 module.exports = router
