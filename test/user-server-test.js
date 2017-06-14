@@ -28,6 +28,8 @@ function seedData() {
 	return User.insertMany(data)
 }
 
+// Or use object literal to pass the function
+
 function generateUsername() {
 	const username = [
 		'user1', 'usesr2', 'user3', 'user4', 'user5'];
@@ -46,6 +48,8 @@ function generateNickname() {
 }
 
 function generateEventId() {
+	// Create and store real id. Create an event and get the id from mongoose
+	// Use that and create an object that contains all this information.
 	const id = ["123", "321", "567", "765", "678"];
 	return id[Math.floor(Math.random() * id.length)];
 }

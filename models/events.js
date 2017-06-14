@@ -43,6 +43,8 @@ EventSchema.methods.apiRepr = function() {
 		location: this.location,
 		time: this.time,
 		description: this.description,
+		price: this.price,
+		tag: this.tag
 		// image: this.image
 	}
 }
