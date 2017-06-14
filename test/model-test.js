@@ -176,6 +176,8 @@ describe('User', function() {
 				.exec()
 				.then(res => {
 					res.getUserEvents().should.be.a('object');
+
+					// TODO - Need to add more test case by creating Event and User object
 				});
 		});
 	});	

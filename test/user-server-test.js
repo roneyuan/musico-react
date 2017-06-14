@@ -17,17 +17,96 @@ mongoose.Promise = global.Promise;
 function seedData() {
 
 	console.log("Seeding User Data...")
+
+	// User
+	// 	.create({
+	// 		username: 'user1',
+	// 		password: '123',
+	// 		nickname: 'testUser'
+	// 	})
+
+	// 		Event
+	// 			.create(generateEvents())
+	// 			.then(event => {
+	// 				return User
+	// 					.findOneAndUpdate({username: 'user1'},
+	// 					{
+	// 						$push: {
+	// 							'eventsCreated': event._id
+	// 						}
+	// 					});							
+	// 			});
+	// 	});
+
+
+	// 	// .then(user => {
+	// 	// 	Event
+	// 	// 		.create(generateEvents())
+	// 	// 		.then(event => {
+	// 	// 			// Chain to the user
+	// 	// 			User
+	// 	// 				.findOneAndUpdate({username: 'user1'}, // Production using req.user.username
+	// 	// 				{
+	// 	// 					$push: {
+	// 	// 						'eventsCreated': event._id
+	// 	// 					}
+	// 	// 				})
+	// 	// 		})
+	// 	// })
+
+
+
 	const data = [];
 
-	for (let i = 1; i <= 5; i++) {
+	for (let i = 0; i <= 4; i++) {
 		data.push(generateData());
 	}
 
 	// console.log(data)
 
-	return User.insertMany(data)
+	return User.insertMany(data);
 }
 
+function generateEventName() {
+	const name = ["Event 1", "Event 2", "Event 3", "Event 4", "Event 5"];
+	return name[Math.floor(Math.random() * name.length)];
+}
+
+function generateEventLocation() {
+	const location = ["NY", "NJ", "MA"];
+	return location[Math.floor(Math.random() * location.length)];
+}
+
+function generateEventTime() {
+	const time = ["2017/1/1", "2017/2/1", "2017/3/1", "2017/4/1", "2017/5/1"];
+	return time[Math.floor(Math.random() * time.length)];	
+}
+
+function generateEventPrice() {
+	const price = [0, 1, 2, 3, 4, 5];
+	return price[Math.floor(Math.random() * price.length)];	
+}
+
+function generateEventTag() {
+	const tag = ["Piano", "Violin", "Saxophone"];
+	return tag[Math.floor(Math.random() * tag.length)];	
+}
+
+function generateEventDescription() {
+	const description = ["Hello", "World"];
+	return description[Math.floor(Math.random() * description.length)];	
+}
+
+function generateEvents() {
+	return {
+		name: generateEventName(),
+		location: generateEventLocation(),
+		time: generateEventTime(),
+		price: generateEventPrice(),
+		tag: generateEventTag(),
+		description: generateEventDescription()
+	}
+}
 // Or use object literal to pass the function
 
 function generateUsername() {
@@ -149,7 +228,8 @@ describe('User Server Test', function() {
 					res.body.username.should.equal(newUser.username);
 					res.body.password.should.equal(newUser.password);
 					res.body.nickname.should.equal(newUser.nickname);
-					// res.body.eventsCreated.should.equal(newUser.eventsCreated);
+					res.body.eventsCreated.should.be.a('array');
+					res.body.eventsRsvp.should.be.a('array');
 				})
 		});
 	});
