@@ -14,55 +14,30 @@ chai.use(chaiHttp);
 
 mongoose.Promise = global.Promise;
 
+// function seedUserEventData() {
+// 	let id;
+// 	Event.create({
+// 		name: generateEventName(),
+// 		location: generateEventLocation(),
+// 		time: generateEventTime(),
+// 		price: generateEventPrice(),
+// 		tag: generateEventTag(),
+// 		description: generateEventDescription()
+// 	})
+// 	.then(event => {
+// 		// console.log("+++gen", event._id)
+// 		id = event._id;
+// 		return id;
+// 	});			
+// }
+
+
 function seedData() {
-
-	console.log("Seeding User Data...")
-
-	// User
-	// 	.create({
-	// 		username: 'user1',
-	// 		password: '123',
-	// 		nickname: 'testUser'
-	// 	})
-
-	// 		Event
-	// 			.create(generateEvents())
-	// 			.then(event => {
-	// 				return User
-	// 					.findOneAndUpdate({username: 'user1'},
-	// 					{
-	// 						$push: {
-	// 							'eventsCreated': event._id
-	// 						}
-	// 					});							
-	// 			});
-	// 	});
-
-
-	// 	// .then(user => {
-	// 	// 	Event
-	// 	// 		.create(generateEvents())
-	// 	// 		.then(event => {
-	// 	// 			// Chain to the user
-	// 	// 			User
-	// 	// 				.findOneAndUpdate({username: 'user1'}, // Production using req.user.username
-	// 	// 				{
-	// 	// 					$push: {
-	// 	// 						'eventsCreated': event._id
-	// 	// 					}
-	// 	// 				})
-	// 	// 		})
-	// 	// })
-
-
-
 	const data = [];
 
 	for (let i = 0; i <= 4; i++) {
 		data.push(generateData());
 	}
-
-	// console.log(data)
 
 	return User.insertMany(data);
 }
@@ -157,8 +132,8 @@ function generateData() {
 		username: generateUsername(),
 		password: generatePassword(),
 		nickname: generateNickname(),
-		eventsCreated: [],//generateEventsCreated(),
-		eventsRsvp: []//generateEventsRsvp()
+		// eventsCreated: [],//generateEventsCreated(),
+		// eventsRsvp: [] //generateEventsRsvp()
 	}
 }
 
@@ -179,6 +154,35 @@ describe('User Server Test', function() {
 
 	beforeEach(function() {
 		return seedData();
+		// User
+		// 	.create(generateData)
+		// 	.then(user => {
+		// 		Event
+		// 			.create(generateEvents)
+		// 			.then(event => {
+		// 				User
+		// 					.findOneAndUpdate({username: user.username}, // Production using req.user.username
+		// 					{
+		// 						$push: {
+		// 							'eventsRsvp': event
+		// 						}
+		// 					})
+		// 					.exec() // Need to know what happen if no exec()
+		// 					.then(user => {
+		// 						done()
+		// 						return
+		// 					})		
+		// 					.catch(err => {
+		// 						console.log(err);
+		// 					})				
+		// 			})
+		// 			.catch(err => {
+		// 				console.log(err);		
+		// 			})
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);				
+		// 	})
 	})
 
 	afterEach(function() {
@@ -235,8 +239,77 @@ describe('User Server Test', function() {
 	});
 
 	describe('PUT endpoint', function() {
-		it('should rsvp an event', function() {
-			// TEST with schema
-		});	
+		// const newUser = generateData();
+		// it('should rsvp an event', function() {
+		// 	// TEST with schema
+		// 	console.log("===EVENT", newUser)
+		// 	return chai.request(app)
+		// 		.put('/user/'+ event._id)
+		// 		.send(newUser)
+		// 		.then(function(res) {
+		// 			console.log("===RES", res);
+		// 		});
+		// });
+
+	/*
+	Test Login:
+	1. Clean the Test Database to avoid same property name conflict updating, which may cause updating the wrong object
+	2. Use return and create a new User
+	3. Create a new Event after the new User is created
+	4. Find and update the object to the User just created using find by _id
+	5. Once it is updated, we can use chai.request to do the test
+
+	*/
+	it('should rsvp an event', function() {
+		tearDownDb();
+		let user;
+		let event;
+		return User
+			.create(generateData())
+			.then(_user => {
+				user = _user;
+				// console.log("+_+Create User: ", user)
+				return Event
+					.create(generateEvents())
+					.then(_event => {
+						event = _event;
+						// console.log("===Event Id: ", event._id)
+						return User
+							.findOneAndUpdate({_id: user._id}, // Production using req.user.username
+							{
+								$push: {
+									'eventsRsvp': event._id
+								}
+							})
+							.exec() // Need to know what happen if no exec()
+							.then(res => {
+								// console.log("+++ Updated User: ", res)
+								return chai.request(app)
+									.put('/user/'+ event._id)
+									.send(user)
+									.then(function(res) {
+										// console.log("FINAL: ", res.body)
+										res.should.be.a('object');		
+										res.body.eventsRsvp.should.be.a('array');	
+										res.body.eventsRsvp[0].should.equal(event._id);							
+									});
+							})		
+							.catch(err => {
+								console.log(err);
+							})				
+					})
+					.catch(err => {
+						console.log(err);		
+					})
+			})
+			.catch(err => {
+				console.log(err);				
+			})	
+	});
+
+
+
+
+
 	});
 });

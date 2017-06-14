@@ -205,8 +205,8 @@ describe('Event', function() {
 			// Why apiRepr() is not a function???
 			// If it is static, then we can use Event directly.
 			return Event.findOne({}).exec().then(res => {
-				console.log("apiRepr", res.apiRepr().location);
-				console.log("res", res.name)
+				// console.log("apiRepr", res.apiRepr().location);
+				// console.log("res", res.name)
 				res.apiRepr().should.be.a('object');
 				res.apiRepr().name.should.equal(res.name);
 				res.apiRepr().location.should.equal(res.location);
