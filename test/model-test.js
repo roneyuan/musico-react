@@ -105,7 +105,10 @@ describe('Event', function() {
 			// TODO 
 
 			// Why apiRepr() is not a function???
-			return Event.apiRepr().should.eventually.be.a('object');
+			// If it is static, then we can use Event directly.
+			return Event.findOne({}).exec().then(res => {
+				// console.log("APRTEST", res)
+				res.apiRepr().should.be.a('object')});
 		});
 	});
 });
