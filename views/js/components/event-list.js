@@ -8,7 +8,7 @@ class EventList extends Component {
 	createEventList() {
 		return this.props.events.map(event => {
 			return (
-				<div key={event.id}>
+				<div className="col-4 " key={event.id}>
 					<Event name={event.name}
 								 tag={event.tag}
 								 description={event.description}
