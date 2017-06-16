@@ -31,27 +31,27 @@ let server;
 
 function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 	
-	console.log("Database: ", databaseUrl);
-	console.log("Port:", port);
+	// console.log("Database: ", databaseUrl);
+	// console.log("Port:", port);
 	
 	return new Promise((resolve, reject) => {
 		// Connect mongoose to the configured URL
-		console.log("Connecting to database...")
+		// console.log("Connecting to database...")
 		mongoose.connect(databaseUrl, function(err) {
 			if (err) {
-				console.log("Failed to connect to database.");
+				// console.log("Failed to connect to database.");
 				return reject(err);
 			}
 		});
 
-		console.log("Successfully connected to database.");
-		console.log("Creating server...");
+		// console.log("Successfully connected to database.");
+		// console.log("Creating server...");
 		// Listening to the server
 		server = app.listen(port, () => {
 			console.log(`Server is created and running on port ${port}`);
 			resolve(server);
 		}).on('error', err => {
-			console.log("Failed to create server");
+			// console.log("Failed to create server");
 			reject(err);
 		});
 	});
@@ -60,14 +60,14 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 function closeServer() {
 	return mongoose.disconnect().then(() => {
 		return new Promise((resolve, reject) => {
-			console.log("Closing Server...");
+			// console.log("Closing Server...");
 			server.close(err => {
 				if (err) {
-					console.log("Unable to close server.");
+					// console.log("Unable to close server.");
 					reject(err);
 					return;
 				}
-				console.log("Server is closed.");
+				// console.log("Server is closed.");
 				resolve();
 			});
 		});
