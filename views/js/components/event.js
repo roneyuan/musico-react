@@ -11,7 +11,9 @@ export default function Event(props) {
       <div className="event-tag">Tag: {props.tag}</div>
       <div className="event-price">Price: {props.price}</div>
       <div className="event-location">Location: {props.location}</div>
-      <button onClick={props.rsvpClick} className="event-rsvp">RSVP</button>
+      <div className="event-button">
+        <button onClick={props.rsvpClick} className="event-rsvp">RSVP</button>
+      </div>
     </div>
   );
 }
