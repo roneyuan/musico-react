@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
 import EventReducer from './reducer-events';
-import ActiveUserReducer from './reducer-active-user';
+import EventDatabase from './events-database';
+import UserAPI from './user-api';
 
 const AllReducers = combineReducers({
 	events: EventReducer,
-	activeUser: ActiveUserReducer
+	eventsDatabase: EventDatabase,
+	userAPI: UserAPI
 });
 
 export default AllReducers;
