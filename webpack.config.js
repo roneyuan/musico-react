@@ -1,6 +1,6 @@
-var path = require('path');
+let path = require('path');
 
-var webpack = require('webpack');
+let webpack = require('webpack');
 
 module.exports = {
     entry: path.resolve(__dirname, 'views/js/index.js'),
@@ -15,7 +15,15 @@ module.exports = {
           test: /\.js$/,
           exclude: /(node_modules)/,
           loader: 'babel',
+          query:
+            {
+              presets: ['react']
+            }
         },
+        {
+          test: /\.scss$/,
+          loaders: ["style-loader", "css-loader", "sass-loader"]
+        }
       ]
     }
 };
