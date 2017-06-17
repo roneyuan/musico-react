@@ -23,8 +23,8 @@ const receiveUserDataFromServer = (user) => ({
 	user
 })
 
-const receiveEventDataFromServer = (event) => ({
-	type: 'RECEIVE_EVENT',
+const receivePostEvent = (event) => ({
+	type: 'RECEIVE_POST_EVENT',
 	event
 })
 
@@ -111,22 +111,25 @@ export const getAllEvents = () => {
 	}
 }
 
-export const postEvent = (name, price, description, location) => {
+export const postEvent = (name, price, description, location, tag) => {
+	console.log("postEvent CALLED:", name)
 	return dispatch => {
-		fetch('http://localhost:8080/user/allUser', {
+		fetch('http://localhost:8080/event', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringfy({
-				name,
-				price,
-				description,
-				location,
+			body: JSON.stringify({
+				name: name,
+				price: price,
+				description: description,
+				location: location,
+				tag: tag,
+				username: "new2"
 			})
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveEventDataFromServer(event)))
+		.then(event => dispatch(receivePostEvent(event)))
 	}
 }
 

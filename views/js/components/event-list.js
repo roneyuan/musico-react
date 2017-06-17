@@ -12,7 +12,6 @@ class EventList extends Component {
 	}
 
 	createEventList() {
-		console.log("createEventList:", this.props.events)
 		return this.props.events.map((event, index) => {
 			return (
 				<div className="col-4" key={index}>
@@ -39,9 +38,7 @@ class EventList extends Component {
 function mapStateToProps(state) {
 	// console.log("mapStateToProps:", state)
 	return {
-		// events: state.events,
 		events: state.eventsDatabase.events,
-		userAPI: state.userAPI.data
 	}
 }
 
