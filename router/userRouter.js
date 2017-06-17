@@ -94,6 +94,23 @@ router.post('/:user', (req, res) => {
 		)
 });
 
+router.get('/profile/:username', (req, res) => {
+	let username = req.params.username;
+	return User
+		.findOne({username: username})
+		.exec()
+		.then(user => {
+			res.status(200).json({
+				username: user.username,
+				nickname: user.nickname,
+				eventsRsvp: user.eventsRsvp
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
+})
+
 router.get('/allUser', (req, res) => {
 	return User
 		.find({})

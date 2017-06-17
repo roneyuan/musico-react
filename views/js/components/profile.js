@@ -7,11 +7,8 @@ import {getUserProfile} from '../actions/index';
 class Profile extends Component {
 
   componentWillMount() {
-    // console.log("componentWillMount:", this.props)
     this.props.getUserProfile();
   }
-
-
 
   render() {
     return(
@@ -27,13 +24,11 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps:", state)
   return {
     user: state.userDatabase.user
   }
 }
 
-// Call a function
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({getUserProfile: getUserProfile}, dispatch)
 }

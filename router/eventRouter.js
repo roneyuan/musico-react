@@ -58,7 +58,6 @@ router.get('/all', (req, res) => {
 	// Use MongoDB query to return all events
 	return Event
 		.find({}, (err, events) => {
-			console.log("GET all events:", events);
 			res.status(200).json(events);
 		});
 });

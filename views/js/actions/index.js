@@ -38,7 +38,6 @@ const requestAllEventsDataFromAPI = () => {
 }
 
 const receiveUserProfileFromAPI = (user) => {
-	console.log("receiveUserProfileFromAPI:", user)
 	return {
 		type: 'RECEIVE_USER_PROFILE',
 		user
@@ -46,7 +45,6 @@ const receiveUserProfileFromAPI = (user) => {
 }
 
 const receiveAllEventsDataFromAPI = (events) => {
-	// console.log("receiveAllEventsDataFromAPI:", events);
 	return {
 	type: 'RECEIVE_ALL_EVENTS',
 	events
@@ -67,8 +65,11 @@ export const getAllUsers = () => {
 	}
 }
 
+
+/*************
+GET
+**************/
 export const getUserProfile = () => {
-	console.log("getUserProfile CALLED");
 	return dispatch => {
 		fetch('http://localhost:8080/user/profile/new2', {
 			method: "GET",
