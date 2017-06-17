@@ -6,8 +6,8 @@ import {clickRsvp, getAllEvents} from '../actions/index';
 
 class EventList extends Component {
 
-	componentDidMount() {
-		console.log("componentDidMount:", this.props)
+	componentWillMount() {
+		console.log("componentWillMount:", this.props)
 		this.props.getAllEvents()
 	}
 
@@ -39,8 +39,8 @@ class EventList extends Component {
 function mapStateToProps(state) {
 	console.log("mapStateToProps:", state)
 	return {
-		events: state.events,
-		eventsDatabase: state.eventsDatabase.events,
+		// events: state.events,
+		events: state.eventsDatabase.events,
 		userAPI: state.userAPI.data
 	}
 }

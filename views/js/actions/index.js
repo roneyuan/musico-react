@@ -33,25 +33,16 @@ const receiveRsvpEventFromServer = (event) => ({
 	event
 })
 
-
-
-// export const fetchDataFromApi = () => {
-// 	return dispatch => {
-// 		dispatch(requestDataFromAPI())
-
-// 		fetch('/')
-// 		.then(response => response.json())
-// 		.then(json => dispatch(receiveDataFromAPI(json.results)))
-// 		.catch(ex => console.log('parsing failed', ex))
-// 	}
-// }
 const requestAllEventsDataFromAPI = () => {
 	type: "REQUEST_ALL_EVENTS"
 }
 
-const receiveAllEventsDataFromAPI =(events) => {
+const receiveAllEventsDataFromAPI = (events) => {
+	console.log("receiveAllEventsDataFromAPI:", events);
+	return {
 	type: 'RECEIVE_ALL_EVENTS',
 	events
+	}
 }
 
 export const getAllUsers = () => {
@@ -78,38 +69,18 @@ export const getAllEvents = () => {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
+				// Accept: 'application/json'
 			}
 		})
-		.then(response => {
-			console.log("Get response:", response);
-			response.json();
-		})
-		.then(json => {
-			console.log("Get json", json);
-			dispatch(receiveAllEventsDataFromAPI(json.results))
-		})
+		.then(response => response.json())
+		.then(json => {		
+			console.log("JSON response", json);
+			dispatch(receiveAllEventsDataFromAPI(json));
+		})		
 		.catch(err => {
-			console.log('Parsing failed', err);
+			console.error('Parsing failed', err);
 		})
 	}
-
-	// return dispatch => {
-	// 	fetch('http://localhost:8080/event/all', {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			'Content-Type': 'application/json'
-	// 		}
-	// 	})
-	// 	.then(response => response.json())
-	// 	.then(events => {
-	// 		console.log("+++++EVENTS+++++", events)
-	// 		dispatch(requestAllEventsDataFromServer(events))
-	// 	})
-	// 	.catch(err => {
-	// 		console.log("GET EVENTS ERROR", err)
-	// 	})
-	// }
 }
 
 export const postEvent = (name, price, description, location) => {
