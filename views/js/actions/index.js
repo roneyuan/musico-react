@@ -8,18 +8,8 @@ export const clickRsvp = (event) => {
 	}
 };
 
-const requestAllUsersDataFromServer = (users) => ({
-	type: 'REQUEST_ALL_USERS',
-	users
-})
-
-const requestAllEventsDataFromServer = (users) => ({
-	type: 'REQUEST_ALL_EVENTS',
-	users
-})
-
-const receiveUserDataFromServer = (user) => ({
-	type: 'RECEIVE_USER',
+const receiveRegisterUser = (user) => ({
+	type: 'RECEIVE_REGISTER_USER',
 	user
 })
 
@@ -28,14 +18,10 @@ const receivePostEvent = (event) => ({
 	event
 })
 
-const receiveRsvpEventFromServer = (event) => ({
-	type: 'RECEIVE_EVENT',
+const receiveRsvpEvent = (event) => ({
+	type: 'RECEIVE_RSVP_EVENT',
 	event
 })
-
-const requestAllEventsDataFromAPI = () => {
-	type: "REQUEST_ALL_EVENTS"
-}
 
 const receiveUserProfileFromAPI = (user) => {
 	return {
@@ -88,21 +74,15 @@ export const getUserProfile = () => {
 }
 
 export const getAllEvents = () => {
-	// console.log("getAllEvents CALLED");
-
 	return dispatch => {
-		// dispatch(requestAllEventsDataFromAPI())
-
 		fetch('http://localhost:8080/event/all', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
-				// Accept: 'application/json'
 			}
 		})
 		.then(response => response.json())
 		.then(json => {		
-			// console.log("JSON response", json);
 			dispatch(receiveAllEventsDataFromAPI(json));
 		})		
 		.catch(err => {
@@ -142,7 +122,7 @@ export const rsvpEvent = (eventId) => {
 			}
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveRsvpEventFromServer(event)))
+		.then(event => dispatch(receiveRsvpEvent(event)))
 	}
 }
 
@@ -160,7 +140,7 @@ export const addUser = (username, password, nickname) => {
 			})
 		})
 		.then(response => response.json())
-		.then(user => dispatch(receiveUserDataFromServer(user)))
+		.then(user => dispatch(receiveRegisterUser(user)))
 	}
 }
 
