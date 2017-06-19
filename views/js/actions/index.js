@@ -68,6 +68,7 @@ export const getUserProfile = () => {
 			dispatch(receiveUserProfileFromAPI(json))
 		})
 		.catch(err => {
+			// dispatch the error
 			console.log(err);
 		})
 	}
@@ -109,7 +110,7 @@ export const postEvent = (name, price, description, location, tag) => {
 			})
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receivePostEvent(event)))
+		.then(event => dispatch(receivePostEvent(event))) // Need reducers for that? Not necessary.
 	}
 }
 

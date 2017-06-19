@@ -26,7 +26,7 @@ passport.use(new GoogleStrategy({
 			nickname: profile.displayName
 		}, (err, user) => {
 			// Need to find out why use null
-			console.log("User created.")
+			// console.log("User created.")
 			return done(null, user);
 		})
 }));
@@ -50,7 +50,7 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email profi
 
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
 	function(req, res) {
-		console.log("Callback from Google")
+		// console.log("Callback from Google")
 		res.redirect('index.html?token=' + req.user.password);
 });
 
@@ -70,6 +70,7 @@ router.put('/:eventId', (req, res) => {
 			res.json(user);
 		})
 		.catch(err => {
+			/* istanbul ignore next */
 			console.log("Error when updating event to the account.", err);
 		});				
 	// Updated to User event
@@ -89,12 +90,14 @@ router.post('/:user', (req, res) => {
 		}
 		)
 		.catch(err => {
+			/* istanbul ignore next */
 			console.log("User create error")
 		}
 		)
 });
 
 router.get('/profile/:username', (req, res) => {
+	/* istanbul ignore next */
 	let username = req.params.username;
 	return User
 		.findOne({username: username})
@@ -107,6 +110,7 @@ router.get('/profile/:username', (req, res) => {
 			})
 		})
 		.catch(err => {
+			/* istanbul ignore next */
 			console.log(err);
 		})
 })
@@ -119,6 +123,7 @@ router.get('/allUser', (req, res) => {
 			res.status(200).json(user);
 		})
 		.catch(err => {
+			/* istanbul ignore next */
 			console.log(err);
 		})
 });

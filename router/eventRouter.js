@@ -90,10 +90,12 @@ router.post('/', (req, res) => {
 					res.status(201).json(event); // user?
 				})
 				.catch(err => {
+					/* istanbul ignore next */
 					console.log("Error when updating event to the account.", err);
 				});
 		})
 		.catch(err => {
+			/* istanbul ignore next */
 			console.log("Error when creating an event.", err);
 		})
 });
