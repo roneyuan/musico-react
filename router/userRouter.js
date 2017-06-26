@@ -57,13 +57,8 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 // RSVP an event
 router.put('/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
-	let name = req.body.name;
-	let location = req.body.location;
-	let time = req.body.time;
-	let description = req.body.description;
-	let tag = req.body.tag;
-	let price = req.body.price;
-	// console.log(event)
+
+	/* TODO - If event exist, then prevent to rsvp again */
 	return User
 		.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
 		{
@@ -116,12 +111,14 @@ router.get('/profile/:username', (req, res) => {
 	return User
 		.findOne({username: username})
 		.populate('eventsRsvp')  
+		.populate('eventsCreated')
 		.exec()
 		.then(user => {
 			res.status(200).json({
 				username: user.username,
 				nickname: user.nickname,
-				eventsRsvp: user.eventsRsvp
+				eventsRsvp: user.eventsRsvp,
+				eventsCreated: user.eventsCreated
 			})
 		})
 		.catch(err => {

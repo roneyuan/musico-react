@@ -13,9 +13,23 @@ class Profile extends Component {
   render() {
 
     let rsvpList;
+    let createdList;
 
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
+        <div className="col-4" key={index}>
+          <Event key={ event.name }
+                 tag={ event.tag }
+                 description={ event.description }
+                 price={ event.price}
+                 location={ event.location }
+                 cancel={ "Cancel" } />
+        </div>
+      )
+    }
+
+    if (this.props.user.eventsCreated) {
+      createdList = this.props.user.eventsCreated.map((event, index) => 
         <div className="col-4" key={index}>
           <Event key={ event.name }
                  tag={ event.tag }
@@ -33,6 +47,7 @@ class Profile extends Component {
           <div className="profile-username"> Username: { this.props.user.username } </div>
           <div className="profile-nickname"> Nickname: { this.props.user.nickname } </div>
           <div className="profile-rsvp"> RSVP : <div> { rsvpList } </div> </div>
+          <div className="profile-eventsCreated"> Created : <div> { createdList } </div> </div>
         </div>                  
       </div>      
     )
