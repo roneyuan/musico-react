@@ -62,6 +62,20 @@ router.get('/all', (req, res) => {
 		});
 });
 
+// router.get('/:eventId', (req, res) => {
+// 	return Event
+// 		.find({_id: req.params._id}, (err, event) => {
+// 			res.status(200).json({
+// 				name: event.name,
+// 				location: event.location,
+// 				time: event.time,
+// 				description: event.description,
+// 				tag: event.tag,
+// 				price: event.price
+// 			})
+// 		})
+// })
+
 // TODO put passport.authenticate('bearer', {session: false}) back when production
 // User should be able to post an event
 router.post('/', (req, res) => {

@@ -30,13 +30,19 @@ const receiveAllEventsDataFromAPI = (events) => {
 export const clickRsvp = (event) => {
 	console.log('Event is RSVP: ', event);
 	return dispatch => {
-		fetch('http://localhost:8080/user/' + event, {
+		fetch('http://localhost:8080/user/' + event._id, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				username: "new2"
+				username: "new2",
+				name: event.name,
+				location: event.location,
+				time: event.time,
+				description: event.description,
+				tag: event.tag,
+				price: event.price
 			})
 		})
 		.then(response => response.json())

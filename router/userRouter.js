@@ -56,13 +56,19 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 
 // RSVP an event
 router.put('/:eventId', (req, res) => {
-	let event = req.params.eventId;
-	console.log(event)
+	let eventId = req.params.eventId;
+	let name = req.body.name;
+	let location = req.body.location;
+	let time = req.body.time;
+	let description = req.body.description;
+	let tag = req.body.tag;
+	let price = req.body.price;
+	// console.log(event)
 	return User
 		.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
 		{
 			$push: {
-				'eventsRsvp': event
+				'eventsRsvp': eventId
 			}
 		})
 		.exec() // Need to know what happen if no exec()
@@ -99,8 +105,17 @@ router.post('/:user', (req, res) => {
 router.get('/profile/:username', (req, res) => {
 	/* istanbul ignore next */
 	let username = req.params.username;
+
+		// return User
+		// .findOne({username: req.user.username}) //
+		 
+		// .exec(function(err, user) {
+		// 	res.status(200).json(user);
+		// });
+
 	return User
 		.findOne({username: username})
+		.populate('eventsRsvp')  
 		.exec()
 		.then(user => {
 			res.status(200).json({

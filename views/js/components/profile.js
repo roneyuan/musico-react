@@ -11,12 +11,28 @@ class Profile extends Component {
   }
 
   render() {
-    return(
+
+    let rsvpList;
+
+    if (this.props.user.eventsRsvp) {
+      rsvpList = this.props.user.eventsRsvp.map((event, index) => 
+        <div className="col-4" key={index}>
+          <Event key={ event.name }
+                 tag={ event.tag }
+                 description={ event.description }
+                 price={ event.price}
+                 location={ event.location }
+                 cancel={ "Cancel" } />
+        </div>
+      )
+    }
+
+    return (
       <div className='user-profile'>
         <div className="col-12">
-          <div className="profile-username">Username: {this.props.user.username}</div>
-          <div className="profile-nickname">Nickname: {this.props.user.nickname}</div>
-          <div className="profile-rsvp"> RSVP : {this.props.user.eventsRsvp} </div>
+          <div className="profile-username"> Username: { this.props.user.username } </div>
+          <div className="profile-nickname"> Nickname: { this.props.user.nickname } </div>
+          <div className="profile-rsvp"> RSVP : <div> { rsvpList } </div> </div>
         </div>                  
       </div>      
     )
@@ -24,6 +40,7 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     user: state.userDatabase.user
   }

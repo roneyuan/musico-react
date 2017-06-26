@@ -12,7 +12,7 @@ export default function Event(props) {
       <div className="event-price">Price: {props.price}</div>
       <div className="event-location">Location: {props.location}</div>
       <div className="event-button">
-        <button onClick={props.rsvpClick} className="event-rsvp">RSVP</button>
+        <button onClick={props.rsvpClick} className="event-rsvp">{ props.cancel || 'RSVP' }</button>
       </div>
     </div>
   );
