@@ -182,14 +182,14 @@ export const rsvpEvent = (eventId) => {
 
 export const addUser = (username, password, nickname) => {
 	return dispatch => {
-		fetch('http://localhost:8080/user/', {
+		fetch('http://localhost:8080/user/' + username, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringfy({
+			body: JSON.stringify({
 				username,
-				passwords,
+				password,
 				nickname
 			})
 		})

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM  from 'react-dom';
 import EventList from './components/event-list';
 import PostEvent from './components/post-event';
+import Registration from './components/registration';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Event from './components/event';
@@ -12,6 +13,7 @@ import Profile from './components/profile'
 const routes = (
   <Provider store={store}>
 		<Router history={hashHistory}>
+			<Route path='/' component={Registration} />
 			<Route path="events" component={EventList} />
 			<Route path="postevents" component={PostEvent} />		
 			<Route path="profile" component={Profile} />					
