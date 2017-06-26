@@ -57,7 +57,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 // RSVP an event
 router.put('/:eventId', (req, res) => {
 	let event = req.params.eventId;
-
+	console.log(event)
 	return User
 		.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
 		{

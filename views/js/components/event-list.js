@@ -20,7 +20,7 @@ class EventList extends Component {
 								 description={event.description}
 								 price={event.price}
 								 location={event.location}
-								 rsvpClick={() => this.props.clickRsvp(event)} />
+								 rsvpClick={() => this.props.clickRsvp(event._id)} />
 				</div>
 			)
 		})

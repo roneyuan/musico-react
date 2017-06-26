@@ -1,13 +1,3 @@
-export const clickRsvp = (event) => {
-	console.log('Event is RSVP: ', event.name);
-	return {
-		// Type: describe the change
-		// Payload: 
-		type: "EVENT_RSVP",
-		payload: event
-	}
-};
-
 const receiveRegisterUser = (user) => ({
 	type: 'RECEIVE_REGISTER_USER',
 	user
@@ -36,6 +26,23 @@ const receiveAllEventsDataFromAPI = (events) => {
 	events
 	}
 }
+
+export const clickRsvp = (event) => {
+	console.log('Event is RSVP: ', event);
+	return dispatch => {
+		fetch('http://localhost:8080/user/' + event, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				username: "new2"
+			})
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receiveRsvpEvent(event)))
+	}
+};
 
 export const getAllUsers = () => {
 	console.log("GET ALL USERS CALLED")
