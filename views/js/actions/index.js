@@ -27,8 +27,48 @@ const receiveAllEventsDataFromAPI = (events) => {
 	}
 }
 
+const receiveCancelRsvp = (event) => {
+	return {
+		type: 'RECEIVE_CANCEL_RSVP',
+		event
+	}
+}
+
+const receiveCancelEvent = (event) => {
+	return {
+		type: 'RECEIVE_CANCEL_EVENT',
+		event
+	}
+}
+
+export const cancelRsvp = (event) => {
+	return dispatch => {
+		fetch('http://localhost:8080/user/cancelRsvp/' + event._id, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receiveCancelRsvp(event)))
+	}
+};
+
+export const cancelEvent = (event) => {
+	return dispatch => {
+		fetch('http://localhost:8080/user/cancelEvent/' + event._id, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receiveCancelEvent(event)))
+	}
+};
+
 export const clickRsvp = (event) => {
-	console.log('Event is RSVP: ', event);
+	// console.log('Event is RSVP: ', event);
 	return dispatch => {
 		fetch('http://localhost:8080/user/' + event._id, {
 			method: 'PUT',
@@ -51,7 +91,7 @@ export const clickRsvp = (event) => {
 };
 
 export const getAllUsers = () => {
-	console.log("GET ALL USERS CALLED")
+	// console.log("GET ALL USERS CALLED")
 	return dispatch => {
 		fetch('http://localhost:8080/user/allUser', {
 			method: 'GET',

@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Event from './event';
-import {getUserProfile} from '../actions/index';
+import {getUserProfile, cancelRsvp, cancelEvent} from '../actions/index';
 
 class Profile extends Component {
 
@@ -23,7 +23,8 @@ class Profile extends Component {
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
-                 cancel={ "Cancel" } />
+                 cancel={ "Cancel" } 
+                 eventClick={() => this.props.cancelRsvp(event)} />
         </div>
       )
     }
@@ -36,7 +37,8 @@ class Profile extends Component {
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
-                 cancel={ "Cancel" } />
+                 cancel={ "Cancel" } 
+                 eventClick={() => this.props.cancelEvent(event)} />
         </div>
       )
     }
@@ -55,14 +57,14 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
   return {
     user: state.userDatabase.user
   }
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({getUserProfile: getUserProfile}, dispatch)
+  return bindActionCreators({getUserProfile, cancelRsvp, cancelEvent}, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Profile);

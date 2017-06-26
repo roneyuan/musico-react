@@ -101,13 +101,6 @@ router.get('/profile/:username', (req, res) => {
 	/* istanbul ignore next */
 	let username = req.params.username;
 
-		// return User
-		// .findOne({username: req.user.username}) //
-		 
-		// .exec(function(err, user) {
-		// 	res.status(200).json(user);
-		// });
-
 	return User
 		.findOne({username: username})
 		.populate('eventsRsvp')  
@@ -140,7 +133,15 @@ router.get('/allUser', (req, res) => {
 		})
 });
 
+router.delete('/cancelRsvp/:eventId', (req, res) => {
+	let eventId = req.params.eventId;
+	console.log("CANCEL RSVP", eventId);
+})
 
+router.delete('/cancelEvent/:eventId', (req, res) => {
+	let eventId = req.params.eventId;
+	console.log("CANCEL EVENT", eventId);
+})
 
 // Furture features
 // // Get the users event. The info will be public so does not need use passport. 
