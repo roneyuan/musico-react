@@ -3,6 +3,7 @@ import ReactDOM  from 'react-dom';
 import EventList from './components/event-list';
 import PostEvent from './components/post-event';
 import Registration from './components/registration';
+import Login from './components/login'
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import Event from './components/event';
@@ -16,7 +17,8 @@ const routes = (
 			<Route path='/' component={Registration} />
 			<Route path="events" component={EventList} />
 			<Route path="postevents" component={PostEvent} />		
-			<Route path="profile" component={Profile} />					
+			<Route path="profile" component={Profile} />		
+			<Route path="login" component={Login} />			
 		</Router>
 	</Provider>
 )

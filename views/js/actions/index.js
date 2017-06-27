@@ -43,7 +43,7 @@ const receiveCancelEvent = (user) => {
 
 export const cancelRsvp = (event) => {
 	return dispatch => {
-		fetch('http://localhost:8080/user/cancelRsvp/' + event._id, {
+		fetch('http://localhost:8080/demo/user/cancelRsvp/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ export const cancelRsvp = (event) => {
 
 export const cancelEvent = (event) => {
 	return dispatch => {
-		fetch('http://localhost:8080/user/cancelEvent/' + event._id, {
+		fetch('http://localhost:8080/demo/user/cancelEvent/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -71,9 +71,8 @@ export const cancelEvent = (event) => {
 };
 
 export const clickRsvp = (event) => {
-	// console.log('Event is RSVP: ', event);
 	return dispatch => {
-		fetch('http://localhost:8080/user/' + event._id, {
+		fetch('http://localhost:8080/user/' + event._id + '?access_token=ya29.Gl12BA9jrMNMhBRQ7NH5dYjdrJ_RTpgLjV9aXmN8LEvseXTlw0vEGQk6NK72IlfoYCkooJMQnr9vuUjECEC3KKs4cBotiwKWQlZfCbe9sLmIYjHwoDLe7jn7HF1HfRc', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -94,9 +93,8 @@ export const clickRsvp = (event) => {
 };
 
 export const getAllUsers = () => {
-	// console.log("GET ALL USERS CALLED")
 	return dispatch => {
-		fetch('http://localhost:8080/user/allUser', {
+		fetch('http://localhost:8080/demo/user/allUser', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
@@ -112,8 +110,8 @@ export const getAllUsers = () => {
 GET
 **************/
 export const getUserProfile = () => {
-	return dispatch => {
-		fetch('http://localhost:8080/user/profile/new2', {
+	return dispatch => { // Need to find a way to store the token
+		fetch('http://localhost:8080/user/profile/118015509047435221543?access_token=ya29.Gl12BA9jrMNMhBRQ7NH5dYjdrJ_RTpgLjV9aXmN8LEvseXTlw0vEGQk6NK72IlfoYCkooJMQnr9vuUjECEC3KKs4cBotiwKWQlZfCbe9sLmIYjHwoDLe7jn7HF1HfRc', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json'
@@ -132,7 +130,7 @@ export const getUserProfile = () => {
 
 export const getAllEvents = () => {
 	return dispatch => {
-		fetch('http://localhost:8080/event/all', {
+		fetch('http://localhost:8080/demo/event/all', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
@@ -151,7 +149,7 @@ export const getAllEvents = () => {
 export const postEvent = (name, price, description, location, tag) => {
 	// console.log("postEvent CALLED:", name)
 	return dispatch => {
-		fetch('http://localhost:8080/event', {
+		fetch('http://localhost:8080/event?access_token=ya29.Gl12BA9jrMNMhBRQ7NH5dYjdrJ_RTpgLjV9aXmN8LEvseXTlw0vEGQk6NK72IlfoYCkooJMQnr9vuUjECEC3KKs4cBotiwKWQlZfCbe9sLmIYjHwoDLe7jn7HF1HfRc', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -171,8 +169,9 @@ export const postEvent = (name, price, description, location, tag) => {
 }
 
 export const rsvpEvent = (eventId) => {
+	console.log("RSVP", eventId)
 	return dispatch => {
-		fetch('http://localhost:8080/user/' + eventId, {
+		fetch('http://localhost:8080/user/' + eventId + '?access_token=ya29.Gl12BA9jrMNMhBRQ7NH5dYjdrJ_RTpgLjV9aXmN8LEvseXTlw0vEGQk6NK72IlfoYCkooJMQnr9vuUjECEC3KKs4cBotiwKWQlZfCbe9sLmIYjHwoDLe7jn7HF1HfRc', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -185,7 +184,7 @@ export const rsvpEvent = (eventId) => {
 
 export const addUser = (username, password, nickname) => {
 	return dispatch => {
-		fetch('http://localhost:8080/user/' + username, {
+		fetch('http://localhost:8080/demo/user/' + username, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

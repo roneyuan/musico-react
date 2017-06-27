@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const findOrCreate = require('mongoose-find-or-create');
+
 
 const UserSchema = Schema({
 	username: {
@@ -9,6 +11,9 @@ const UserSchema = Schema({
 	password: {
 		type: String,
 		require: true
+	},
+	token: {
+		type: String
 	},
 	nickname: {
 		type: String,
@@ -26,6 +31,8 @@ const UserSchema = Schema({
 	// eventsInterested: {
 	// }
 });
+
+UserSchema.plugin(findOrCreate);
 
 // Use methods becuase why need to research later and difference between
 // other call or methods function - static

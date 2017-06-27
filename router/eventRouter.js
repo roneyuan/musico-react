@@ -16,7 +16,7 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 passport.use(new GoogleStrategy({
 	clientID: '603515610903-ov1hu4kjoghb028raqlmb2ndd4761re1.apps.googleusercontent.com',
 	clientSecret: 'K5NBv_fDAp6YcyZJQfNofxVb',
-	callbackURL: '/users/auth/google/callback'
+	callbackURL: '/user/auth/google/callback'
 }, function(accessToken, refreshToken, profile, done) {
 	return User
 		.findOrCreate({
@@ -52,7 +52,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 
 // TODO
 // User should be able to browse all the events
-router.get('/all', (req, res) => {
+router.get('/all', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Get all events
 	// Return all events here
 	// Use MongoDB query to return all events
@@ -62,23 +62,9 @@ router.get('/all', (req, res) => {
 		});
 });
 
-// router.get('/:eventId', (req, res) => {
-// 	return Event
-// 		.find({_id: req.params._id}, (err, event) => {
-// 			res.status(200).json({
-// 				name: event.name,
-// 				location: event.location,
-// 				time: event.time,
-// 				description: event.description,
-// 				tag: event.tag,
-// 				price: event.price
-// 			})
-// 		})
-// })
-
 // TODO put passport.authenticate('bearer', {session: false}) back when production
 // User should be able to post an event
-router.post('/', (req, res) => {
+router.post('/', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Post a new event
 	// console.log("POST event requested:", req.body)
 	return Event
@@ -93,7 +79,7 @@ router.post('/', (req, res) => {
 		.then(event => {
 			// Chain to the user
 			return User
-				.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
+				.findOneAndUpdate({username: req.user.username}, // Production using req.user.username
 				{
 					$push: {
 						'eventsCreated': event._id

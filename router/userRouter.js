@@ -5,6 +5,7 @@ const router = express.Router();
 const jsonParser = require('body-parser').json();
 const {User} = require('../models/users');
 const {Event} = require('../models/events')
+// const jwt = require('jsonwebtoken')
 
 router.use(jsonParser);
 router.use(passport.initialize());
@@ -16,7 +17,7 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 passport.use(new GoogleStrategy({
 	clientID: '603515610903-ov1hu4kjoghb028raqlmb2ndd4761re1.apps.googleusercontent.com',
 	clientSecret: 'K5NBv_fDAp6YcyZJQfNofxVb',
-	callbackURL: '/users/auth/google/callback'
+	callbackURL: '/user/auth/google/callback'
 }, function(accessToken, refreshToken, profile, done) {
 	return User
 		.findOrCreate({
@@ -27,7 +28,7 @@ passport.use(new GoogleStrategy({
 			nickname: profile.displayName
 		}, (err, user) => {
 			// Need to find out why use null
-			// console.log("User created.")
+			console.log("User created.", user)
 			return done(null, user);
 		})
 }));
@@ -39,6 +40,7 @@ passport.use(new GoogleStrategy({
 
 passport.use(new BearerStrategy(function(token, done) {
 	User.findOne({password: token}, function(err, user) {
+		console.log("BEARER", user)
 		if (err) return done(err);
 		// Need to find out why false
 		if (!user) return done(null, false);
@@ -51,17 +53,17 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email profi
 
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
 	function(req, res) {
-		// console.log("Callback from Google")
-		res.redirect('index.html?token=' + req.user.password);
+		console.log("Callback from Google", req.user.password)
+		res.redirect('/index.html?token=' + req.user.password);
 });
 
 // RSVP an event
-router.put('/:eventId', (req, res) => {
+router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
-
+	console.log("RSVP", req.user.username)
 	/* TODO - If event exist, then prevent to rsvp again */
 	return User
-		.findOneAndUpdate({username: req.body.username}, // Production using req.user.username
+		.findOneAndUpdate({username: req.user.username}, // Production using req.user.username
 		{
 			$push: {
 				'eventsRsvp': eventId
@@ -78,29 +80,11 @@ router.put('/:eventId', (req, res) => {
 	// Updated to User event
 });
 
-
-// TEST only
-router.post('/:user', (req, res) => {
-	return User
-		.create({
-			username: req.body.username,
-			password: req.body.password,
-			nickname: req.body.nickname
-		})
-		.then(user => {
-			res.status(201).json(user);
-		}
-		)
-		.catch(err => {
-			/* istanbul ignore next */
-			console.log("User create error")
-		}
-		)
-});
-
-router.get('/profile/:username', (req, res) => {
+// Get the user profile
+router.get('/profile/:username', passport.authenticate('bearer', {session: false}), (req, res) => {
 	/* istanbul ignore next */
-	let username = req.params.username;
+	let username = req.user.username;
+	console.log("Profile", username)
 
 	return User
 		.findOne({username: username})
@@ -121,7 +105,8 @@ router.get('/profile/:username', (req, res) => {
 		})
 })
 
-router.get('/allUser', (req, res) => {
+/* TEST ONLY */
+router.get('/allUser', passport.authenticate('bearer', {session: false}), (req, res) => {
 	return User
 		.find({})
 		.exec()
@@ -134,7 +119,8 @@ router.get('/allUser', (req, res) => {
 		})
 });
 
-router.delete('/cancelRsvp/:eventId', (req, res) => {
+// Cancel a RSVP event
+router.delete('/cancelRsvp/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
 	console.log("CANCEL RSVP", eventId);
 	return User
@@ -147,7 +133,7 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 		.exec() // Need to know what happen if no exec()
 		.then(user => {
 			return User
-				.findOne({username: 'new2'})
+				.findOne({ username: req.user.username })
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()
@@ -170,7 +156,8 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 		});				
 })
 
-router.delete('/cancelEvent/:eventId', (req, res) => {
+// Cancel an event
+router.delete('/cancelEvent/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
 	// console.log("CANCEL EVENT", eventId);
 	return Event
@@ -179,7 +166,7 @@ router.delete('/cancelEvent/:eventId', (req, res) => {
 		.then(event => {
 			// Return back the rest of the data
 			return User
-				.findOne({username: 'new2'})
+				.findOne({ username: req.user.username })
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()

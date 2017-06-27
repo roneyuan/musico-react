@@ -5,7 +5,6 @@ const initialState = {
 const userDatabase = (state = initialState, action) => {
 	switch(action.type) {
 		case 'RECEIVE_USER_PROFILE':
-					console.log("RECEIVE", action)
 			return {
 				...state,
 				user: action.user
@@ -18,7 +17,6 @@ const userDatabase = (state = initialState, action) => {
 			}			
 
 		case 'RECEIVE_CANCEL_RSVP':
-					console.log("CANCEL RSVP", action)
 			return {
 				...state,
 				user: action.user
