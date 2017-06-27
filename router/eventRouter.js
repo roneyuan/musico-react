@@ -80,7 +80,7 @@ router.get('/all', (req, res) => {
 // User should be able to post an event
 router.post('/', (req, res) => {
 	// Post a new event
-	console.log("POST event requested:", req.body)
+	// console.log("POST event requested:", req.body)
 	return Event
 		.create({
 			name: req.body.name,

@@ -4,6 +4,7 @@ const passport = require('passport');
 const router = express.Router();
 const jsonParser = require('body-parser').json();
 const {User} = require('../models/users');
+const {Event} = require('../models/events')
 
 router.use(jsonParser);
 router.use(passport.initialize());
@@ -140,7 +141,32 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 
 router.delete('/cancelEvent/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
-	console.log("CANCEL EVENT", eventId);
+	// console.log("CANCEL EVENT", eventId);
+	return Event
+		.findByIdAndRemove(eventId)
+		.exec()
+		.then(event => {
+			// console.log(event)
+			return User
+				.findOne({username: 'new2'})
+				.populate('eventsRsvp')  
+				.populate('eventsCreated')
+				.exec()
+				.then(user => {
+					res.status(200).json({
+						username: user.username,
+						nickname: user.nickname,
+						eventsRsvp: user.eventsRsvp,
+						eventsCreated: user.eventsCreated
+					})
+				})
+				.catch(err => {
+					/* istanbul ignore next */
+					console.log(err);
+				})
+
+		})
+		.catch(err => res.status(500).json({message: 'Internal Error Message'}))
 })
 
 // Furture features

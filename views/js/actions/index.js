@@ -34,10 +34,10 @@ const receiveCancelRsvp = (event) => {
 	}
 }
 
-const receiveCancelEvent = (event) => {
+const receiveCancelEvent = (user) => {
 	return {
 		type: 'RECEIVE_CANCEL_EVENT',
-		event
+		user
 	}
 }
 
@@ -50,7 +50,7 @@ export const cancelRsvp = (event) => {
 			}
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveCancelRsvp(event)))
+		.then(user => dispatch(receiveCancelRsvp(user)))
 	}
 };
 
@@ -63,7 +63,10 @@ export const cancelEvent = (event) => {
 			}
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveCancelEvent(event)))
+		.then(event => {
+			console.log("CANCEL", event)
+			dispatch(receiveCancelEvent(event))
+		})
 	}
 };
 
@@ -146,7 +149,7 @@ export const getAllEvents = () => {
 }
 
 export const postEvent = (name, price, description, location, tag) => {
-	console.log("postEvent CALLED:", name)
+	// console.log("postEvent CALLED:", name)
 	return dispatch => {
 		fetch('http://localhost:8080/event', {
 			method: 'POST',
