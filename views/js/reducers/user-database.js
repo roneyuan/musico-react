@@ -12,11 +12,17 @@ const userDatabase = (state = initialState, action) => {
 			}
 
 		case 'RECEIVE_CANCEL_EVENT':
-			console.log("CANCEL", action)
 			return {
 				...state,
 				user: action.user
 			}			
+
+		case 'RECEIVE_CANCEL_RSVP':
+					console.log("CANCEL RSVP", action)
+			return {
+				...state,
+				user: action.user
+			}
 
 		default:
 			return state;

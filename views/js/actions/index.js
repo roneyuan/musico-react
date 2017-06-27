@@ -27,10 +27,10 @@ const receiveAllEventsDataFromAPI = (events) => {
 	}
 }
 
-const receiveCancelRsvp = (event) => {
+const receiveCancelRsvp = (user) => {
 	return {
 		type: 'RECEIVE_CANCEL_RSVP',
-		event
+		user
 	}
 }
 

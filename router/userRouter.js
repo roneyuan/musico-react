@@ -137,6 +137,37 @@ router.get('/allUser', (req, res) => {
 router.delete('/cancelRsvp/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
 	console.log("CANCEL RSVP", eventId);
+	return User
+		.findOneAndUpdate({username: 'new2'}, // Production using req.user.username
+		{
+			$pull: {
+				'eventsRsvp': eventId
+			}
+		})
+		.exec() // Need to know what happen if no exec()
+		.then(user => {
+			return User
+				.findOne({username: 'new2'})
+				.populate('eventsRsvp')  
+				.populate('eventsCreated')
+				.exec()
+				.then(user => {
+					res.status(200).json({
+						username: user.username,
+						nickname: user.nickname,
+						eventsRsvp: user.eventsRsvp,
+						eventsCreated: user.eventsCreated
+					})
+				})
+				.catch(err => {
+					/* istanbul ignore next */
+					console.log(err);
+				})
+		})
+		.catch(err => {
+			/* istanbul ignore next */
+			console.log("Error when updating event to the account.", err);
+		});				
 })
 
 router.delete('/cancelEvent/:eventId', (req, res) => {
@@ -146,7 +177,7 @@ router.delete('/cancelEvent/:eventId', (req, res) => {
 		.findByIdAndRemove(eventId)
 		.exec()
 		.then(event => {
-			// console.log(event)
+			// Return back the rest of the data
 			return User
 				.findOne({username: 'new2'})
 				.populate('eventsRsvp')  
