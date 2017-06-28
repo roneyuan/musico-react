@@ -3,15 +3,20 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Event from './event';
 import {clickRsvp, getAllEvents} from '../actions/index';
+import * as Cookies from 'js-cookie';
+
 
 class EventList extends Component {
 
 	componentWillMount() {
 		// console.log("componentWillMount:", this.props)
-		this.props.getAllEvents()
+		const accessToken = Cookies.get('accessToken');
+    // console.log("GET TOKEN", accessToken);
+		this.props.getAllEvents(accessToken)
 	}
 
 	createEventList() {
+		const accessToken = Cookies.get('accessToken');
 		return this.props.events.map((event, index) => {
 			return (
 				<div className="col-4" key={index}>
@@ -20,7 +25,7 @@ class EventList extends Component {
 								 description={event.description}
 								 price={event.price}
 								 location={event.location}
-								 eventClick={() => this.props.clickRsvp(event)} />
+								 eventClick={() => this.props.clickRsvp(event, accessToken)} />
 				</div>
 			)
 		})

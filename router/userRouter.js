@@ -55,7 +55,6 @@ router.get('/auth/google/callback', passport.authenticate('google', {failureRedi
 	function(req, res) {
 		console.log("Callback from Google", req.user.password)
 		res.cookie('accessToken', req.user.password, { expires: 0 });
-		// res.status(201).json({token: req.user.password});
 		res.redirect('/')
 });
 
@@ -132,7 +131,7 @@ router.delete('/cancelRsvp/:eventId', passport.authenticate('bearer', {session: 
 	let eventId = req.params.eventId;
 	console.log("CANCEL RSVP", eventId);
 	return User
-		.findOneAndUpdate({username: 'new2'}, // Production using req.user.username
+		.findOneAndUpdate({username: req.user.username}, // Production using req.user.username
 		{
 			$pull: {
 				'eventsRsvp': eventId

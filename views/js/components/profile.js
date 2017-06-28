@@ -17,7 +17,7 @@ class Profile extends Component {
 
     let rsvpList;
     let createdList;
-
+    const accessToken = Cookies.get('accessToken');
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
         <div className="col-4" key={index}>
@@ -27,7 +27,7 @@ class Profile extends Component {
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
-                 eventClick={() => this.props.cancelRsvp(event)} />
+                 eventClick={() => this.props.cancelRsvp(event, accessToken)} />
         </div>
       )
     }
@@ -41,7 +41,7 @@ class Profile extends Component {
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
-                 eventClick={() => this.props.cancelEvent(event)} />
+                 eventClick={() => this.props.cancelEvent(event, accessToken)} />
         </div>
       )
     }

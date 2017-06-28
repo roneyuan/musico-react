@@ -17,8 +17,9 @@ class PostEvent extends Component {
       		let price = event.target.price.value;
       		let tag = event.target.tag.value;
       		let location = event.target.location.value;
+          const accessToken = Cookies.get('accessToken');
 
-      		this.props.dispatch(postEvent(name, price, description, location, tag));
+      		this.props.dispatch(postEvent(name, price, description, location, tag, accessToken));
       	}}>
 
       	<div className="form-contol">
