@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Event from './event';
 import {postEvent} from '../actions/index';
+import * as Cookies from 'js-cookie';
 
 class PostEvent extends Component {
   render() {

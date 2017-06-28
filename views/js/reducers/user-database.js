@@ -1,5 +1,6 @@
 const initialState = {
-	user: []
+	user: [],
+	token: ''
 }
 
 const userDatabase = (state = initialState, action) => {
@@ -20,6 +21,13 @@ const userDatabase = (state = initialState, action) => {
 			return {
 				...state,
 				user: action.user
+			}
+
+		case 'RECEIVE_TOKEN':
+			console.log(action)
+			return {
+				...state,
+				token: action.token
 			}
 
 		default:

@@ -3,11 +3,14 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Event from './event';
 import {getUserProfile, cancelRsvp, cancelEvent} from '../actions/index';
+import * as Cookies from 'js-cookie';
 
 class Profile extends Component {
 
   componentWillMount() {
-    this.props.getUserProfile();
+    const accessToken = Cookies.get('accessToken');
+    console.log("GET TOKEN", accessToken);
+    this.props.getUserProfile(accessToken);
   }
 
   render() {

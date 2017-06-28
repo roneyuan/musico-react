@@ -54,7 +54,15 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email profi
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
 	function(req, res) {
 		console.log("Callback from Google", req.user.password)
-		res.redirect('/index.html?token=' + req.user.password);
+		res.cookie('accessToken', req.user.password, { expires: 0 });
+		// res.status(201).json({token: req.user.password});
+		res.redirect('/')
+});
+
+router.get('/auth/logout', (req, res) => {
+  req.logout();
+  res.clearCookie('accessToken');
+  res.redirect('/');
 });
 
 // RSVP an event

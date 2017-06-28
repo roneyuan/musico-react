@@ -41,6 +41,24 @@ const receiveCancelEvent = (user) => {
 	}
 }
 
+const receiveToken = (token) => {
+	return {
+		type: 'RECEIVE_TOKEN',
+		token
+	}
+}
+
+export const getToken = () => {
+	console.log("GO")
+	return dispatch => {
+		fetch('http://localhost:8080/user/auth/google', {
+			method: 'GET'
+		})
+		.then(response => response.json())
+		.then(token => dispatch(receiveToken(token)))
+	}
+}
+
 export const cancelRsvp = (event) => {
 	return dispatch => {
 		fetch('http://localhost:8080/demo/user/cancelRsvp/' + event._id, {
@@ -109,12 +127,14 @@ export const getAllUsers = () => {
 /*************
 GET
 **************/
-export const getUserProfile = () => {
+export const getUserProfile = (access_token) => {
+	console.log(access_token)
 	return dispatch => { // Need to find a way to store the token
-		fetch('http://localhost:8080/user/profile/118015509047435221543?access_token=ya29.Gl12BA9jrMNMhBRQ7NH5dYjdrJ_RTpgLjV9aXmN8LEvseXTlw0vEGQk6NK72IlfoYCkooJMQnr9vuUjECEC3KKs4cBotiwKWQlZfCbe9sLmIYjHwoDLe7jn7HF1HfRc', {
+		fetch('http://localhost:8080/user/profile/118015509047435221543', {
 			method: "GET",
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${access_token}`
 			}
 		})
 		.then(response => response.json())
