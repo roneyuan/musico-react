@@ -1,9 +1,10 @@
-import React , {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React , { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { postEvent } from '../actions/index';
 import Event from './event';
-import {postEvent} from '../actions/index';
 import * as Cookies from 'js-cookie';
+
 
 class PostEvent extends Component {
   render() {
@@ -17,6 +18,7 @@ class PostEvent extends Component {
       		let price = event.target.price.value;
       		let tag = event.target.tag.value;
       		let location = event.target.location.value;
+          
           const accessToken = Cookies.get('accessToken');
 
       		this.props.dispatch(postEvent(name, price, description, location, tag, accessToken));
@@ -50,14 +52,9 @@ class PostEvent extends Component {
   )}
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     event: state.userDatabase.user
-//   }
-// }
-
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({postEvent: postEvent}, dispatch)
+  return bindActionCreators({ postEvent }, dispatch)
 }
+
 
 export default connect(matchDispatchToProps)(PostEvent);

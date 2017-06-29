@@ -9,14 +9,12 @@ import * as Cookies from 'js-cookie';
 class EventList extends Component {
 
 	componentWillMount() {
-		// console.log("componentWillMount:", this.props)
 		const accessToken = Cookies.get('accessToken');
-    // console.log("GET TOKEN", accessToken);
 		this.props.getAllEvents(accessToken)
 	}
 
 	createEventList() {
-		const accessToken = Cookies.get('accessToken');
+		const accessToken = Cookies.get('accessToken'); // Better way to refactor?
 		return this.props.events.map((event, index) => {
 			return (
 				<div className="col-4" key={index}>
@@ -41,13 +39,11 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	// console.log("mapStateToProps:", state)
 	return {
 		events: state.eventsDatabase.events,
 	}
 }
 
-// Call a function
 function matchDispatchToProps(dispatch) {
 	return bindActionCreators({clickRsvp: clickRsvp, getAllEvents: getAllEvents}, dispatch)
 }

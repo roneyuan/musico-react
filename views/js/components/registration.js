@@ -38,7 +38,7 @@ class Registration extends Component {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addUser: addUser}, dispatch)
+  return bindActionCreators({addUser}, dispatch)
 }
 
 export default connect(matchDispatchToProps)(Registration);

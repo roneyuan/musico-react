@@ -29,6 +29,10 @@ app.use('/event', eventRouter);
 app.use('/demo/user', userRouterDemo);
 app.use('/demo/event', eventRouterDemo);
 
+// app.get('/', (req, res) => {
+// 	res.redirect('/home');
+// })
+
 let server;
 
 function runServer(databaseUrl=DATABASE_URL, port=PORT) {

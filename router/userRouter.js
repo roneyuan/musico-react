@@ -40,7 +40,7 @@ passport.use(new GoogleStrategy({
 
 passport.use(new BearerStrategy(function(token, done) {
 	User.findOne({password: token}, function(err, user) {
-		console.log("BEARER", user)
+		// console.log("BEARER", user)
 		if (err) return done(err);
 		// Need to find out why false
 		if (!user) return done(null, false);
@@ -67,7 +67,7 @@ router.get('/auth/logout', (req, res) => {
 // RSVP an event
 router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
-	console.log("RSVP", req.user.username)
+	// console.log("RSVP", req.user.username)
 	/* TODO - If event exist, then prevent to rsvp again */
 	return User
 		.findOneAndUpdate({username: req.user.username}, // Production using req.user.username
@@ -91,7 +91,7 @@ router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req,
 router.get('/profile/:username', passport.authenticate('bearer', {session: false}), (req, res) => {
 	/* istanbul ignore next */
 	let username = req.user.username;
-	console.log("Profile", username)
+	// console.log("Profile", username)
 
 	return User
 		.findOne({username: username})
@@ -129,7 +129,7 @@ router.get('/allUser', passport.authenticate('bearer', {session: false}), (req, 
 // Cancel a RSVP event
 router.delete('/cancelRsvp/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
-	console.log("CANCEL RSVP", eventId);
+
 	return User
 		.findOneAndUpdate({username: req.user.username}, // Production using req.user.username
 		{
@@ -166,7 +166,7 @@ router.delete('/cancelRsvp/:eventId', passport.authenticate('bearer', {session: 
 // Cancel an event
 router.delete('/cancelEvent/:eventId', passport.authenticate('bearer', {session: false}), (req, res) => {
 	let eventId = req.params.eventId;
-	// console.log("CANCEL EVENT", eventId);
+
 	return Event
 		.findByIdAndRemove(eventId)
 		.exec()

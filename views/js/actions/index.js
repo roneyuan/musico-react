@@ -48,16 +48,6 @@ const receiveToken = (token) => {
 	}
 }
 
-export const getToken = () => {
-	console.log("GO")
-	return dispatch => {
-		fetch('http://localhost:8080/user/auth/google', {
-			method: 'GET'
-		})
-		.then(response => response.json())
-		.then(token => dispatch(receiveToken(token)))
-	}
-}
 
 export const cancelRsvp = (event, accessToken ) => {
 	return dispatch => {
@@ -130,9 +120,9 @@ export const getAllUsers = () => {
 /*************
 GET
 **************/
-export const getUserProfile = (accessToken) => {
+export const getUserProfile = (accessToken, username) => {
 	return dispatch => {
-		fetch('http://localhost:8080/user/profile/118015509047435221543', {
+		fetch('http://localhost:8080/user/profile/' + username, {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
@@ -152,7 +142,7 @@ export const getUserProfile = (accessToken) => {
 
 export const getAllEvents = (accessToken) => {
 	return dispatch => {
-		fetch('http://localhost:8080/demo/event/all', {
+		fetch('http://localhost:8080/event/all', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',

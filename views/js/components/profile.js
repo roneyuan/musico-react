@@ -9,15 +9,15 @@ class Profile extends Component {
 
   componentWillMount() {
     const accessToken = Cookies.get('accessToken');
-    console.log("GET TOKEN", accessToken);
-    this.props.getUserProfile(accessToken);
+    this.props.getUserProfile(accessToken, this.props.user.username);
   }
 
   render() {
-
     let rsvpList;
     let createdList;
+    
     const accessToken = Cookies.get('accessToken');
+
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
         <div className="col-4" key={index}>
@@ -60,7 +60,6 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state)
   return {
     user: state.userDatabase.user
   }
