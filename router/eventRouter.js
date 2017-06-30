@@ -13,24 +13,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 
 
-passport.use(new GoogleStrategy({
-	clientID: '603515610903-ov1hu4kjoghb028raqlmb2ndd4761re1.apps.googleusercontent.com',
-	clientSecret: 'K5NBv_fDAp6YcyZJQfNofxVb',
-	callbackURL: '/user/auth/google/callback'
-}, function(accessToken, refreshToken, profile, done) {
-	return User
-		.findOrCreate({
-			username: profile.id
-		}, 
-		{
-			password: accessToken,
-			nickname: profile.displayName
-		}, (err, user) => {
-			// Need to find out why use null
-			return done(null, user);
-		})
-}));
-
 passport.use(new BearerStrategy(function(token, done) {
 	User.findOne({password: token}, function(err, user) {
 		if (err) return done(err);
@@ -41,17 +23,7 @@ passport.use(new BearerStrategy(function(token, done) {
 	});
 }));
 
-router.get('/auth/google', passport.authenticate('google', {scope: ['email profile']}));
 
-router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
-	function(req, res) {
-		res.redirect('index.html?token=' + req.user.password);
-});
-
-
-
-// TODO
-// User should be able to browse all the events
 router.get('/all', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// Get all events
 	// Return all events here
@@ -62,11 +34,8 @@ router.get('/all', passport.authenticate('bearer', {session: false}), (req, res)
 		});
 });
 
-// TODO put passport.authenticate('bearer', {session: false}) back when production
 // User should be able to post an event
 router.post('/', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// Post a new event
-	// console.log("POST event requested:", req.body)
 	return Event
 		.create({
 			name: req.body.name,

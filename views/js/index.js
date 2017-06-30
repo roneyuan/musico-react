@@ -9,14 +9,15 @@ import {Provider} from 'react-redux';
 import Event from './components/event';
 import Navigation from './components/navigation'
 import store from './store';
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, browserHistory} from 'react-router';
 import Profile from './components/profile'
 import App from './components/app';
 
 
 const routes = (
   <Provider store={store}>
-		<Router history={hashHistory}>
+		<Router history={browserHistory}>
+			<Route path='/' component={Login} />
 			<Route path='/' component={App}>
 				<Route path="/events" component={EventList} />
 				<Route path="/postevents" component={PostEvent} />		
