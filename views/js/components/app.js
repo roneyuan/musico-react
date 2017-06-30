@@ -9,9 +9,6 @@ class App extends Component {
 		return(
 			<div className="app">
 				<Navigation />
-				<div className="home">
-					HOME
-				</div>
 				{ this.props.children } 
 		</div>
 		)

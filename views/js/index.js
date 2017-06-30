@@ -9,16 +9,19 @@ import {Provider} from 'react-redux';
 import Event from './components/event';
 import Navigation from './components/navigation'
 import store from './store';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
 import Profile from './components/profile'
 import App from './components/app';
+import Home from './components/home';
 
 
+// How do I get rid of pound sign?
 const routes = (
   <Provider store={store}>
-		<Router history={browserHistory}>
+		<Router history={hashHistory}>
 			<Route path='/' component={Login} />
-			<Route path='/' component={App}>
+			<Route path='/app' component={App}>
+				<Route path="/home" component={Home} />
 				<Route path="/events" component={EventList} />
 				<Route path="/postevents" component={PostEvent} />		
 				<Route path="/profile" component={Profile} />		
