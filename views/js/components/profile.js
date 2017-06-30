@@ -1,8 +1,8 @@
-import React , {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React , { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Event from './event';
-import {getUserProfile, cancelRsvp, cancelEvent} from '../actions/index';
+import { getUserProfile, cancelRsvp, cancelEvent } from '../actions/index';
 import * as Cookies from 'js-cookie';
 
 class Profile extends Component {
@@ -66,7 +66,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({getUserProfile, cancelRsvp, cancelEvent}, dispatch)
+  return bindActionCreators({ getUserProfile, cancelRsvp, cancelEvent }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Profile);

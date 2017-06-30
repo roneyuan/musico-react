@@ -1,8 +1,8 @@
-import React , {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React , { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Event from './event';
-import {clickRsvp, getAllEvents} from '../actions/index';
+import { clickRsvp, getAllEvents } from '../actions/index';
 import * as Cookies from 'js-cookie';
 
 
@@ -17,13 +17,15 @@ class EventList extends Component {
 		const accessToken = Cookies.get('accessToken'); // Better way to refactor?
 		return this.props.events.map((event, index) => {
 			return (
-				<div className="col-4" key={index}>
-					<Event name={event.name}
-								 tag={event.tag}
-								 description={event.description}
-								 price={event.price}
-								 location={event.location}
-								 eventClick={() => this.props.clickRsvp(event, accessToken)} />
+				<div className="col-4" key={ index }>
+					<Event name={ event.name }
+								 tag={ event.tag }
+								 description={ event.description }
+								 price={ event.price }
+								 location={ event.location }
+								 eventClick={
+								 	() => this.props.clickRsvp(event, accessToken)
+								 } />
 				</div>
 			)
 		})
@@ -32,7 +34,7 @@ class EventList extends Component {
 	render() {
 		return(
 			<div className='event-list'>
-				{this.createEventList()}					 						 
+				{ this.createEventList() }					 						 
 			</div>			
 		)
 	}
@@ -45,7 +47,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({clickRsvp: clickRsvp, getAllEvents: getAllEvents}, dispatch)
+	return bindActionCreators({ clickRsvp, getAllEvents }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventList);

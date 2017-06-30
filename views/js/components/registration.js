@@ -1,7 +1,7 @@
-import React , {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {addUser} from '../actions/index';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { addUser } from '../actions/index';
 
 class Registration extends Component {
   render() {
@@ -38,7 +38,7 @@ class Registration extends Component {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({addUser}, dispatch)
+  return bindActionCreators({ addUser }, dispatch)
 }
 
 export default connect(matchDispatchToProps)(Registration);
