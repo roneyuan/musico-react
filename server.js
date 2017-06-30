@@ -24,10 +24,10 @@ app.get('/', (req, res) => {
 	res.redirect(301, 'index.html') 
 });
 
-app.use('/user', userRouter);
-app.use('/event', eventRouter);
-app.use('/demo/user', userRouterDemo);
-app.use('/demo/event', eventRouterDemo);
+app.use('api/user', userRouter);
+app.use('api/event', eventRouter);
+app.use('api/demo/user', userRouterDemo);
+app.use('api/demo/event', eventRouterDemo);
 
 // app.get('/', (req, res) => {
 // 	res.redirect('/home');

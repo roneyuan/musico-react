@@ -22,6 +22,11 @@ const routes = (
 				<Route path="/postevents" component={PostEvent} />		
 				<Route path="/profile" component={Profile} />		
 			</Route>
+			<Route path='/demo' component={App}>
+				<Route path="/events" component={EventList} />
+				<Route path="/postevents" component={PostEvent} />		
+				<Route path="/profile" component={Profile} />		
+			</Route>			
 			<Route path='/login' component={Login} />
 			<Route path='/register' component={Registration} />	
 		</Router>

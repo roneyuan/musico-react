@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import Navigation from './navigation';
 
 
@@ -9,6 +9,9 @@ class App extends Component {
 		return(
 			<div className="app">
 				<Navigation />
+				<div className="home">
+					HOME
+				</div>
 				{ this.props.children } 
 		</div>
 		)
