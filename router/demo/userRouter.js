@@ -5,7 +5,6 @@ const router = express.Router();
 const jsonParser = require('body-parser').json();
 const {User} = require('../../models/users');
 const {Event} = require('../../models/events')
-// const jwt = require('jsonwebtoken')
 
 
 router.use(jsonParser);
@@ -87,7 +86,7 @@ router.get('/allUser', (req, res) => {
 
 router.delete('/cancelRsvp/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
-	console.log("CANCEL RSVP", eventId);
+
 	return User
 		.findOneAndUpdate({username: 'demo'}, 
 		{
@@ -98,7 +97,7 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 		.exec() 
 		.then(user => {
 			return User
-				.findOne({username: req.user.username})
+				.findOne({username: 'demo'})
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()
@@ -129,7 +128,7 @@ router.delete('/cancelEvent/:eventId', (req, res) => {
 		.exec()
 		.then(event => {
 			return User
-				.findOne({username: req.user.username})
+				.findOne({username: 'demo'})
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()

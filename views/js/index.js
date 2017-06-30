@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
-import EventList from './components/event-list';
-import PostEvent from './components/post-event';
-import Registration from './components/registration';
-import Login from './components/login'
 import thunk from 'redux-thunk';
-import {Provider} from 'react-redux';
-import Event from './components/event';
-import Navigation from './components/navigation'
+import { Provider } from 'react-redux';
+import { Router, Route, hashHistory } from 'react-router';
 import store from './store';
-import {Router, Route, hashHistory} from 'react-router';
-import Profile from './components/profile'
 import App from './components/app';
+import EventList from './components/event-list';
 import Home from './components/home';
+import Login from './components/login';
+import PostEvent from './components/post-event';
+import Profile from './components/profile';
+import Registration from './components/registration';
+import DemoApp from './components/demo/app';
+import DemoEventList from './components/demo/event-list';
+import DemoHome from './components/demo/home';
+import DemoPostEvent from './components/demo/post-event';
+import DemoProfile from './components/demo/profile';
 
 
 // How do I get rid of pound sign?
@@ -21,15 +24,16 @@ const routes = (
 		<Router history={hashHistory}>
 			<Route path='/' component={Login} />
 			<Route path='/app' component={App}>
-				<Route path="/home" component={Home} />
-				<Route path="/events" component={EventList} />
-				<Route path="/postevents" component={PostEvent} />		
-				<Route path="/profile" component={Profile} />		
+				<Route path="/app/home" component={Home} />
+				<Route path="/app/events" component={EventList} />
+				<Route path="/app/postevents" component={PostEvent} />		
+				<Route path="/app/profile" component={Profile} />		
 			</Route>
-			<Route path='/demo' component={App}>
-				<Route path="/events" component={EventList} />
-				<Route path="/postevents" component={PostEvent} />		
-				<Route path="/profile" component={Profile} />		
+			<Route path='/demo' component={DemoApp}>
+				<Route path="/demo/home" component={DemoHome} />
+				<Route path="/demo/events" component={DemoEventList} />
+				<Route path="/demo/postevents" component={DemoPostEvent} />		
+				<Route path="/demo/profile" component={DemoProfile} />		
 			</Route>			
 			<Route path='/login' component={Login} />
 			<Route path='/register' component={Registration} />	

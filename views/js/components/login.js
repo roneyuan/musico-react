@@ -9,11 +9,7 @@ export default function Login() {
       </button>
 
       <button className="demo-button">
-      	<a href="">Explore with Demo Account</a>
-      </button>
-
-      <button className="register-button">
-      	<a href="/#/register">Register</a>      
+      	<a href="/#/demo">Explore with Demo Account</a>
       </button>
     </div>
   )
