@@ -21,7 +21,7 @@ const receiveUserProfileFromAPI = (user) => {
 }
 
 const receiveAllEventsDataFromAPI = (events) => {
-	console.log("ALL EVENTS", events)
+	// console.log("ALL EVENTS", events)
 	return {
 	type: 'RECEIVE_ALL_EVENTS',
 	events
@@ -147,7 +147,7 @@ export const demoGetAllEvents = () => {
 		})
 		.then(response => response.json())
 		.then(json => {		
-			console.log(json);
+			// console.log(json);
 			dispatch(receiveAllEventsDataFromAPI(json));
 		})		
 		.catch(err => {

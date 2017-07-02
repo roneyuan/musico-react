@@ -22,8 +22,8 @@ const receiveUserProfileFromAPI = (user) => {
 
 const receiveAllEventsDataFromAPI = (events) => {
 	return {
-	type: 'RECEIVE_ALL_EVENTS',
-	events
+		type: 'RECEIVE_ALL_EVENTS',
+		events
 	}
 }
 

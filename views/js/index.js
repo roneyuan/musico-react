@@ -16,6 +16,8 @@ import DemoEventList from './components/demo/event-list';
 import DemoHome from './components/demo/home';
 import DemoPostEvent from './components/demo/post-event';
 import DemoProfile from './components/demo/profile';
+// import '../scss/main.scss';
+require("!style-loader!css-loader!sass-loader!../scss/main.scss");
 
 
 // How do I get rid of pound sign?
