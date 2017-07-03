@@ -2,7 +2,6 @@ import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { postEvent } from '../actions/index';
-import Event from './event';
 import * as Cookies from 'js-cookie';
 
 

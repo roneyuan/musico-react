@@ -24,21 +24,29 @@ module.exports = {
             test: /\.scss$/,
             loaders: ['style', 'css', 'sass']
         },
+        { 
+          test: /\.(png|jpg)$/,
+          // include: path.join(__dirname, 'img'),
+          loader: 'file-loader?name=/img/[name].[ext]' 
+        }      
       ],
       rules: [
         {
           test: /\.scss$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: 'style-loader?sourceMap',
             },
             {
-              loader: 'css-loader',
+              loader: 'css-loader?sourceMap',
+            },
+            {
+              loader: 'sass-loader?sourceMap',
+            },
+            {
+              loader: 'resolve-url-loader'
+            }
 
-            },
-            {
-              loader: 'sass-loader',
-            },
           ],
         }
       ]
