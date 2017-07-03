@@ -1,0 +1,42 @@
+.nav {
+  height: 60px;
+  background-color: #7878ad;
+  border-radius: 5px;
+  font-size: 20px;
+  padding-right: 50px;
+	
+	ul {
+	  list-style-type: none;
+	  padding-top: 20px;
+	  padding-bottom: 20px;
+	}
+
+	ul a {
+	  text-decoration: none;
+	  color: white;
+	}
+
+	ul a:visited {
+	  color: white;
+	}
+
+	li {
+	  float: left;
+	  width: 20%;
+	}
+
+}
+
+.nav__brand {
+	text-align: left;
+}
+
+
+.nav__item {
+  text-align: right;
+}
+
+/* TODO style for mobile */
+@media only screen and (min-height: 768px) {
+
+}

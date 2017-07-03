@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import DemoEvent from './event';
+import DemoEvent from '../event';
 import { demoClickRsvp, demoGetAllEvents } from '../../actions/demo/index';
 
 
@@ -14,7 +14,7 @@ class EventList extends Component {
 	createEventList() {
 		return this.props.events.map((event, index) => {
 			return (
-				<div className="col-4" key={ index }>
+				<div className="content__event-box" key={ index }>
 					<DemoEvent name={ event.name }
 								 tag={ event.tag }
 								 description={ event.description }
@@ -30,7 +30,7 @@ class EventList extends Component {
 
 	render() {
 		return(
-			<div className='event-list'>
+			<div className='content__events__wrap'>
 				{ this.createEventList() }					 						 
 			</div>			
 		)

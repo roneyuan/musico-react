@@ -17,7 +17,7 @@ class EventList extends Component {
 		const accessToken = Cookies.get('accessToken'); // Better way to refactor?
 		return this.props.events.map((event, index) => {
 			return (
-				<div className="col-4" key={ index }>
+				<div className="content__event-box" key={ index }>
 					<Event name={ event.name }
 								 tag={ event.tag }
 								 description={ event.description }
@@ -33,7 +33,7 @@ class EventList extends Component {
 
 	render() {
 		return(
-			<div className='event-list'>
+			<div className='content__events__wrap'>
 				{ this.createEventList() }					 						 
 			</div>			
 		)

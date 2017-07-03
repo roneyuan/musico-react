@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Event from './event';
+import Event from '../event';
 import { demoGetUserProfile, demoCancelRsvp, demoCancelEvent } from '../../actions/demo/index';
 
 
@@ -18,7 +18,7 @@ class Profile extends Component {
 
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
-        <div className="col-4" key={index}>
+        <div className="content__event-box" key={index}>
           <Event key={ event.name }
                  tag={ event.tag }
                  description={ event.description }
@@ -32,7 +32,7 @@ class Profile extends Component {
 
     if (this.props.user.eventsCreated) {
       createdList = this.props.user.eventsCreated.map((event, index) => 
-        <div className="col-4" key={index}>
+        <div className="content__event-box" key={index}>
           <Event key={ event.name }
                  tag={ event.tag }
                  description={ event.description }
@@ -45,13 +45,11 @@ class Profile extends Component {
     }
 
     return (
-      <div className='user-profile'>
-        <div className="col-12">
-          <div className="profile-username"> Username: { this.props.user.username } </div>
-          <div className="profile-nickname"> Nickname: { this.props.user.nickname } </div>
-          <div className="profile-rsvp"> RSVP : <div> { rsvpList } </div> </div>
-          <div className="profile-eventsCreated"> Created : <div> { createdList } </div> </div>
-        </div>                  
+      <div className='content__profile'>
+        <div className="profile-username"> Username: { this.props.user.username } </div>
+        <div className="profile-nickname"> Nickname: { this.props.user.nickname } </div>
+        <div className="profile-rsvp"> RSVP : <div> { rsvpList } </div> </div>
+        <div className="profile-eventsCreated"> Created : <div> { createdList } </div> </div>              
       </div>      
     )
   }

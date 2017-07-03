@@ -5,7 +5,7 @@ import Navigation from './navigation';
 class App extends Component {
 	render() {
 		return(
-			<div className="app">
+			<div className="content">
 				<Navigation />
 				{ this.props.children } 
 		</div>

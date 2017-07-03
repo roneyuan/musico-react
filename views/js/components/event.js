@@ -3,16 +3,16 @@ import React from 'react';
 
 export default function Event(props) {
   return (
-    <div className="event">
-      <div className="event-name">{ props.name }</div>
-      <div className="event-description">
+    <div className="content__event">
+      <div className="content__event__name">{ props.name }</div>
+      <div className="content__event__description">
           Description: { props.description }
       </div>
-      <div className="event-tag">Tag: { props.tag }</div>
-      <div className="event-price">Price: { props.price }</div>
-      <div className="event-location">Location: { props.location }</div>
-      <div className="event-button">
-        <button onClick={ props.eventClick } className="event-rsvp">{ props.cancel || 'RSVP' }</button>
+      <div className="content__event__tag">Tag: { props.tag }</div>
+      <div className="content__event__price">Price: { props.price }</div>
+      <div className="content__event__location">Location: { props.location }</div>
+      <div className="content__event__button">
+        <button onClick={ props.eventClick } className="btn__event">{ props.cancel || 'RSVP' }</button>
       </div>
     </div>
   );

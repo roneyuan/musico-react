@@ -1,79 +1,25 @@
-* {
+@import "grid";
+@import "event";
+@import "navigation";
+@import "post";
 
+* {
+	box-sizing: border-box;
 }
 
 body {
   background-color: #dcdce6;
 }
 
-.app-navbar {
-  height: 60px;
-  background-color: #7878ad;
-  border-radius: 5px;
-  font-size: 20px;
-  padding-right: 50px;
-}
-
-ul {
-  list-style-type: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-ul a {
-  text-decoration: none;
-  color: white;
-}
-
-ul a:visited {
-  color: white;
-}
-
-li {
-  float: left;
-  width: 20%;
-}
-
-.brand {
-  text-align: left;
-}
-
-.menu {
-  text-align: right;
-}
-
-.app-title {
+.app__title {
   text-align: center;
   font-size: 25px;
   font-weight: bold;
   margin-top: 50px;
 }
 
-.event {
-  border: 1px solid #ec6785;
-  border-radius: 5px;
-  padding-left: 5%;
-  padding-bottom: 5%;
-  padding-top: 5%;
-  text-align: left;
-  font-size: 15px;
-  line-height: 18px;
-  background-color: #ecfbf8;
-}
-
-.event-name {
-  font-weight: bold; 
-  text-align: center;
-  font-size: 20px;
-  padding-bottom: 20px;
-}
-
-.event-button {
+.btn__event {
   margin: 20px auto;
   text-align: center;
 }
 
-.post-event {
-  margin:50px auto;
-  text-align: center;
-}

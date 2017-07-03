@@ -5,9 +5,9 @@ import Navigation from './navigation';
 class App extends Component {
 	/* How??? Why cant I use function? */
 	render() {
-		console.log(this.props) // Where is the props came from??
+		// console.log(this.props) // Where is the props came from??
 		return(
-			<div className="app">
+			<div className="content">
 				<Navigation />
 				{ this.props.children } 
 		</div>

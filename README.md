@@ -6,11 +6,13 @@ Fullstack React App for finding and posting music events
 - MongoDB
 - Express.js
 - React/Redux
+- Redux Thunk
 - Node.js
 - Mocha
 - Chai
 - Istanbul
-- SASS
+- SCSS
+- BEM Style CSS
 - Google OAuth
 - Basic login strategy
 - More

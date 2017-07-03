@@ -8,7 +8,7 @@ import Event from './event';
 class PostEvent extends Component {
   render() {
     return (
-      <div className="post-event">
+      <div className="content__post-event">
       	<form onSubmit={(event) => {
       		event.preventDefault();
 

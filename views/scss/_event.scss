@@ -1,0 +1,42 @@
+$event-box-color: #ecfbf8;
+$event-box-border-color: #ec6785;
+
+.content__event-box {
+	float: left;
+	padding-left: 1.0416%;
+	padding-right: 1.0416%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	height: 260px;
+	text-align: center;
+}
+
+.content__event-box {
+	width: 100%;
+}
+
+.content__event {
+	border: 1px solid $event-box-border-color;
+  border-radius: 5px;
+  padding-left: 5%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  text-align: left;
+  font-size: 15px;
+  line-height: 18px;
+  background-color: $event-box-color;
+}
+
+.event-name {
+  font-weight: bold; 
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+
+@media only screen and (min-width: 786px) {
+	.content__event-box {
+		width: 25%
+	}
+}

@@ -4,13 +4,13 @@ import {Link} from 'react-router';
 
 export default function Navigation(props) {
   return (
-    <div className="app-navbar">
+    <div className="nav">
       <ul>
-        <li className="brand"><Link to="/home">Musico</Link></li>
-        <li className="menu"><Link activeStyle={{ color: 'red' }} to="/app/profile">Profile</Link></li>
-        <li className="menu"><Link activeStyle={{ color: 'red' }} to="/app/postevents" >Post</Link></li>
-        <li className="menu"><Link activeStyle={{ color: 'red' }} to="/app/events" >Events</Link></li>
-        <li className="menu"><a href="api/user/auth/logout">Logout</a></li> 
+        <li className="nav__brand"><Link to="/home">Musico</Link></li>
+        <li className="nav__item"><Link activeStyle={{ color: 'red' }} to="/app/profile">Profile</Link></li>
+        <li className="nav__item"><Link activeStyle={{ color: 'red' }} to="/app/postevents" >Post</Link></li>
+        <li className="nav__item"><Link activeStyle={{ color: 'red' }} to="/app/events" >Events</Link></li>
+        <li className="nav__item"><a href="api/user/auth/logout">Logout</a></li> 
       </ul>
     </div>
   );
