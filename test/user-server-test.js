@@ -155,7 +155,7 @@ describe('User Server Test', function() {
 		it('should return list of users', function() {
 			let res;
 			return chai.request(app)
-				.get('/user/allUser')
+				.get('/api/demo/user/allUser')
 				.then(function(_res) {
 					res = _res;
 					// Get all users
@@ -175,7 +175,7 @@ describe('User Server Test', function() {
 			const newUser = generateData();
 
 			return chai.request(app)
-				.post('/user/'+newUser.username)
+				.post('/api/demo/user/'+newUser.username)
 				.send(newUser)
 				.then(function(res) {
 					res.should.have.status(201);
@@ -227,7 +227,7 @@ describe('User Server Test', function() {
 								.then(res => {
 									// console.log("+++ Updated User: ", res)
 									return chai.request(app)
-										.put('/user/'+ event._id)
+										.put('/api/demo/user/'+ event._id)
 										.send(user)
 										.then(function(res) {
 											// console.log("FINAL: ", res.body)

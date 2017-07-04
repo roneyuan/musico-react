@@ -133,7 +133,7 @@ describe('Event Server Test', function() {
 		it('should return all events', function() {
 			let res;
 			return chai.request(app)
-				.get('/event/all')
+				.get('/api/demo/event/all')
 				.then(function(_res) {
 					res = _res;
 					res.should.have.status(200);
@@ -151,7 +151,7 @@ describe('Event Server Test', function() {
 			const newEvent = generateEvents();
 			// console.log(newEvent)
 			return chai.request(app)
-				.post('/event/')
+				.post('/api/demo/event/')
 				.send(newEvent)
 				.then(function(res) {
 					// console.log(res.body)
