@@ -8,24 +8,51 @@
 
 * {
 	box-sizing: border-box;
-	font-family: 'Ubuntu', sans-serif;
 }
 
 body {
   background-color: #e8e8e8;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
+  margin: 0;
+}
+
+.content {
+	font-family: 'Quicksand', sans-serif;
 }
 
 .app__title {
-	background-image: url('../img/header.jpg');
+	background-image: url('../img/guitar2.jpg');
 	background-repeat: no-repeat;
+	background-size: cover;
 	height: 360px;
   text-align: center;
   font-size: 25px;
   font-weight: bold;
   padding-top: 25px;
-  color: #f8f0fb;
+  color: #FFFFFF;
+  font-family: 'Ubuntu', sans-serif;
 }
+
+.content__home {
+	background-image: url('../img/header.jpg');
+	height: 600px;
+	background-size: cover;
+}
+
+.login {
+	@extend .content__home;
+	height: 800px;
+	background-image: url('../img/guitar.jpg');
+	margin: 0;
+}
+
+// .welcome {
+// 	margin-top: 20px;
+// 	border-radius: 5px;
+// 	background-image: url('../img/piano.jpg');
+// 	height: 700px;
+// 	background-size: cover;
+// }
 
 @media only screen and (min-width: 768px) {
 	.app__title {
@@ -33,10 +60,3 @@ body {
 		height: 500px;
 	}
 }
-
-.login {
-	background-image: url('../img/bg.jpg');
-	background-size: cover;
-}
-
-
