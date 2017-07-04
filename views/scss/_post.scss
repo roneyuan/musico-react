@@ -2,3 +2,37 @@
   margin:50px auto;
   text-align: center;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+input {
+	height: 30px;
+	width: 180px;
+	font-size: 22px;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+textarea {
+	@extend input;
+	width: 260px;
+	height: 180px;
+}
+
+label {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: right;
+  width: 150px;
+}
+
+.form-control {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+label, input, textarea {
+  display: inline-block;
+}

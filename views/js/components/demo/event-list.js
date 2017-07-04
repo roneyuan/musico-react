@@ -20,6 +20,7 @@ class EventList extends Component {
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
+								 buttonEvent={ "btn__rsvp" }
 								 eventClick={
 								 	() => this.props.demoClickRsvp(event)
 								 } />

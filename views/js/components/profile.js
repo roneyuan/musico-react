@@ -21,12 +21,13 @@ class Profile extends Component {
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
         <div className="content__event-box" key={index}>
-          <Event key={ event.name }
+          <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
+                 buttonEvent={ "btn__cancel" }
                  eventClick={() => this.props.cancelRsvp(event, accessToken)} />
         </div>
       )
@@ -34,8 +35,8 @@ class Profile extends Component {
 
     if (this.props.user.eventsCreated) {
       createdList = this.props.user.eventsCreated.map((event, index) => 
-        <div className="content__event-box" key={index}>
-          <Event key={ event.name }
+        <div className="content__event-box" key={ index }>
+          <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}

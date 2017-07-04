@@ -19,12 +19,13 @@ class Profile extends Component {
     if (this.props.user.eventsRsvp) {
       rsvpList = this.props.user.eventsRsvp.map((event, index) => 
         <div className="content__event-box" key={index}>
-          <Event key={ event.name }
+          <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
+                 buttonEvent={ "btn__cancel" }
                  eventClick={() => this.props.demoCancelRsvp(event)} />
         </div>
       )
@@ -33,12 +34,13 @@ class Profile extends Component {
     if (this.props.user.eventsCreated) {
       createdList = this.props.user.eventsCreated.map((event, index) => 
         <div className="content__event-box" key={index}>
-          <Event key={ event.name }
+          <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
+                 buttonEvent={ "btn__cancel" }                
                  eventClick={() => this.props.demoCancelEvent(event)} />
         </div>
       )
@@ -46,10 +48,10 @@ class Profile extends Component {
 
     return (
       <div className='content__profile'>
-        <div className="profile-username"> Username: { this.props.user.username } </div>
-        <div className="profile-nickname"> Nickname: { this.props.user.nickname } </div>
-        <div className="profile-rsvp"> RSVP : <div> { rsvpList } </div> </div>
-        <div className="profile-eventsCreated"> Created : <div> { createdList } </div> </div>              
+        <div className="content__profile__username"> Username: { this.props.user.username } </div>
+        <div className="content__profile__nickname"> Nickname: { this.props.user.nickname } </div>
+        <div className="content__profile__rsvp"> RSVP : <div> { rsvpList } </div> </div>
+        <div className="content__profile__eventsCreated"> Created : <div> { createdList } </div> </div>              
       </div>      
     )
   }

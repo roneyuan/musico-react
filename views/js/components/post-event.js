@@ -23,28 +23,28 @@ class PostEvent extends Component {
       		this.props.dispatch(postEvent(name, price, description, location, tag, accessToken));
       	}}>
 
-      	<div className="form-contol">
+      	<div className="form-control">
       		<label> Name: </label>
       		<input type="text" name="name" />
       	</div>
-      	<div className="form-contol">
+      	<div className="form-control">
       		<label> Location: </label>
       		<input type="text" name="location" />
       	</div>
-      	<div className="form-contol">
+      	<div className="form-control">
       		<label> Price: </label>
       		<input type="text" name="price" />
       	</div>
-      	<div className="form-contol">
+      	<div className="form-control">
        		<label> Description: </label>
-      		<input type="text" name="description" />
+      		<textarea type="text" name="description"></textarea>
       	</div>
-      	<div className="form-contol">
+      	<div className="form-control">
       		<label> Tag: </label>
       		<input type="text" name="tag" /> 
       	</div>
-      	<div className="form-contol">   		   		    		    		
-      		<button>Submit</button>
+      	<div className="form-control">   		   		    		    		
+      		<button className="btn__submit">Submit</button>
       	</div>
       	</form>
       </div>

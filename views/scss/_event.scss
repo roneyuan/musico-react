@@ -1,5 +1,5 @@
-$event-box-color: #ecfbf8;
-$event-box-border-color: #ec6785;
+$event-box-color: #e1e3e4;
+$event-box-border-color: #4c2830;
 
 .content__event-box {
 	float: left;
@@ -7,7 +7,6 @@ $event-box-border-color: #ec6785;
 	padding-right: 1.0416%;
 	padding-top: 2%;
 	padding-bottom: 2%;
-	height: 260px;
 	text-align: center;
 }
 
@@ -42,6 +41,22 @@ $event-box-border-color: #ec6785;
   padding-bottom: 20px;
 }
 
+.padding {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.content__event__tag {
+	@extend .padding;
+}
+
+.content__event__price {
+	@extend .padding;
+}
+
+.content__event__location {
+	@extend .padding;
+}
 
 @media only screen and (min-width: 786px) {
 	.content__event-box {

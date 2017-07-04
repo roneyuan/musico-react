@@ -3,6 +3,7 @@
 @import "navigation";
 @import "post";
 @import "button";
+@import "profile";
 
 
 * {
@@ -10,17 +11,29 @@
 }
 
 body {
-  background-color: #dcdce6;
+  background-color: #e8e8e8;
+  padding-bottom: 50px;
 }
 
 .app__title {
+	background-image: url('../img/header.jpg');
+	background-repeat: no-repeat;
+	height: 360px;
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-  margin-top: 50px;
+  padding-top: 50px;
+  color: #f8f0fb;
 }
 
-.content__home {
+@media only screen and (min-width: 768px) {
+	.app__title {
+		background-size: cover;
+		height: 500px;
+	}
+}
+
+.login {
 	background-image: url('../img/bg.jpg');
 	background-size: cover;
 }
