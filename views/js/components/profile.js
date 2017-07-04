@@ -42,6 +42,7 @@ class Profile extends Component {
                  price={ event.price}
                  location={ event.location }
                  cancel={ "Cancel" } 
+                 buttonEvent={ "btn__cancel" }                 
                  eventClick={() => this.props.cancelEvent(event, accessToken)} />
         </div>
       )

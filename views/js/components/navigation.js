@@ -6,7 +6,7 @@ export default function Navigation(props) {
   return (
     <div className="nav">
       <ul>
-        <li className="nav__brand"><Link to="/home">Musico</Link></li>
+        <li className="nav__brand"><Link to="/app/home">Musico</Link></li>
         <li className="nav__item"><Link activeStyle={{ color: '#63ccff' }} to="/app/profile">Profile</Link></li>
         <li className="nav__item"><Link activeStyle={{ color: '#63ccff' }} to="/app/postevents" >Post</Link></li>
         <li className="nav__item"><Link activeStyle={{ color: '#63ccff' }} to="/app/events" >Events</Link></li>
