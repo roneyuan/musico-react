@@ -277,9 +277,11 @@ describe('User Server Test', function() {
 										.delete('/api/demo/user/cancelRsvp/'+ event._id)
 										.send(user)
 										.then(function(res) {
-											console.log("RES", res.body)
+											// console.log("RES", res.body)
 											res.should.be.a('object');		
-											// Length should equal to something					
+											res.body.eventsRsvp.should.be.a('array');
+											/* Why still pass if change to 1? */
+											res.body.eventsRsvp.should.have.length.of(0);				
 										});
 								})		
 								.catch(err => {
@@ -313,7 +315,7 @@ describe('User Server Test', function() {
 								.findOneAndUpdate({_id: user._id},
 								{
 									$push: {
-										'eventsRsvp': event._id
+										'eventsCreated': event._id
 									}
 								})
 								.exec() 
@@ -324,7 +326,8 @@ describe('User Server Test', function() {
 										.then(function(res) {
 											console.log("RES", res.body)
 											res.should.be.a('object');		
-											// Length should equal to something					
+											res.body.eventsCreated.should.be.a('array');
+											res.body.eventsCreated.should.have.length.of(0);														
 										});
 								})		
 								.catch(err => {
