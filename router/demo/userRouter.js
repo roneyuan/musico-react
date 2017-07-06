@@ -88,7 +88,7 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
 
 	return User
-		.findOneAndUpdate({username: 'demo'}, 
+		.findOneAndUpdate({username: req.body.username}, 
 		{
 			$pull: {
 				'eventsRsvp': eventId
@@ -97,7 +97,7 @@ router.delete('/cancelRsvp/:eventId', (req, res) => {
 		.exec() 
 		.then(user => {
 			return User
-				.findOne({username: 'demo'})
+				.findOne({username: req.body.username})
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()
@@ -128,7 +128,7 @@ router.delete('/cancelEvent/:eventId', (req, res) => {
 		.exec()
 		.then(event => {
 			return User
-				.findOne({username: 'demo'})
+				.findOne({username: req.body.username})
 				.populate('eventsRsvp')  
 				.populate('eventsCreated')
 				.exec()
