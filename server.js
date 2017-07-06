@@ -46,6 +46,8 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 		mongoose.connect(databaseUrl, function(err) {
 			if (err) {
 				// console.log("Failed to connect to database.");
+
+				/* istanbul ignore next */
 				return reject(err);
 			}
 		});
@@ -58,6 +60,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 			resolve(server);
 		}).on('error', err => {
 			// console.log("Failed to create server");
+			/* istanbul ignore next */
 			reject(err);
 		});
 	});
@@ -70,8 +73,9 @@ function closeServer() {
 			server.close(err => {
 				if (err) {
 					// console.log("Unable to close server.");
+
+					/* istanbul ignore next */
 					reject(err);
-					return;
 				}
 				// console.log("Server is closed.");
 				resolve();
@@ -82,7 +86,10 @@ function closeServer() {
 
 // To run the application, Need to ask why?
 if (require.main === module) {
-	runServer().catch(err => console.log(err));
+	/* istanbul ignore next */
+	runServer().catch(err => {  
+		console.log(err)
+	});
 }
 
 module.exports = {app, runServer, closeServer}
