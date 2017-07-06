@@ -279,8 +279,7 @@ describe('User Server Test', function() {
 										.then(function(res) {
 											console.log("RES", res.body)
 											res.should.be.a('object');		
-											// res.body.eventsRsvp.should.be.a('array');	
-											// res.body.eventsRsvp[0].should.equal(''+event._id);							
+											// Length should equal to something					
 										});
 								})		
 								.catch(err => {
@@ -295,5 +294,50 @@ describe('User Server Test', function() {
 					console.log(err);				
 				});	
 		});
-	});	
+	});
+
+	describe('DELETE endpoint', function() {
+		it('should delete an event from created', function() {
+			tearDownDb();
+			let user;
+			let event;
+			return User
+				.create(generateData())
+				.then(_user => {
+					user = _user;
+					return Event
+						.create(generateEvents())
+						.then(_event => {
+							event = _event;
+							return User
+								.findOneAndUpdate({_id: user._id},
+								{
+									$push: {
+										'eventsRsvp': event._id
+									}
+								})
+								.exec() 
+								.then(res => {
+									return chai.request(app)
+										.delete('/api/demo/user/cancelEvent/'+ event._id)
+										.send(user)
+										.then(function(res) {
+											console.log("RES", res.body)
+											res.should.be.a('object');		
+											// Length should equal to something					
+										});
+								})		
+								.catch(err => {
+									console.log(err);
+								});				
+						})
+						.catch(err => {
+							console.log(err);		
+						});
+				})
+				.catch(err => {
+					console.log(err);				
+				});	
+		});
+	});		
 });

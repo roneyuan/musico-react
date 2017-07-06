@@ -48,16 +48,18 @@ router.post('/:user', (req, res) => {
 		})
 });
 
+/* Feature coming soon */
 router.get('/profile/:username', (req, res) => {
 	/* istanbul ignore next */
 	let username = 'demo';
-
+	/* istanbul ignore next */
 	return User
 		.findOne({username: username})
 		.populate('eventsRsvp')  
 		.populate('eventsCreated')
 		.exec()
 		.then(user => {
+			/* istanbul ignore next */
 			res.status(200).json({
 				username: user.username,
 				nickname: user.nickname,
@@ -144,9 +146,11 @@ router.delete('/cancelEvent/:eventId', (req, res) => {
 					/* istanbul ignore next */
 					console.log(err);
 				})
-
+		}) 
+		.catch(err => {
+			/* istanbul ignore next */
+			res.status(500).json({message: 'Internal Error Message'})
 		})
-		.catch(err => res.status(500).json({message: 'Internal Error Message'}))
 })
 
 
