@@ -1,28 +1,27 @@
-// import React from 'react';
-// import TestUtils from 'react-addons-test-utils';
-// import chai from 'chai';
+import React from 'react';
+import TestUtils from 'react-dom/test-utils';
+import chai from 'chai';
 
-// const should = chai.should();
+const should = chai.should();
 
-// import Event from '../js/components/event';
+import Event from '../views/js/components/event';
 
-// describe('Event component', function() {
-//   it('Renders the event and description',  function() {
-//     const url = "http://www.example.com/image.png";
-//     const description = "Example description";
+describe('Event component', function() {
+  it('Renders the event and description',  function() {
+    // const url = "http://www.example.com/image.png";
+    const description = "Example description";
+    const name = "TEST";
+    const price = 10;
+    const tag = "TEST";
+    const location = "NY";
 
-//     const renderer = TestUtils.createRenderer();
-//     renderer.render(<Image url={url} description={description} />);
-//     const result = renderer.getRenderOutput();
-//     result.props.className.should.equal('gallery-image');
+    const renderer = TestUtils.createRenderer();
+    renderer.render(<Event description={description} name={name} price={price} tag={tag} location={location} />);
+    const result = renderer.getRenderOutput();
+    result.props.className.should.equal('content__event');
 
-//     const img = result.props.children[0];
-//     img.type.should.equal('img');
-//     img.props.src.should.equal(url);
-//     img.props.alt.should.equal(description);
-
-//     const p = result.props.children[1];
-//     p.type.should.equal('p');
-//     p.props.children.should.equal(description);
-//   });
-// });
+    const div = result.props.children[0];
+    div.type.should.equal('div');
+    div.props.children.should.equal(name);
+  });
+});

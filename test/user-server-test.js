@@ -324,7 +324,7 @@ describe('User Server Test', function() {
 										.delete('/api/demo/user/cancelEvent/'+ event._id)
 										.send(user)
 										.then(function(res) {
-											console.log("RES", res.body)
+											// console.log("RES", res.body)
 											res.should.be.a('object');		
 											res.body.eventsCreated.should.be.a('array');
 											res.body.eventsCreated.should.have.length.of(0);														
