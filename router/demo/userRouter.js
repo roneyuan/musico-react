@@ -13,9 +13,9 @@ router.use(passport.initialize());
 
 router.put('/:eventId', (req, res) => {
 	let eventId = req.params.eventId;
-
+	
 	return User
-		.findOneAndUpdate({username: 'demo'},
+		.findOneAndUpdate({username: req.body.username},
 		{
 			$push: {
 				'eventsRsvp': eventId

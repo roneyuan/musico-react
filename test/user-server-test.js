@@ -194,7 +194,7 @@ describe('User Server Test', function() {
 
 	describe('PUT endpoint', function() {
 		/*
-		Test Login:
+		Test RSVP:
 		1. Clean the Test Database to avoid same property name conflict updating, which may cause updating the wrong object
 		2. Use return and create a new User
 		3. Create a new Event after the new User is created
@@ -224,8 +224,8 @@ describe('User Server Test', function() {
 									}
 								})
 								.exec() // Need to know what happen if no exec()
-								.then(res => {
-									// console.log("+++ Updated User: ", res)
+								.then(res2 => {
+									// console.log("+++ Updated User: ", res2)
 									return chai.request(app)
 										.put('/api/demo/user/'+ event._id)
 										.send(user)
@@ -233,7 +233,8 @@ describe('User Server Test', function() {
 											// console.log("FINAL: ", res.body)
 											res.should.be.a('object');		
 											res.body.eventsRsvp.should.be.a('array');	
-											res.body.eventsRsvp[0].should.equal(''+event._id);							
+											res.body.eventsRsvp[0].should.equal(''+event._id);		
+											// res.something.should.equal user.eventRsvp[0]					
 										});
 								})		
 								.catch(err => {
@@ -249,4 +250,50 @@ describe('User Server Test', function() {
 				});	
 		});
 	});
+
+	// describe('DELETE endpoint', function() {
+	// 	it('should delete an event from rsvp', function() {
+	// 		tearDownDb();
+	// 		let user;
+	// 		let event;
+	// 		return User
+	// 			.create(generateData())
+	// 			.then(_user => {
+	// 				user = _user;
+	// 				return Event
+	// 					.create(generateEvents())
+	// 					.then(_event => {
+	// 						event = _event;
+	// 						return User
+	// 							.findOneAndUpdate({_id: user._id},
+	// 							{
+	// 								$push: {
+	// 									'eventsRsvp': event._id
+	// 								}
+	// 							})
+	// 							.exec() 
+	// 							.then(res => {
+	// 								return chai.request(app)
+	// 									.delete('/api/demo/user/cancelRsvp/'+ event._id)
+	// 									.send(user)
+	// 									.then(function(res) {
+	// 										console.log("RES", res)
+	// 										res.should.be.a('object');		
+	// 										// res.body.eventsRsvp.should.be.a('array');	
+	// 										// res.body.eventsRsvp[0].should.equal(''+event._id);							
+	// 									});
+	// 							})		
+	// 							.catch(err => {
+	// 								console.log(err);
+	// 							});				
+	// 					})
+	// 					.catch(err => {
+	// 						console.log(err);		
+	// 					});
+	// 			})
+	// 			.catch(err => {
+	// 				console.log(err);				
+	// 			});	
+	// 	});
+	// });	
 });
