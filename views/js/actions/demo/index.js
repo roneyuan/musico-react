@@ -56,7 +56,10 @@ export const demoCancelRsvp = (event) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify({
+				username: "demo",
+			})
 		})
 		.then(response => response.json())
 		.then(user => dispatch(receiveCancelRsvp(user)))
@@ -69,7 +72,10 @@ export const demoCancelEvent = (event) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
-			}
+			},
+			body: JSON.stringify({
+				username: "demo",
+			})			
 		})
 		.then(response => response.json())
 		.then(event => {

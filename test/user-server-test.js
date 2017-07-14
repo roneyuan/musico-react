@@ -278,15 +278,12 @@ describe('User Server Test', function() {
 										.send(user)
 										.then(function(res) {
 											// console.log("RES", res.body)
-											res.should.be.a('object');		
-											res.body.eventsRsvp.should.be.a('array');
-											/* Why still pass if change to 1? */
+											res.should.be.an('object');		
+											res.body.eventsRsvp.should.be.an('array');
+											/* Why still pass if change to 1? Maybe promise? */
 											res.body.eventsRsvp.should.have.length.of(0);				
 										});
-								})		
-								.catch(err => {
-									console.log(err);
-								});				
+								})					
 						})
 						.catch(err => {
 							console.log(err);		

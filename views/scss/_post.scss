@@ -1,6 +1,6 @@
 .content__post-event {
   margin:50px auto;
-  text-align: center;
+  // text-align: center;
 }
 
 textarea:focus, input:focus{
@@ -9,28 +9,33 @@ textarea:focus, input:focus{
 
 input {
 	height: 30px;
-	width: 180px;
+	width: 200px;
 	font-size: 22px;
 	border-radius: 5px;
 	border: 1px solid black;
 }
 
+input, label {
+	float: left;
+}
+
 textarea {
 	@extend input;
-	width: 260px;
+	width: 360px;
 	height: 180px;
 }
 
 label {
   padding-left: 20px;
   padding-right: 20px;
-  text-align: right;
+  // text-align: right;
   width: 150px;
 }
 
 .form-control {
 	padding-top: 5px;
 	padding-bottom: 5px;
+	clear: both;
 }
 
 label, input, textarea {
