@@ -283,7 +283,10 @@ describe('User Server Test', function() {
 											/* Why still pass if change to 1? Maybe promise? */
 											res.body.eventsRsvp.should.have.length.of(0);				
 										});
-								})					
+								})		
+								.catch(err => { // Maybe here?
+									console.log(err);
+								});				
 						})
 						.catch(err => {
 							console.log(err);		

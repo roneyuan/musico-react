@@ -15,6 +15,18 @@ const eventsDatabase = (state = initialState, action) => {
 				events: action.events
 			}	
 
+		case 'RECEIVE_POST_EVENT':
+			console.log("ACT", action)
+			return {
+				...state,
+				events: action.event
+			}
+
+		case 'NEW_POST_FORM':
+			return {
+				events:[]
+			}
+
 		default:
 			return state;
 	}

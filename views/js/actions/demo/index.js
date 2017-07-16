@@ -3,10 +3,13 @@ const receiveRegisterUser = (user) => ({
 	user
 })
 
-const receivePostEvent = (event) => ({
-	type: 'RECEIVE_POST_EVENT',
-	event
-})
+const receivePostEvent = (event) => {
+	console.log("POSTED", event)
+	return {
+		type: 'RECEIVE_POST_EVENT',
+		event
+	}
+}
 
 const receiveRsvpEvent = (event) => ({
 	type: 'RECEIVE_RSVP_EVENT',
@@ -46,6 +49,12 @@ const receiveToken = (token) => {
 	return {
 		type: 'RECEIVE_TOKEN',
 		token
+	}
+}
+
+export const newPostForm = () => {
+	return {
+		type: 'NEW_POST_FORM'
 	}
 }
 
@@ -178,7 +187,10 @@ export const demoPostEvent = (name, price, description, location, tag) => {
 			})
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receivePostEvent(event))) // Need reducers for that? Not necessary.
+		.then(event => {
+			console.log("EVENT", event)
+			dispatch(receivePostEvent(event))
+		}) // Need reducers for that? Not necessary.
 	}
 }
 
