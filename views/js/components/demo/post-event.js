@@ -5,10 +5,6 @@ import { demoPostEvent, newPostForm } from '../../actions/demo/index';
 
 
 class PostEvent extends Component {
-  componentWillMount() {
-    this.props.newPostForm();
-  }
-
   render() {
     let content;
 
@@ -79,7 +75,6 @@ class PostEvent extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("POST", state)
   return {
     events: state.postedEvent.postedEvent
   }

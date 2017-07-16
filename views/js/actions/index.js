@@ -48,6 +48,11 @@ const receiveToken = (token) => {
 	}
 }
 
+export const newPostForm = () => {
+	return {
+		type: 'NEW_POST_FORM'
+	}
+}
 
 export const cancelRsvp = (event, accessToken ) => {
 	return dispatch => {

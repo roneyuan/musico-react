@@ -1,59 +1,89 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { postEvent } from '../actions/index';
+import { postEvent, newPostForm } from '../actions/index';
 import * as Cookies from 'js-cookie';
 
 
 class PostEvent extends Component {
   render() {
-    return (
-      <div className="content__post-event">
-      	<form onSubmit={(event) => {
-      		event.preventDefault();
+    let content;
 
-      		let name = event.target.name.value;
-      		let description = event.target.description.value;
-      		let price = event.target.price.value;
-      		let tag = event.target.tag.value;
-      		let location = event.target.location.value;
+    if (this.props.events.length === 0) {
+      content = (
+        <div className="content__post-event">
+          <form onSubmit={(event) => {
+            event.preventDefault();
+
+            let name = event.target.name.value;
+            let description = event.target.description.value;
+            let price = event.target.price.value;
+            let tag = event.target.tag.value;
+            let location = event.target.location.value;
+            let time = event.target.time.value;
+            
+            this.props.demoPostEvent(name, price, description, location, tag, time);
+          }}>
+
+          <div className="form-control">
+            <label> Name: </label>
+            <input type="text" name="name" />
+          </div>
+          <div className="form-control">
+            <label> Location: </label>
+            <input type="text" name="location" />
+          </div>
+          <div className="form-control">
+            <label> Date: </label>
+            <input type="datetime-local" name="time" />
+          </div>          
+          <div className="form-control">
+            <label> Price: </label>
+            <input type="text" name="price" />
+          </div>
+          <div className="form-control">
+            <label> Description: </label>
+            <textarea type="text" name="description"></textarea>
+          </div>
+          <div className="form-control">
+            <label> Tag: </label>
+            <input type="text" name="tag" /> 
+          </div>
+          <div className="form-control">                            
+            <button className="btn__submit">Submit</button>
+          </div>
+          </form>
+        </div>
+      );
+    } else {
+      content = (
+        <div className="content__event-posted">
+          <div>The event is posted. If you would like to create another event, please click the button below.</div>
+          <div>
+            <button 
+              onClick={ () => this.props.newPostForm() } 
+              className="btn__refresh"> 
+              New Event 
+            </button>
+          </div>
           
-          const accessToken = Cookies.get('accessToken');
+        </div>
+      );
+    }
 
-      		this.props.dispatch(postEvent(name, price, description, location, tag, accessToken));
-      	}}>
+    return content;
+  }
+}
 
-      	<div className="form-control">
-      		<label> Name: </label>
-      		<input type="text" name="name" />
-      	</div>
-      	<div className="form-control">
-      		<label> Location: </label>
-      		<input type="text" name="location" />
-      	</div>
-      	<div className="form-control">
-      		<label> Price: </label>
-      		<input type="text" name="price" />
-      	</div>
-      	<div className="form-control">
-       		<label> Description: </label>
-      		<textarea type="text" name="description"></textarea>
-      	</div>
-      	<div className="form-control">
-      		<label> Tag: </label>
-      		<input type="text" name="tag" /> 
-      	</div>
-      	<div className="form-control">   		   		    		    		
-      		<button className="btn__submit">Submit</button>
-      	</div>
-      	</form>
-      </div>
-  )}
+function mapStateToProps(state) {
+  return {
+    events: state.postedEvent.postedEvent
+  }
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ postEvent }, dispatch)
+  return bindActionCreators({ postEvent, newPostForm }, dispatch)
 }
 
 
-export default connect(matchDispatchToProps)(PostEvent);
+export default connect(mapStateToProps, matchDispatchToProps)(PostEvent);
