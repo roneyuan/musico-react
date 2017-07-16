@@ -21,8 +21,10 @@ class PostEvent extends Component {
             let tag = event.target.tag.value;
             let location = event.target.location.value;
             let time = event.target.time.value;
+
+            const accessToken = Cookies.get('accessToken');
             
-            this.props.demoPostEvent(name, price, description, location, tag, time);
+            this.props.postEvent(name, price, description, location, tag, time, accessToken);
           }}>
 
           <div className="form-control">

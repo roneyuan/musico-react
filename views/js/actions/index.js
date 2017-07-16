@@ -164,7 +164,7 @@ export const getAllEvents = (accessToken) => {
 	}
 }
 
-export const postEvent = (name, price, description, location, tag, accessToken) => {
+export const postEvent = (name, price, description, location, tag, time, accessToken) => {
 	return dispatch => {
 		fetch('http://localhost:8080/api/event', {
 			method: 'POST',
@@ -177,7 +177,8 @@ export const postEvent = (name, price, description, location, tag, accessToken) 
 				price: price,
 				description: description,
 				location: location,
-				tag: tag
+				tag: tag,
+				time: time
 			})
 		})
 		.then(response => response.json())
