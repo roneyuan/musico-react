@@ -11,6 +11,7 @@ export default function Event(props) {
       <div className="content__event__tag">Tag: { props.tag }</div>
       <div className="content__event__price">Price: { props.price }</div>
       <div className="content__event__location">Location: { props.location }</div>
+      <div className="content__event__time">Time: { props.time }</div>      
       <div className="content__event__button">
         <button onClick={ props.eventClick } className={ props.buttonEvent }>{ props.cancel || 'RSVP' }</button>
       </div>

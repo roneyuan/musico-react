@@ -4,7 +4,6 @@ const receiveRegisterUser = (user) => ({
 })
 
 const receivePostEvent = (event) => {
-	console.log("POSTED", event)
 	return {
 		type: 'RECEIVE_POST_EVENT',
 		event
@@ -171,7 +170,7 @@ export const demoGetAllEvents = () => {
 	}
 }
 
-export const demoPostEvent = (name, price, description, location, tag) => {
+export const demoPostEvent = (name, price, description, location, tag, time) => {
 	return dispatch => {
 		fetch('http://localhost:8080/api/demo/event', {
 			method: 'POST',
@@ -183,12 +182,12 @@ export const demoPostEvent = (name, price, description, location, tag) => {
 				price: price,
 				description: description,
 				location: location,
-				tag: tag
+				tag: tag,
+				time: time
 			})
 		})
 		.then(response => response.json())
 		.then(event => {
-			console.log("EVENT", event)
 			dispatch(receivePostEvent(event))
 		}) // Need reducers for that? Not necessary.
 	}

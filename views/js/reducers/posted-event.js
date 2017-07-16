@@ -1,19 +1,21 @@
 const initialState = {
-	events: []
+	postedEvent: []
 }
 
 const eventsDatabase = (state = initialState, action) => {
 	switch(action.type) {
-		case 'REQUEST_ALL_EVENTS':
+		case 'RECEIVE_POST_EVENT':
 			return {
 				...state,
+				postedEvent: action.event
 			}
 
-		case 'RECEIVE_ALL_EVENTS':
+		case 'NEW_POST_FORM':
 			return {
 				...state,
-				events: action.events
-			}	
+				postedEvent:[]
+			}
+
 		default:
 			return state;
 	}

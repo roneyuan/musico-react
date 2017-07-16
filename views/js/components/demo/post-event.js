@@ -23,8 +23,9 @@ class PostEvent extends Component {
             let price = event.target.price.value;
             let tag = event.target.tag.value;
             let location = event.target.location.value;
+            let time = event.target.time.value;
             
-            this.props.demoPostEvent(name, price, description, location, tag);
+            this.props.demoPostEvent(name, price, description, location, tag, time);
           }}>
 
           <div className="form-control">
@@ -37,7 +38,7 @@ class PostEvent extends Component {
           </div>
           <div className="form-control">
             <label> Date: </label>
-            <input type="datetime-local" name="date" />
+            <input type="datetime-local" name="time" />
           </div>          
           <div className="form-control">
             <label> Price: </label>
@@ -78,8 +79,9 @@ class PostEvent extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("POST", state)
   return {
-    events: state.eventsDatabase.events
+    events: state.postedEvent.postedEvent
   }
 }
 
