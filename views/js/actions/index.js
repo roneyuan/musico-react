@@ -56,7 +56,7 @@ export const newPostForm = () => {
 
 export const cancelRsvp = (event, accessToken ) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/user/cancelRsvp/' + event._id, {
+		fetch('/api/user/cancelRsvp/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export const cancelRsvp = (event, accessToken ) => {
 
 export const cancelEvent = (event, accessToken) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/user/cancelEvent/' + event._id, {
+		fetch('/api/user/cancelEvent/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export const cancelEvent = (event, accessToken) => {
 
 export const clickRsvp = (event, accessToken) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/user/' + event._id, {
+		fetch('/api/user/' + event._id, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ export const clickRsvp = (event, accessToken) => {
 
 export const getAllUsers = () => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/allUser', {
+		fetch('/api/demo/user/allUser', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ GET
 **************/
 export const getUserProfile = (accessToken, username) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/user/profile/' + username, {
+		fetch('/api/user/profile/' + username, {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ export const getUserProfile = (accessToken, username) => {
 
 export const getAllEvents = (accessToken) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/event/all', {
+		fetch('/api/event/all', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export const getAllEvents = (accessToken) => {
 
 export const postEvent = (name, price, description, location, tag, time, accessToken) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/event', {
+		fetch('/api/event', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ export const postEvent = (name, price, description, location, tag, time, accessT
 
 export const addUser = (username, password, nickname) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/' + username, {
+		fetch('/api/demo/user/' + username, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

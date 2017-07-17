@@ -60,7 +60,7 @@ export const newPostForm = () => {
 
 export const demoCancelRsvp = (event) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/cancelRsvp/' + event._id, {
+		fetch('/api/demo/user/cancelRsvp/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ export const demoCancelRsvp = (event) => {
 
 export const demoCancelEvent = (event) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/cancelEvent/' + event._id, {
+		fetch('/api/demo/user/cancelEvent/' + event._id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ export const demoCancelEvent = (event) => {
 
 export const demoClickRsvp = (event) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/' + event._id, {
+		fetch('/api/demo/user/' + event._id, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ export const demoClickRsvp = (event) => {
 
 export const getAllUsers = () => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/allUser', {
+		fetch('/api/demo/user/allUser', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
@@ -134,7 +134,7 @@ GET
 **************/
 export const demoGetUserProfile = () => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/profile/demo', {
+		fetch('/api/demo/user/profile/demo', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ export const demoGetUserProfile = () => {
 
 export const demoGetAllEvents = () => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/event/all', {
+		fetch('/api/demo/event/all', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json'
@@ -172,7 +172,7 @@ export const demoGetAllEvents = () => {
 
 export const demoPostEvent = (name, price, description, location, tag, time) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/event', {
+		fetch('/api/demo/event', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -195,7 +195,7 @@ export const demoPostEvent = (name, price, description, location, tag, time) => 
 
 export const addUser = (username, password, nickname) => {
 	return dispatch => {
-		fetch('http://localhost:8080/api/demo/user/' + username, {
+		fetch('/api/demo/user/' + username, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
