@@ -26,6 +26,7 @@ class Profile extends Component {
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
+                 time={ event.time }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }
                  eventClick={() => this.props.cancelRsvp(event, accessToken)} />
@@ -41,6 +42,7 @@ class Profile extends Component {
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
+                 time={ event.time }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
                  eventClick={() => this.props.cancelEvent(event, accessToken)} />
