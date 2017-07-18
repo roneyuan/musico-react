@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DemoEvent from '../event';
 import { demoClickRsvp, demoGetAllEvents } from '../../actions/demo/index';
-
+import Moment from 'moment';
 
 class EventList extends Component {
 
@@ -20,7 +20,7 @@ class EventList extends Component {
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
-								 time={ event.time }
+								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
 								 eventClick={
 								 	() => this.props.demoClickRsvp(event)
@@ -40,7 +40,7 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log("STATE", state)
+	// console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 	}

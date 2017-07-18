@@ -58,20 +58,14 @@ $event-box-border-color: #4c2830;
 
 .content__event__tag {
 	@extend .padding;
-	width: 100px;
-	float: left;
 }
 
 .content__event__price {
 	@extend .padding;
-	width: 100px;
-	float: left;
 }
 
 .content__event__location {
 	@extend .padding;
-	width: 180px;
-	float: left;
 }
 
 .content__event__time {
@@ -86,4 +80,19 @@ $event-box-border-color: #4c2830;
 	  padding-left: 0px;
 	  padding-right: 0px;
 	}	
+
+	.content__event__tag {
+		width: 100px;
+		float: left;
+	}
+
+	.content__event__price {
+		width: 100px;
+		float: left;
+	}
+
+	.content__event__location {
+		width: 180px;
+		float: left;
+	}
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Event from './event';
 import { clickRsvp, getAllEvents } from '../actions/index';
 import * as Cookies from 'js-cookie';
+import Moment from 'moment';
 
 
 class EventList extends Component {
@@ -23,7 +24,7 @@ class EventList extends Component {
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
-								 time={ event.time }
+								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
 								 eventClick={
 								 	() => this.props.clickRsvp(event, accessToken)
