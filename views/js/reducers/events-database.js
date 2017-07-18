@@ -1,5 +1,6 @@
 const initialState = {
-	events: []
+	events: [],
+	rsvp: []
 }
 
 const eventsDatabase = (state = initialState, action) => {
@@ -14,6 +15,14 @@ const eventsDatabase = (state = initialState, action) => {
 				...state,
 				events: action.events
 			}	
+
+		case 'RECEIVE_USER_RSVP_EVENTS':
+			return {
+				...state,
+				rsvp: action.events
+
+			}	
+
 		default:
 			return state;
 	}

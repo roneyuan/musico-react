@@ -72,6 +72,12 @@ $event-box-border-color: #4c2830;
 	@extend .padding;
 }
 
+.content__event__notice {
+	padding-left: 20px;
+	color: red;
+}
+
+
 @media only screen and (min-width: 786px) {
 	.content__event-box {
 		width: 80%

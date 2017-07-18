@@ -24,7 +24,6 @@ const userDatabase = (state = initialState, action) => {
 			}
 
 		case 'RECEIVE_TOKEN':
-			console.log(action)
 			return {
 				...state,
 				token: action.token

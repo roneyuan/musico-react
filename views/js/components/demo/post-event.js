@@ -76,7 +76,7 @@ class PostEvent extends Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.postedEvent.postedEvent
+    events: state.postedEvent.event
   }
 }
 

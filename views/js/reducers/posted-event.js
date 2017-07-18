@@ -1,19 +1,19 @@
 const initialState = {
-	postedEvent: []
+	event: []
 }
 
-const eventsDatabase = (state = initialState, action) => {
+const postedEvent = (state = initialState, action) => {
 	switch(action.type) {
 		case 'RECEIVE_POST_EVENT':
 			return {
 				...state,
-				postedEvent: action.event
+				event: action.event
 			}
 
 		case 'NEW_POST_FORM':
 			return {
 				...state,
-				postedEvent:[]
+				event:[]
 			}
 
 		default:
@@ -21,4 +21,4 @@ const eventsDatabase = (state = initialState, action) => {
 	}
 }
 
-export default eventsDatabase;
+export default postedEvent;

@@ -13,7 +13,8 @@ export default function Event(props) {
       <div className="content__event__location">Location: { props.location }</div>
       <div className="content__event__time">Time: { props.time }</div>      
       <div className="content__event__button">
-        <button onClick={ props.eventClick } className={ props.buttonEvent }>{ props.cancel || 'RSVP' }</button>
+        <button onClick={ props.eventClick } className={ props.buttonEvent } disabled={ props.ifRsvp }>{ props.cancel || 'RSVP' }</button>
+        <span className="content__event__notice"> { props.notice } </span>
       </div>
     </div>
   );
