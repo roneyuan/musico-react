@@ -13,7 +13,11 @@ class EventList extends Component {
 	}
 
 	createEventList() {
-		return this.props.events.map((event, index) => {
+		// console.log("PREV", this.props.events)
+		let reverseList = this.props.events.slice().reverse(); // Need to use slice to copy, otherwise props cannot be changed which will not work
+		// console.log("REV", reverseList)
+
+		return reverseList.map((event, index) => {
 			
 			let ifRsvp = false;
 			let rsvpNotice = '';
@@ -57,7 +61,7 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log("STATE", state)
+	// console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp
