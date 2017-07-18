@@ -19,6 +19,7 @@ const eventsDatabase = (state = initialState, action) => {
 		case 'RECEIVE_RSVP_EVENT':
 			return {
 				...state,
+				events: state.events,
 				rsvp: action.event.eventsRsvp
 			}
 

@@ -8,24 +8,17 @@ import Moment from 'moment';
 class EventList extends Component {
 
 	componentWillMount() {
-		// Get User RSVP events.
-		// this.props.getUserRsvpEvents();
+		this.props.getUserRsvpEvents();
 		this.props.demoGetAllEvents();
 	}
 
-	componentDidUpdate() {
-		this.props.getUserRsvpEvents();
-	}
-
 	createEventList() {
-		console.log("CHECK@")
 		return this.props.events.map((event, index) => {
 			let ifRsvp = false;
 			let rsvpNotice = '';
 
 			this.props.rsvp.forEach(rsvpEvent => {
 				if (event._id === rsvpEvent._id) {
-					// Why it was called four times?
 					ifRsvp = true;
 					rsvpNotice = "You have rsvp the event";
 				}
@@ -43,7 +36,10 @@ class EventList extends Component {
 								 ifRsvp={ ifRsvp }
 								 notice={ rsvpNotice }
 								 eventClick={
-								 	() => this.props.demoClickRsvp(event)
+								 	() => {
+								 		this.props.demoClickRsvp(event);
+								 		this.props.getUserRsvpEvents();
+								 	}
 								 } />
 				</div>
 			)
@@ -60,7 +56,7 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	// console.log("STATE", state)
+	console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp
