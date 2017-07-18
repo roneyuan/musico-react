@@ -9,11 +9,16 @@ class EventList extends Component {
 
 	componentWillMount() {
 		// Get User RSVP events.
-		this.props.getUserRsvpEvents();
+		// this.props.getUserRsvpEvents();
 		this.props.demoGetAllEvents();
 	}
 
+	componentDidUpdate() {
+		this.props.getUserRsvpEvents();
+	}
+
 	createEventList() {
+		console.log("CHECK@")
 		return this.props.events.map((event, index) => {
 			let ifRsvp = false;
 			let rsvpNotice = '';
@@ -21,7 +26,6 @@ class EventList extends Component {
 			this.props.rsvp.forEach(rsvpEvent => {
 				if (event._id === rsvpEvent._id) {
 					// Why it was called four times?
-					console.log("RSVP:", event)
 					ifRsvp = true;
 					rsvpNotice = "You have rsvp the event";
 				}
