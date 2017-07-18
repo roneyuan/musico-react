@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Event from '../event';
 import { demoGetUserProfile, demoCancelRsvp, demoCancelEvent } from '../../actions/demo/index';
+import Moment from 'moment';
 
 
 class Profile extends Component {
@@ -17,14 +18,14 @@ class Profile extends Component {
     
 
     if (this.props.user.eventsRsvp) {
-      rsvpList = this.props.user.eventsRsvp.map((event, index) => 
+      rsvpList = this.props.user.eventsRsvp.reverse().map((event, index) => 
         <div className="content__event-box" key={index}>
           <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
-                 time={ event.time }
+                 time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }
                  eventClick={() => this.props.demoCancelRsvp(event)} />
@@ -33,14 +34,14 @@ class Profile extends Component {
     }
 
     if (this.props.user.eventsCreated) {
-      createdList = this.props.user.eventsCreated.map((event, index) => 
+      createdList = this.props.user.eventsCreated.reverse().map((event, index) => 
         <div className="content__event-box" key={index}>
           <Event name={ event.name }
                  tag={ event.tag }
                  description={ event.description }
                  price={ event.price}
                  location={ event.location }
-                 time={ event.time }
+                 time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                
                  eventClick={() => this.props.demoCancelEvent(event)} />

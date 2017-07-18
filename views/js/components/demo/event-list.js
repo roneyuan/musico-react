@@ -14,6 +14,7 @@ class EventList extends Component {
 
 	createEventList() {
 		return this.props.events.map((event, index) => {
+			
 			let ifRsvp = false;
 			let rsvpNotice = '';
 
