@@ -60,7 +60,6 @@ router.get('/profile/:username', (req, res) => {
 		.exec()
 		.then(user => {
 			/* istanbul ignore next */
-			console.log("USER", user);
 			res.status(200).json({
 				username: user.username,
 				nickname: user.nickname,
