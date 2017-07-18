@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Event from './event';
-import { clickRsvp, getAllEvents } from '../actions/index';
+import { clickRsvp, getAllEvents, getUserRsvpEvents } from '../actions/index';
 import * as Cookies from 'js-cookie';
 import Moment from 'moment';
 
@@ -11,12 +11,26 @@ class EventList extends Component {
 
 	componentWillMount() {
 		const accessToken = Cookies.get('accessToken');
-		this.props.getAllEvents(accessToken)
+
+		/* Get the user latest RSVP list */
+		this.props.getUserRsvpEvents(accessToken);		
+		this.props.getAllEvents(accessToken);
 	}
 
 	createEventList() {
 		const accessToken = Cookies.get('accessToken'); // Better way to refactor?
 		return this.props.events.map((event, index) => {
+			let ifRsvp = false;
+			let rsvpNotice = '';
+
+			/* Need optimization here */
+			this.props.rsvp.forEach(rsvpEvent => {
+				if (event._id === rsvpEvent._id) {
+					ifRsvp = true;
+					rsvpNotice = "You have rsvp the event";
+				}
+			})
+
 			return (
 				<div className="content__event-box" key={ index }>
 					<Event name={ event.name }
@@ -26,8 +40,13 @@ class EventList extends Component {
 								 location={ event.location }
 								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
+								 ifRsvp={ ifRsvp }
+								 notice={ rsvpNotice }								 
 								 eventClick={
-								 	() => this.props.clickRsvp(event, accessToken)
+								 	() => {
+								 		this.props.clickRsvp(event, accessToken);
+								 		this.props.getUserRsvpEvents(accessToken);
+								 	}
 								 } />
 				</div>
 			)
@@ -46,11 +65,12 @@ class EventList extends Component {
 function mapStateToProps(state) {
 	return {
 		events: state.eventsDatabase.events,
+		rsvp: state.eventsDatabase.rsvp
 	}
 }
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({ clickRsvp, getAllEvents }, dispatch)
+	return bindActionCreators({ clickRsvp, getAllEvents, getUserRsvpEvents }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventList);

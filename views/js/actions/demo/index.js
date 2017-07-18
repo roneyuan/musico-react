@@ -30,7 +30,6 @@ const receiveUserProfileFromAPI = (user) => {
 }
 
 const receiveAllEventsDataFromAPI = (events) => {
-	// console.log("ALL EVENTS", events)
 	return {
 	type: 'RECEIVE_ALL_EVENTS',
 	events
@@ -69,7 +68,6 @@ export const getUserRsvpEvents = () => {
 		.then(response => response.json())
 		.then(json => {
 			let eventsRsvp = json.eventsRsvp;
-			// console.log("GET RSVP", eventsRsvp)
 			dispatch(receiveUserRsvpEvents(eventsRsvp))
 		})
 		.catch(err => {

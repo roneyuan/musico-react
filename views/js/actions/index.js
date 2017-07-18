@@ -8,6 +8,13 @@ const receivePostEvent = (event) => ({
 	event
 })
 
+const receiveUserRsvpEvents = (events) => {
+	return {
+		type: 'RECEIVE_USER_RSVP_EVENTS',
+		events
+	}
+}
+
 const receiveRsvpEvent = (event) => ({
 	type: 'RECEIVE_RSVP_EVENT',
 	event
@@ -47,6 +54,28 @@ const receiveToken = (token) => {
 		token
 	}
 }
+
+export const getUserRsvpEvents = (accessToken) => {
+	return dispatch => {
+		fetch('/api/user/getRsvpProfile', {
+			method: "GET",
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${accessToken}`
+			}
+		})
+		.then(response => response.json())
+		.then(json => {
+			let eventsRsvp = json.eventsRsvp;			
+			console.log(eventsRsvp)
+			dispatch(receiveUserRsvpEvents(eventsRsvp))
+		})
+		.catch(err => {
+			// dispatch the error
+			console.log(err);
+		})
+	}
+};
 
 export const newPostForm = () => {
 	return {

@@ -103,6 +103,26 @@ router.get('/profile/:username', passport.authenticate('bearer', {session: false
 		})
 })
 
+// Get the user profile
+router.get('/getRsvpProfile', passport.authenticate('bearer', {session: false}), (req, res) => {
+	/* istanbul ignore next */
+	let username = req.user.username;
+
+	return User
+		.findOne({username: username})
+		.populate('eventsRsvp')  
+		.exec()
+		.then(user => {
+			res.status(200).json({
+				eventsRsvp: user.eventsRsvp,
+			})
+		})
+		.catch(err => {
+			/* istanbul ignore next */
+			console.log(err);
+		})
+})
+
 /* TEST ONLY */
 router.get('/allUser', passport.authenticate('bearer', {session: false}), (req, res) => {
 	return User
