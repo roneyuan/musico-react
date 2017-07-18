@@ -49,7 +49,7 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['email profi
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: 'login', session: false}),
 	function(req, res) {
 		res.cookie('accessToken', req.user.password, { expires: 0 });
-		res.redirect('/#/app')
+		res.redirect('/#/app/home')
 });
 
 router.get('/auth/logout', (req, res) => {

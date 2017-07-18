@@ -63,7 +63,7 @@
 
 .btn__demo {
   @extend .btn;
-  background-color: blue;
+  background-color: #23234c;
   width: 280px;
   a {
     text-decoration: none;
@@ -71,10 +71,4 @@
       color: white;
     }
   }  
-}
-
-.login__button {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
 }

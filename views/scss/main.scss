@@ -46,6 +46,23 @@ body {
 	height: 800px;
 	background-image: url('../img/guitar.jpg');
 	margin: 0;
+	font-family: 'Puritan', sans-serif;
+}
+
+.login__title {
+  color: #ffffff;
+  padding: 20px 20px;
+}
+
+.login__button {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.login__bed {
+  background-color: rgba(128, 128, 128, 0.75);	
+  height: 100%;	
 }
 
 // .welcome {
