@@ -71,6 +71,14 @@ router.put('/:eventId', passport.authenticate('bearer', {session: false}), (req,
 		})
 		.exec() // Need to know what happen if no exec()
 		.then(user => {
+			return Event
+				.findOne({_id: eventId})
+				.exec()
+				.then(event => {
+					event.numberOfRsvp += 1;
+					event.save();
+				})
+				
 			res.json(user);
 		})
 		.catch(err => {
