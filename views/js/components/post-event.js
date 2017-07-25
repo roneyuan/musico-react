@@ -22,7 +22,7 @@ class PostEvent extends Component {
             let location = event.target.location.value;
             let time = event.target.time.value;
 
-            const accessToken = Cookies.get('accessToken');
+            const accessToken = Cookies.get('accessToken'); // Get that from the state
             
             this.props.postEvent(name, price, description, location, tag, time, accessToken);
           }}>
@@ -41,7 +41,7 @@ class PostEvent extends Component {
           </div>          
           <div className="form-control">
             <label> Price: </label>
-            <input type="text" name="price" />
+            <input type="number" name="price" />
           </div>
           <div className="form-control">
             <label> Description: </label>

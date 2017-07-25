@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Event from './event';
-import { clickRsvp, getAllEvents, getUserRsvpEvents } from '../actions/index';
+import { clickRsvp, getAllEvents, getUserRsvpEvents, positiveExpectation, negativeExpectation } from '../actions/index';
 import * as Cookies from 'js-cookie';
 import Moment from 'moment';
 
@@ -39,6 +39,17 @@ class EventList extends Component {
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
+								 numberOfRsvp={ event.numberOfRsvp }
+								 expectedPositive={ event.expectedPositive }
+								 expectedNegative={ event.expectedNegative }
+								 clickYes={() => {
+								 	this.props.positiveExpectation(event._id, accessToken);
+								 	// this.props.getUserRsvpEvents(accessToken);
+								 }}
+								 clickNo={() => {
+								 	this.props.negativeExpectation(event._id, accessToken);
+								 	// this.props.getUserRsvpEvents(accessToken);
+								 }}
 								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
 								 ifRsvp={ ifRsvp }
@@ -46,7 +57,7 @@ class EventList extends Component {
 								 eventClick={
 								 	() => {
 								 		this.props.clickRsvp(event, accessToken);
-								 		this.props.getUserRsvpEvents(accessToken);
+								 		this.props.getUserRsvpEvents(accessToken); // Put the access token in the state
 								 	}
 								 } />
 				</div>
@@ -64,6 +75,7 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
+	console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp
@@ -71,7 +83,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({ clickRsvp, getAllEvents, getUserRsvpEvents }, dispatch)
+	return bindActionCreators({ clickRsvp, getAllEvents, getUserRsvpEvents, positiveExpectation, negativeExpectation }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventList);

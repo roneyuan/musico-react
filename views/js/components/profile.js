@@ -10,7 +10,7 @@ import Moment from 'moment';
 class Profile extends Component {
 
   componentWillMount() {
-    const accessToken = Cookies.get('accessToken');
+    const accessToken = Cookies.get('accessToken'); // Get that from the state
     this.props.getUserProfile(accessToken, this.props.user.username);
   }
 

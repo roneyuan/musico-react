@@ -38,7 +38,7 @@ class PostEvent extends Component {
           </div>          
           <div className="form-control">
             <label> Price: </label>
-            <input type="text" name="price" />
+            <input type="number" name="price" />
           </div>
           <div className="form-control">
             <label> Description: </label>

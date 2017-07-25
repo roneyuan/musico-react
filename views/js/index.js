@@ -21,6 +21,7 @@ require("!style-loader!css-loader!sass-loader!../scss/main.scss");
 
 
 // How do I get rid of pound sign?
+// Play with browserHistory
 const routes = (
   <Provider store={store}>
 		<Router history={hashHistory}>

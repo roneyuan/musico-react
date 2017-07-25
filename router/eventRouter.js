@@ -34,6 +34,47 @@ router.get('/all', passport.authenticate('bearer', {session: false}), (req, res)
 		});
 });
 
+router.put('/updatePositive', passport.authenticate('bearer', {session: false}), (req, res) => {
+	// console.log("ID", req.body.eventId)
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			console.log("BePOSTIVE", event)
+			event.expectedPositive += 1;
+			event.save().then(function(event) {
+			return Event
+				.find({})
+				.exec()
+				.then(events => {
+					// console.log(events)
+					res.json(events)
+				})				
+			});
+			// console.log("AfPOSTIVE", event)
+		})
+});
+
+router.put('/updateNegative', passport.authenticate('bearer', {session: false}), (req, res) => {
+	// console.log("ID", req.body.eventId)
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			// console.log("NEGATIVE", event)
+			event.expectedNegative += 1;
+			event.save().then(function(event) {
+			return Event
+				.find({})
+				.exec()
+				.then(events => {
+					// console.log(events)
+					res.json(events)
+				})				
+			});
+		})
+});
+
 // User should be able to post an event
 router.post('/', passport.authenticate('bearer', {session: false}), (req, res) => {
 	return Event

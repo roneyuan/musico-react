@@ -55,6 +55,20 @@ const receiveToken = (token) => {
 	}
 }
 
+const receivePositive = (event) => {
+	return {
+		type: 'RECEIVE_POSITIVE',
+		event
+	}
+}
+
+const receiveNegative = (event) => {
+	return {
+		type: 'RECEIVE_NEGATIVE',
+		event
+	}
+}
+
 export const getUserRsvpEvents = (accessToken) => {
 	return dispatch => {
 		fetch('/api/user/getRsvpProfile', {
@@ -67,7 +81,7 @@ export const getUserRsvpEvents = (accessToken) => {
 		.then(response => response.json())
 		.then(json => {
 			let eventsRsvp = json.eventsRsvp;			
-			console.log(eventsRsvp)
+			// console.log(eventsRsvp)
 			dispatch(receiveUserRsvpEvents(eventsRsvp))
 		})
 		.catch(err => {
@@ -76,6 +90,44 @@ export const getUserRsvpEvents = (accessToken) => {
 		})
 	}
 };
+
+export const positiveExpectation = (event, accessToken) => {
+	console.log("event", event)
+	return dispatch => {
+		fetch('/api/event/updatePositive', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${accessToken}`
+			},
+			body: 
+				JSON.stringify({
+				eventId: event
+			})
+			
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receivePositive(event)))
+	}
+}
+
+export const negativeExpectation = (event, accessToken) => {
+	return dispatch => {
+		fetch('/api/event/updateNegative', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${accessToken}`
+			},
+			body: 
+				JSON.stringify({
+				eventId: event
+			})			
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receiveNegative(event)))
+	}	
+}
 
 export const newPostForm = () => {
 	return {

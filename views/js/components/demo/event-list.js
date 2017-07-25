@@ -36,6 +36,9 @@ class EventList extends Component {
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
+								 numberOfRsvp={ event.numberOfRsvp }
+								 expectedPositive={ event.expectedPositive }
+								 expectedNegative={ event.expectedNegative }								 
 								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
 								 ifRsvp={ ifRsvp }

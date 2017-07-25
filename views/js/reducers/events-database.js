@@ -30,6 +30,19 @@ const eventsDatabase = (state = initialState, action) => {
 
 			}	
 
+		case 'RECEIVE_POSITIVE':
+		console.log("NEW", action.event)
+			return {
+				...state,
+				events: action.event
+			}	
+
+		case 'RECEIVE_NEGATIVE':
+			return {
+				...state,
+				events: action.event
+			}	
+
 		default:
 			return state;
 	}

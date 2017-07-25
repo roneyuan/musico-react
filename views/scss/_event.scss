@@ -73,6 +73,14 @@ $event-box-border-color: #4c2830;
 	@extend .padding;
 }
 
+.content__event__numberOfRsvp {
+	@extend .padding;
+}
+
+.content__event__expectation {
+	@extend .padding;
+}
+
 .content__event__notice {
 	padding-left: 20px;
 	color: red;

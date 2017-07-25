@@ -29,6 +29,18 @@ const EventSchema = Schema({
 	createdBy: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
+	},
+	numberOfRsvp: {
+		type: Number,
+		default: 0
+	},
+	expectedPositive: {
+		type: Number,
+		default: 0
+	},
+	expectedNegative: {
+		type: Number,
+		default: 0
 	}
 	// Future feature
 	// image: {
