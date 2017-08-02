@@ -17,7 +17,7 @@ export default function Event(props) {
         <span className="content__event__notice"> { props.notice } </span>
       </div>
       <div className="content__event__numberOfRsvp">
-        {props.numberOfRsvp} people is going
+        {props.numberOfRsvp} people are going
       </div>        
       <div className="content__event__expectation">
         Does the event meet your expectation?

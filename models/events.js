@@ -41,6 +41,9 @@ const EventSchema = Schema({
 	expectedNegative: {
 		type: Number,
 		default: 0
+	},
+	comment: {
+		type: String
 	}
 	// Future feature
 	// image: {

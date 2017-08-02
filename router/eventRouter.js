@@ -75,6 +75,26 @@ router.put('/updateNegative', passport.authenticate('bearer', {session: false}),
 		})
 });
 
+router.put('/postComment', passport.authenticate('bearer', {session: false}), (req, res) => {
+	// console.log("ID", req.body.eventId)
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			// console.log("NEGATIVE", event)
+			event.comment = req.body.comment;
+			event.save().then(function(event) {
+			return Event
+				.find({})
+				.exec()
+				.then(events => {
+					// console.log(events)
+					res.json(events)
+				})				
+			});
+		})
+});
+
 // User should be able to post an event
 router.post('/', passport.authenticate('bearer', {session: false}), (req, res) => {
 	return Event
