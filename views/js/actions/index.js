@@ -69,6 +69,34 @@ const receiveNegative = (event) => {
 	}
 }
 
+const receiveComment = (event) => {
+	return {
+		type: 'RECEIVE_COMMENT',
+		event
+	}
+}
+
+export const postComment = (event, accessToken) => {
+	console.log("CALLED")
+	return dispatch => {
+		fetch('/api/event/postComment', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${accessToken}`
+			},
+			body: 
+				JSON.stringify({
+				eventId: event,
+				comment: "Good"
+			})
+			
+		})
+		.then(response => response.json())
+		.then(event => dispatch(receiveComment(event)))
+	}
+}
+
 export const getUserRsvpEvents = (accessToken) => {
 	return dispatch => {
 		fetch('/api/user/getRsvpProfile', {
@@ -92,7 +120,7 @@ export const getUserRsvpEvents = (accessToken) => {
 };
 
 export const positiveExpectation = (event, accessToken) => {
-	console.log("event", event)
+	// console.log("event", event)
 	return dispatch => {
 		fetch('/api/event/updatePositive', {
 			method: 'PUT',

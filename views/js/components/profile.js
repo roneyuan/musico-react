@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Event from './event';
 import EventCreated from './event-created';
 import PastEvent from './past-event';
-import { getUserProfile, cancelRsvp, cancelEvent } from '../actions/index';
+import { getUserProfile, cancelRsvp, cancelEvent, postComment, positiveExpectation, negativeExpectation } from '../actions/index';
 import * as Cookies from 'js-cookie';
 import Moment from 'moment';
 
@@ -20,26 +20,18 @@ class Profile extends Component {
     let rsvpList;
     let createdList;
     let pastEventList;
+    let filterPastEvents;
+    let filterCurrentEvents;
     
     const accessToken = Cookies.get('accessToken');
 
     if (this.props.user.eventsRsvp) {
-      rsvpList = this.props.user.eventsRsvp.reverse().map((event, index) => 
-        <div className="content__event-box" key={index}>
-          <Event name={ event.name }
-                 tag={ event.tag }
-                 description={ event.description }
-                 price={ event.price }
-                 location={ event.location }
-                 numberOfRsvp={ event.numberOfRsvp }
-                 time={ Moment(event.time).format('LLLL') }
-                 cancel={ "Cancel" } 
-                 buttonEvent={ "btn__cancel" }                 
-                 eventClick={() => this.props.cancelEvent(event, accessToken)} />
-        </div>        
-      )
-      // If time past
-      pastEventList = this.props.user.eventsRsvp.reverse().map((event, index) =>
+
+      filterPastEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isBefore(Moment()));
+      filterCurrentEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isSameOrAfter(Moment()));
+      // console.log(filterEvents);
+
+      pastEventList = filterPastEvents.reverse().map((event, index) =>
         <div className="content__event-box" key={index}>
           <PastEvent name={ event.name }
                  tag={ event.tag }
@@ -55,10 +47,27 @@ class Profile extends Component {
                  }}
                  time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
+                 buttonEvent={ "btn__cancel" }
+                 eventId={ event._id }               
+                 eventClick={() => this.props.postComment(event, accessToken)} />
+        </div> )
+
+
+
+      rsvpList = filterCurrentEvents.reverse().map((event, index) => 
+        <div className="content__event-box" key={index}>
+          <Event name={ event.name }
+                 tag={ event.tag }
+                 description={ event.description }
+                 price={ event.price }
+                 location={ event.location }
+                 numberOfRsvp={ event.numberOfRsvp }
+                 time={ Moment(event.time).format('LLLL') }
+                 cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
                  eventClick={() => this.props.cancelEvent(event, accessToken)} />
-        </div>      
-      )      
+        </div>        
+      )    
     }
 
     if (this.props.user.eventsCreated) {
@@ -73,7 +82,7 @@ class Profile extends Component {
                  numberOfRsvp={ event.numberOfRsvp }
                  expectedPositive={ event.expectedPositive }
                  expectedNegative={ event.expectedNegative }
-                 comments={ ["123", "321"]}
+                 comments={ event.comments}
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
                  eventClick={() => this.props.cancelEvent(event, accessToken)} />
@@ -100,7 +109,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserProfile, cancelRsvp, cancelEvent }, dispatch)
+  return bindActionCreators({ getUserProfile, cancelRsvp, cancelEvent, postComment, positiveExpectation, negativeExpectation }, dispatch)
 }
 
 
