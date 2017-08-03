@@ -75,6 +75,7 @@ router.put('/updateNegative', passport.authenticate('bearer', {session: false}),
 		})
 });
 
+// TODO - Need to put at userRouter
 router.put('/postComment', passport.authenticate('bearer', {session: false}), (req, res) => {
 	// console.log("ID", req.body.eventId)
 	return Event
@@ -84,13 +85,23 @@ router.put('/postComment', passport.authenticate('bearer', {session: false}), (r
 			// console.log("NEGATIVE", event)
 			event.comments.push(req.body.comment);
 			event.save().then(function(event) {
-			return Event
-				.find({})
-				.exec()
-				.then(events => {
-					// console.log(events)
-					res.json(events)
-				})				
+				return User
+					.findOne({username: req.user.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})				
 			});
 		})
 });

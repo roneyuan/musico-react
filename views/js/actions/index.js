@@ -69,10 +69,10 @@ const receiveNegative = (event) => {
 	}
 }
 
-const receiveComment = (event) => {
+const receiveComment = (user) => {
 	return {
 		type: 'RECEIVE_COMMENT',
-		event
+		user
 	}
 }
 
@@ -87,13 +87,15 @@ export const postComment = (event, accessToken) => {
 			},
 			body: 
 				JSON.stringify({
-				eventId: event,
+				eventId: event._id,
 				comment: "Good"
 			})
 			
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveComment(event)))
+		.then(user => {
+			console.log("EVEBT", user)
+			dispatch(receiveComment(user))})
 	}
 }
 
@@ -188,7 +190,7 @@ export const cancelEvent = (event, accessToken) => {
 		})
 		.then(response => response.json())
 		.then(event => {
-			console.log("CANCEL", event)
+			// console.log("CANCEL", event)
 			dispatch(receiveCancelEvent(event))
 		})
 	}

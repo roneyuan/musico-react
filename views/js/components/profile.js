@@ -82,7 +82,7 @@ class Profile extends Component {
                  numberOfRsvp={ event.numberOfRsvp }
                  expectedPositive={ event.expectedPositive }
                  expectedNegative={ event.expectedNegative }
-                 comments={ event.comments}
+                 comments={ event.comments }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
                  eventClick={() => this.props.cancelEvent(event, accessToken)} />
@@ -103,6 +103,7 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("PROFILE", state)
   return {
     user: state.userDatabase.user
   }

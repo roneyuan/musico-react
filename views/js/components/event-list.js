@@ -19,6 +19,8 @@ class EventList extends Component {
 
 	createEventList() {
 		const accessToken = Cookies.get('accessToken'); // Better way to refactor?
+
+		// TODO - Filter out passed events
 		let reverseList = this.props.events.slice().reverse(); // Need to use slice to copy, otherwise props cannot be changed which will not work
 		return reverseList.map((event, index) => {
 			let ifRsvp = false;
@@ -64,7 +66,7 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log("STATE", state)
+	// console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp

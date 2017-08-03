@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function EventCreated(props) {
   let comment = props.comments.map((comment, index) => 
-    <li>{comment}</li>
+    <li key={index}>{comment}</li>
   )
   return (
     <div className="content__event">

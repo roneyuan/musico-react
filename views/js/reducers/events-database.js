@@ -43,13 +43,6 @@ const eventsDatabase = (state = initialState, action) => {
 				events: action.event
 			}
 
-		case 'RECEIVE_COMMENT':
-			console.log("CHECK!")
-			return {
-				...state,
-				events: action.event
-			}	
-
 		default:
 			return state;
 	}

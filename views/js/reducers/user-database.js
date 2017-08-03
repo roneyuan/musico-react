@@ -29,6 +29,13 @@ const userDatabase = (state = initialState, action) => {
 				token: action.token
 			}
 
+		case 'RECEIVE_COMMENT':
+			console.log("CHECK!", action.user)
+			return {
+				...state,
+				user: action.user
+			}	
+
 		default:
 			return state;
 	}
