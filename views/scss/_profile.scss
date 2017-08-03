@@ -23,7 +23,12 @@
 	// clear: both;
 }
 
-.content__profile__eventsCreated {
+.content__profile__past {
+	@extend .content__profile__username;
+	// clear: both;
+}
+
+.content__profile__eventsCreated, .content__profile__past {
 	@extend .content__profile__username;
 	clear: both;
 }

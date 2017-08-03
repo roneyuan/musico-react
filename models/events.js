@@ -43,7 +43,7 @@ const EventSchema = Schema({
 		default: 0
 	},
 	comment: {
-		type: String
+		type: [String]
 	}
 	// Future feature
 	// image: {

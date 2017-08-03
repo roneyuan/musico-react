@@ -86,6 +86,14 @@ $event-box-border-color: #4c2830;
 	color: red;
 }
 
+.content__event__commentbox {
+	@extend .padding;
+	height: 100px;
+}
+
+.content__event__comment {
+	height: 120px;
+}
 
 @media only screen and (min-width: 786px) {
 	.content__event-box {

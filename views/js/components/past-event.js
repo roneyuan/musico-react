@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function Event(props) {
+export default function PastEvent(props) {
   return (
     <div className="content__event">
       <div className="content__event__name">{ props.name }</div>
@@ -14,12 +14,14 @@ export default function Event(props) {
         <button className="btn__survey" onClick={props.clickYes}> Yes </button> 
         <button className="btn__survey" onClick={props.clickNo}> No </button>
       </div>
-      <div className="content__event__expectation">
-        <span className="separtor"> Yes: {props.expectedPositive} </span>
-        <span className="separtor"> No: {props.expectedNegative} </span>
-      </div>
       <div className="content__event__comment">
-        <input type="textarea"></input>
+        <div>Comment:</div>
+        <div>
+          <textarea className="content__event__commentbox" maxLength="120" placeholder="120 maximum character"></textarea>
+        </div>
+        <div>
+          <button className="btn__rsvp"> Submit </button>
+        </div>
       </div>      
     </div>
   );
