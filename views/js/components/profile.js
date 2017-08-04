@@ -12,8 +12,7 @@ import Moment from 'moment';
 class Profile extends Component {
 
   componentWillMount() {
-    const accessToken = Cookies.get('accessToken'); // Get that from the state
-    this.props.getUserProfile(accessToken, this.props.user.username);
+    this.props.getUserProfile(Cookies.get('accessToken'), this.props.user.username);
   }
 
   render() {
@@ -22,14 +21,11 @@ class Profile extends Component {
     let pastEventList;
     let filterPastEvents;
     let filterCurrentEvents;
-    
-    const accessToken = Cookies.get('accessToken');
 
     if (this.props.user.eventsRsvp) {
 
       filterPastEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isBefore(Moment()));
       filterCurrentEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isSameOrAfter(Moment()));
-      // console.log(filterEvents);
 
       pastEventList = filterPastEvents.reverse().map((event, index) =>
         <div className="content__event-box" key={index}>
@@ -40,16 +36,16 @@ class Profile extends Component {
                  location={ event.location }
                  numberOfRsvp={ event.numberOfRsvp }
                  clickYes={() => {
-                  this.props.positiveExpectation(event._id, accessToken);
+                  this.props.positiveExpectation(event._id, this.props.accessToken);
                  }}
                  clickNo={() => {
-                  this.props.negativeExpectation(event._id, accessToken);
+                  this.props.negativeExpectation(event._id, this.props.accessToken);
                  }}
                  time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }
                  eventId={ event._id }               
-                 eventClick={() => this.props.postComment(event, accessToken)} />
+                 eventClick={() => this.props.postComment(event, this.props.accessToken)} />
         </div> )
 
 
@@ -65,7 +61,7 @@ class Profile extends Component {
                  time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
-                 eventClick={() => this.props.cancelEvent(event, accessToken)} />
+                 eventClick={() => this.props.cancelEvent(event, this.props.accessToken)} />
         </div>        
       )    
     }
@@ -85,7 +81,7 @@ class Profile extends Component {
                  comments={ event.comments }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
-                 eventClick={() => this.props.cancelEvent(event, accessToken)} />
+                 eventClick={() => this.props.cancelEvent(event, this.props.accessToken)} />
         </div>
       )
     }
@@ -105,7 +101,8 @@ class Profile extends Component {
 function mapStateToProps(state) {
   console.log("PROFILE", state)
   return {
-    user: state.userDatabase.user
+    user: state.userDatabase.user,
+    accessToken: state.userDatabase.token
   }
 }
 

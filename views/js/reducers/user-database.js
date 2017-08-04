@@ -1,3 +1,6 @@
+import * as Cookies from 'js-cookie';
+
+
 const initialState = {
 	user: [],
 	token: ''
@@ -8,7 +11,8 @@ const userDatabase = (state = initialState, action) => {
 		case 'RECEIVE_USER_PROFILE':
 			return {
 				...state,
-				user: action.user
+				user: action.user,
+				token: Cookies.get('accessToken')
 			}
 
 		case 'RECEIVE_CANCEL_EVENT':

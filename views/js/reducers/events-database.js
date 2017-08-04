@@ -27,11 +27,9 @@ const eventsDatabase = (state = initialState, action) => {
 			return {
 				...state,
 				rsvp: action.events
-
 			}	
 
 		case 'RECEIVE_POSITIVE':
-		// console.log("NEW", action.event)
 			return {
 				...state,
 				events: action.event

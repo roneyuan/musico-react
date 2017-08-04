@@ -77,7 +77,6 @@ const receiveComment = (user) => {
 }
 
 export const postComment = (event, accessToken) => {
-	console.log("CALLED")
 	return dispatch => {
 		fetch('/api/event/postComment', {
 			method: 'PUT',
@@ -94,7 +93,6 @@ export const postComment = (event, accessToken) => {
 		})
 		.then(response => response.json())
 		.then(user => {
-			console.log("EVEBT", user)
 			dispatch(receiveComment(user))})
 	}
 }
