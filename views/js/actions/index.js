@@ -76,10 +76,11 @@ const receiveComment = (user) => {
 	}
 }
 
-export const displayCommentForm = (eventId) => {
+export const displayCommentForm = (eventId, eventTitle) => {
 	return {
 		type: 'REQUEST_COMMENT_FORM',
-		eventId
+		eventId,
+		eventTitle
 	}
 }
 

@@ -1,6 +1,7 @@
 const initialState = {
 	comment: '',
 	eventId: null,
+	eventTitle: '',
 	show: false
 }
 
@@ -10,6 +11,7 @@ const commentReducer = (state = initialState, action) => {
 			return {
 				...state,
 				eventId: action.eventId,
+				eventTitle: action.eventTitle,
 				show: true
 			}
 

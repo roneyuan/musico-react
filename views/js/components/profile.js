@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Comment from './comment';
 import Event from './event';
 import EventCreated from './event-created';
 import PastEvent from './past-event';
@@ -50,7 +51,7 @@ class Profile extends Component {
                   this.props.negativeExpectation(event._id, this.props.accessToken)
                  }
                  eventClick={() => 
-                  this.props.displayCommentForm(event._id)
+                  this.props.displayCommentForm(event._id, event.name)
                  } />
         </div> )
       
@@ -91,6 +92,8 @@ class Profile extends Component {
     }
 
     if (this.props.showCommentForm) {
+      return <Comment eventId={ this.props.commentedEvent }
+                    title={ this.props.commentedEventTitle } />
 
     } else {
       return (
@@ -108,11 +111,12 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("PROFILE", state)
+  // console.log("PROFILE", state)
   return {
     user: state.userDatabase.user,
     accessToken: state.userDatabase.token,
-    commentedEvent: state.commentReducer.eventId,
+    commentedEventId: state.commentReducer.eventId,
+    commentedEventTitle: state.commentReducer.eventTitle,
     showCommentForm: state.commentReducer.show
     // comment: state.commentReducer.comment
   }

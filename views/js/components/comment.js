@@ -1,9 +1,37 @@
-      <div className="content__event__comment">
-          <div>Comment:</div>
+import React , { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { postComment } from '../actions/index';
+import * as Cookies from 'js-cookie';
+
+
+class Comment extends Component {
+  render() {
+		return  (     
+			<div className="content__event__comment">
+          <div>Event: { this.props.title}</div>
           <div>
-            <textarea value={props.comment} name="comment" className="content__event__commentbox" maxLength="120" placeholder="120 maximum character"></textarea>
+            <textarea name="comment" className="content__event__commentbox" maxLength="120" placeholder="120 maximum character"></textarea>
           </div>
           <div>
-            <button onClick={props.eventClick} className="btn__rsvp"> Submit </button>
+            <button className="btn__rsvp"> Submit </button>
+            <button className="btn__cancel"> Cancel </button>            
           </div>
-      </div>    
+      </div> 
+    )
+	}
+}
+
+function mapStateToProps(state) {
+  // console.log("COMMENT", state)
+  return {
+    comment: state.commentReducer.comment
+  }
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ postComment }, dispatch)
+}
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(Comment);
