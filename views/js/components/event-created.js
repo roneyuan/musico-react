@@ -19,6 +19,9 @@ export default function EventCreated(props) {
         <button onClick={ props.eventClick } className={ props.buttonEvent } disabled={ props.ifRsvp }>{ props.cancel || 'RSVP' }</button>
         <span className="content__event__notice"> { props.notice } </span>
       </div>                     
+      <div className="content__event__numberOfRsvp">
+        {props.numberOfRsvp} people are going
+      </div>
       <div className="content__event__expectation">
         <div>Expectation Rate:</div>
         <div>
