@@ -15,13 +15,9 @@ export default function PastEvent(props) {
         <button className="btn__survey" onClick={props.clickNo}> No </button>
       </div>
       <div className="content__event__comment">
-          <div>Comment:</div>
-          <div>
-            <textarea name="comment" className="content__event__commentbox" maxLength="120" placeholder="120 maximum character"></textarea>
-          </div>
-          <div>
-            <button onClick={props.eventClick} className="btn__rsvp"> Submit </button>
-          </div>
+        <div>
+          <button onClick={props.eventClick} className="btn__rsvp"> Comment? </button>
+        </div>
       </div>      
     </div>
   );

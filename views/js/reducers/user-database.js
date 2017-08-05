@@ -34,7 +34,7 @@ const userDatabase = (state = initialState, action) => {
 			}
 
 		case 'RECEIVE_COMMENT':
-			console.log("CHECK!", action.user)
+			// console.log("CHECK!", action.user)
 			return {
 				...state,
 				user: action.user
