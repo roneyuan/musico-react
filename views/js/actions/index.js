@@ -84,6 +84,12 @@ export const displayCommentForm = (eventId, eventTitle) => {
 	}
 }
 
+export const cancelComment = () => {
+	return {
+		type: 'CLOSE_COMMENT_FORM'
+	}
+}
+
 export const postComment = (event, accessToken) => {
 	return dispatch => {
 		fetch('/api/event/postComment', {

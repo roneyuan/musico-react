@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { postComment } from '../actions/index';
+import { postComment, cancelComment } from '../actions/index';
 import * as Cookies from 'js-cookie';
 
 
@@ -15,7 +15,7 @@ class Comment extends Component {
           </div>
           <div>
             <button className="btn__rsvp"> Submit </button>
-            <button className="btn__cancel"> Cancel </button>            
+            <button onClick={() => this.props.cancelComment() } className="btn__cancel"> Cancel </button>            
           </div>
       </div> 
     )
@@ -30,7 +30,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ postComment }, dispatch)
+  return bindActionCreators({ postComment, cancelComment }, dispatch)
 }
 
 

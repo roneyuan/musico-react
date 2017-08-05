@@ -94,7 +94,6 @@ class Profile extends Component {
     if (this.props.showCommentForm) {
       return <Comment eventId={ this.props.commentedEvent }
                     title={ this.props.commentedEventTitle } />
-
     } else {
       return (
         <div className='content__profile'>
