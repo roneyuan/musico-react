@@ -16,10 +16,6 @@ class Profile extends Component {
     this.props.getUserProfile(Cookies.get('accessToken'), this.props.user.username);
   }
 
-  renderComment(event) {
-    return <Comment eventId={ event.id } />
-  }
-
   render() {
     let rsvpList;
     let createdList;
@@ -92,7 +88,7 @@ class Profile extends Component {
     }
 
     if (this.props.showCommentForm) {
-      return <Comment eventId={ this.props.commentedEvent }
+      return <Comment eventId={ this.props.commentedEventId }
                     title={ this.props.commentedEventTitle } />
     } else {
       return (

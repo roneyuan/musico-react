@@ -77,6 +77,7 @@ const receiveComment = (user) => {
 }
 
 export const displayCommentForm = (eventId, eventTitle) => {
+	// console.log("ID", eventId)
 	return {
 		type: 'REQUEST_COMMENT_FORM',
 		eventId,
@@ -90,7 +91,7 @@ export const cancelComment = () => {
 	}
 }
 
-export const postComment = (event, accessToken) => {
+export const postComment = (eventId, comment, accessToken) => {
 	return dispatch => {
 		fetch('/api/event/postComment', {
 			method: 'PUT',
@@ -100,8 +101,8 @@ export const postComment = (event, accessToken) => {
 			},
 			body: 
 				JSON.stringify({
-				eventId: event._id,
-				comment: event.comment
+				eventId: eventId,
+				comment: comment
 			})
 			
 		})

@@ -82,7 +82,7 @@ router.put('/postComment', passport.authenticate('bearer', {session: false}), (r
 		.findOne({_id: req.body.eventId})
 		.exec()
 		.then(event => {
-			// console.log("NEGATIVE", event)
+			// console.log("EVENT", event)
 			event.comments.push(req.body.comment);
 			event.save().then(function(event) {
 				return User

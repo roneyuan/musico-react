@@ -16,7 +16,7 @@ export default function PastEvent(props) {
       </div>
       <div className="content__event__comment">
         <div>
-          <button onClick={props.eventClick} className="btn__rsvp"> Comment? </button>
+          <button onClick={props.eventClick} className="btn__rsvp"> Comment </button>
         </div>
       </div>      
     </div>

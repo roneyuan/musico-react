@@ -19,7 +19,13 @@ const commentReducer = (state = initialState, action) => {
 			return {
 				...state,
 				show: false
-			}			
+			}		
+
+		case 'RECEIVE_COMMENT':
+			return {
+				...state,
+				show: false
+			}						
 
 		default:
 			return state;
