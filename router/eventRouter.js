@@ -40,16 +40,26 @@ router.put('/updatePositive', passport.authenticate('bearer', {session: false}),
 		.findOne({_id: req.body.eventId})
 		.exec()
 		.then(event => {
-			console.log("BePOSTIVE", event)
+			// console.log("BePOSTIVE", event)
 			event.expectedPositive += 1;
 			event.save().then(function(event) {
-			return Event
-				.find({})
-				.exec()
-				.then(events => {
-					// console.log(events)
-					res.json(events)
-				})				
+				return User
+					.findOne({username: req.user.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})			
 			});
 			// console.log("AfPOSTIVE", event)
 		})
@@ -64,13 +74,23 @@ router.put('/updateNegative', passport.authenticate('bearer', {session: false}),
 			// console.log("NEGATIVE", event)
 			event.expectedNegative += 1;
 			event.save().then(function(event) {
-			return Event
-				.find({})
-				.exec()
-				.then(events => {
-					// console.log(events)
-					res.json(events)
-				})				
+				return User
+					.findOne({username: req.user.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})			
 			});
 		})
 });

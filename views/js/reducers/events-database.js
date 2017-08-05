@@ -29,17 +29,7 @@ const eventsDatabase = (state = initialState, action) => {
 				rsvp: action.events
 			}	
 
-		case 'RECEIVE_POSITIVE':
-			return {
-				...state,
-				events: action.event
-			}	
 
-		case 'RECEIVE_NEGATIVE':
-			return {
-				...state,
-				events: action.event
-			}
 
 		default:
 			return state;

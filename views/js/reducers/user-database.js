@@ -40,6 +40,19 @@ const userDatabase = (state = initialState, action) => {
 				user: action.user
 			}	
 
+		case 'RECEIVE_POSITIVE':
+		// console.log("USER", action.user)
+			return {
+				...state,
+				user: action.user
+			}	
+
+		case 'RECEIVE_NEGATIVE':
+			return {
+				...state,
+				user: action.user
+			}
+
 		default:
 			return state;
 	}

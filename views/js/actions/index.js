@@ -55,17 +55,17 @@ const receiveToken = (token) => {
 	}
 }
 
-const receivePositive = (event) => {
+const receivePositive = (user) => {
 	return {
 		type: 'RECEIVE_POSITIVE',
-		event
+		user
 	}
 }
 
-const receiveNegative = (event) => {
+const receiveNegative = (user) => {
 	return {
 		type: 'RECEIVE_NEGATIVE',
-		event
+		user
 	}
 }
 
@@ -150,7 +150,7 @@ export const positiveExpectation = (event, accessToken) => {
 			
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receivePositive(event)))
+		.then(user => dispatch(receivePositive(user)))
 	}
 }
 
@@ -168,7 +168,7 @@ export const negativeExpectation = (event, accessToken) => {
 			})			
 		})
 		.then(response => response.json())
-		.then(event => dispatch(receiveNegative(event)))
+		.then(user => dispatch(receiveNegative(user)))
 	}	
 }
 
