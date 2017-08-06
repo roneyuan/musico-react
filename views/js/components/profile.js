@@ -30,10 +30,10 @@ class Profile extends Component {
     let filterCurrentEvents;
 
     if (this.props.user.eventsRsvp) {
-
+      // No need to use filter, just past events so that it is easier to read and logically make sense
       filterPastEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isBefore(Moment()));
       filterCurrentEvents = this.props.user.eventsRsvp.filter(event => Moment(event.time).isSameOrAfter(Moment()));
-
+      // pastEventComponents
       pastEventList = filterPastEvents.reverse().map((event, index) =>
         <div className="content__event-box" key={index}>
           <PastEvent name={ event.name }
@@ -84,8 +84,8 @@ class Profile extends Component {
                  location={ event.location }
                  time={ Moment(event.time).format('LLLL') }
                  numberOfRsvp={ event.numberOfRsvp }
-                 expectedPositive={ event.expectedPositive }
-                 expectedNegative={ event.expectedNegative }
+                 expectedPositive={ event.expectedPositive } // expectationSuccesses
+                 expectedNegative={ event.expectedNegative } // expectationFailures
                  comments={ event.comments }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 

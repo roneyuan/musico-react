@@ -5,6 +5,8 @@ import {Link} from 'react-router';
 export default function Navigation(props) {
   return (
     <div className="nav">
+      <input type="checkbox" id="navbar" />
+      <label htmlFor="navbar"></label>
       <ul>
         <li className="nav__brand"><Link to="/app/home">Musico</Link></li>
         <li className="nav__item"><Link activeStyle={{ color: '#63ccff' }} to="/app/profile">Account</Link></li>
