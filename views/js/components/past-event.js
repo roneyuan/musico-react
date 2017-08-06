@@ -11,8 +11,10 @@ export default function PastEvent(props) {
       <div className="content__event__time">Time: { props.time }</div>              
       <div className="content__event__expectation">
         Does the event meet your expectation?
-        <button className="btn__survey" onClick={props.clickYes}> Yes </button> 
-        <button className="btn__survey" onClick={props.clickNo}> No </button>
+        <div>
+          <button className="btn__survey" onClick={props.clickYes}> Yes </button> 
+          <button className="btn__survey" onClick={props.clickNo}> No </button>
+        </div>
       </div>
       <div className="content__event__comment">
         <div>
