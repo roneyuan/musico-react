@@ -77,7 +77,6 @@ const receiveComment = (user) => {
 }
 
 export const displayCommentForm = (eventId, eventTitle) => {
-	// console.log("ID", eventId)
 	return {
 		type: 'REQUEST_COMMENT_FORM',
 		eventId,
@@ -124,7 +123,6 @@ export const getUserRsvpEvents = (accessToken) => {
 		.then(response => response.json())
 		.then(json => {
 			let eventsRsvp = json.eventsRsvp;			
-			// console.log(eventsRsvp)
 			dispatch(receiveUserRsvpEvents(eventsRsvp))
 		})
 		.catch(err => {
@@ -135,7 +133,6 @@ export const getUserRsvpEvents = (accessToken) => {
 };
 
 export const positiveExpectation = (event, accessToken) => {
-	// console.log("event", event)
 	return dispatch => {
 		fetch('/api/event/updatePositive', {
 			method: 'PUT',
@@ -147,7 +144,6 @@ export const positiveExpectation = (event, accessToken) => {
 				JSON.stringify({
 				eventId: event
 			})
-			
 		})
 		.then(response => response.json())
 		.then(user => dispatch(receivePositive(user)))
@@ -203,7 +199,6 @@ export const cancelEvent = (event, accessToken) => {
 		})
 		.then(response => response.json())
 		.then(event => {
-			// console.log("CANCEL", event)
 			dispatch(receiveCancelEvent(event))
 		})
 	}

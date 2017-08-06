@@ -61,17 +61,14 @@ router.put('/updatePositive', passport.authenticate('bearer', {session: false}),
 						console.log(err);
 					})			
 			});
-			// console.log("AfPOSTIVE", event)
 		})
 });
 
 router.put('/updateNegative', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// console.log("ID", req.body.eventId)
 	return Event
 		.findOne({_id: req.body.eventId})
 		.exec()
 		.then(event => {
-			// console.log("NEGATIVE", event)
 			event.expectedNegative += 1;
 			event.save().then(function(event) {
 				return User
@@ -97,12 +94,10 @@ router.put('/updateNegative', passport.authenticate('bearer', {session: false}),
 
 // TODO - Need to put at userRouter
 router.put('/postComment', passport.authenticate('bearer', {session: false}), (req, res) => {
-	// console.log("ID", req.body.eventId)
 	return Event
 		.findOne({_id: req.body.eventId})
 		.exec()
 		.then(event => {
-			// console.log("EVENT", event)
 			event.comments.push(req.body.comment);
 			event.save().then(function(event) {
 				return User

@@ -34,14 +34,12 @@ const userDatabase = (state = initialState, action) => {
 			}
 
 		case 'RECEIVE_COMMENT':
-			// console.log("CHECK!", action.user)
 			return {
 				...state,
 				user: action.user
 			}	
 
 		case 'RECEIVE_POSITIVE':
-		// console.log("USER", action.user)
 			return {
 				...state,
 				user: action.user
@@ -57,5 +55,6 @@ const userDatabase = (state = initialState, action) => {
 			return state;
 	}
 }
+
 
 export default userDatabase;

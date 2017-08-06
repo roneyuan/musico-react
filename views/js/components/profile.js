@@ -5,7 +5,13 @@ import Comment from './comment';
 import Event from './event';
 import EventCreated from './event-created';
 import PastEvent from './past-event';
-import { getUserProfile, cancelRsvp, cancelEvent, postComment, positiveExpectation, negativeExpectation, displayCommentForm } from '../actions/index';
+import { cancelRsvp, 
+         cancelEvent,
+         displayCommentForm,
+         getUserProfile, 
+         postComment, 
+         positiveExpectation, 
+         negativeExpectation } from '../actions/index';
 import * as Cookies from 'js-cookie';
 import Moment from 'moment';
 
@@ -22,7 +28,6 @@ class Profile extends Component {
     let pastEventList;
     let filterPastEvents;
     let filterCurrentEvents;
-
 
     if (this.props.user.eventsRsvp) {
 
@@ -62,7 +67,9 @@ class Profile extends Component {
                  time={ Moment(event.time).format('LLLL') }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }              
-                 eventClick={() => this.props.cancelEvent(event, this.props.accessToken)} />
+                 eventClick={() => 
+                  this.props.cancelEvent(event, this.props.accessToken)
+                 } />
         </div>        
       )    
     }
@@ -82,14 +89,18 @@ class Profile extends Component {
                  comments={ event.comments }
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
-                 eventClick={() => this.props.cancelEvent(event, this.props.accessToken)} />
+                 eventClick={() => 
+                  this.props.cancelEvent(event, this.props.accessToken)
+                 } />
         </div>
       )
     }
 
     if (this.props.showCommentForm) {
-      return <Comment eventId={ this.props.commentedEventId }
-                    title={ this.props.commentedEventTitle } />
+      return (
+        <Comment eventId={ this.props.commentedEventId }
+                 title={ this.props.commentedEventTitle } />
+      )
     } else {
       return (
         <div className='content__profile'>
@@ -101,24 +112,30 @@ class Profile extends Component {
         </div>      
       )      
     }
-     
   }
 }
 
 function mapStateToProps(state) {
-  // console.log("PROFILE", state)
   return {
     user: state.userDatabase.user,
     accessToken: state.userDatabase.token,
     commentedEventId: state.commentReducer.eventId,
     commentedEventTitle: state.commentReducer.eventTitle,
     showCommentForm: state.commentReducer.show
-    // comment: state.commentReducer.comment
   }
 }
 
 function matchDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserProfile, cancelRsvp, cancelEvent, postComment, positiveExpectation, negativeExpectation, displayCommentForm }, dispatch)
+  return bindActionCreators(
+  { 
+    cancelEvent, 
+    cancelRsvp,
+    displayCommentForm,     
+    getUserProfile, 
+    postComment, 
+    positiveExpectation, 
+    negativeExpectation
+  }, dispatch)
 }
 
 

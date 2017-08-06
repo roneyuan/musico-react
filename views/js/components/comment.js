@@ -15,9 +15,8 @@ class Comment extends Component {
           event.preventDefault();
 
           let comment = event.target.comment.value;
-          const accessToken = Cookies.get('accessToken'); // Get that from the state
+          const accessToken = Cookies.get('accessToken');
           
-          // console.log("ID", this.props.eventId)
           this.props.postComment(this.props.eventId, comment, accessToken);
         }}>
 
@@ -40,7 +39,6 @@ class Comment extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("COMMENT", state)
   return {
     comment: state.commentReducer.comment
   }

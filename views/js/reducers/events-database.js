@@ -29,11 +29,10 @@ const eventsDatabase = (state = initialState, action) => {
 				rsvp: action.events
 			}	
 
-
-
 		default:
 			return state;
 	}
 }
+
 
 export default eventsDatabase;

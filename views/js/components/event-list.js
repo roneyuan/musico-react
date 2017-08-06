@@ -66,7 +66,6 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	// console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp
