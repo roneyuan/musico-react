@@ -7,7 +7,6 @@ import UserDatabase from './user-database';
 const AllReducers = combineReducers({
 	commentReducer: CommentReducer,
 	eventsDatabase: EventDatabase,
-	postedEvent: PostedEvent,	
 	userDatabase: UserDatabase
 });
 
