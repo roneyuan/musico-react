@@ -80,7 +80,7 @@ const receiveComment = (user) => {
 
 export const positiveExpectation = (event) => {
 	return dispatch => {
-		fetch('/api/event/updatePositive', {
+		fetch('/api/demo/event/updatePositive', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ export const positiveExpectation = (event) => {
 
 export const negativeExpectation = (event) => {
 	return dispatch => {
-		fetch('/api/event/updateNegative', {
+		fetch('/api/demo/event/updateNegative', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ export const toggleNavebar = () => {
 
 export const postComment = (eventId, comment) => {
 	return dispatch => {
-		fetch('/api/event/postComment', {
+		fetch('/api/demo/event/postComment', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
