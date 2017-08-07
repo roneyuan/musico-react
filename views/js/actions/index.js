@@ -90,6 +90,13 @@ export const cancelComment = () => {
 	}
 }
 
+export const toggleNavebar = () => {
+	// console.log("CALLED")
+	return {
+		type: 'TOGGLE_NAVIATION'
+	}
+}
+
 export const postComment = (eventId, comment, accessToken) => {
 	return dispatch => {
 		fetch('/api/event/postComment', {
