@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 class App extends Component {
 	/* How??? Why cant I use function? */
 	render() {
-		// console.log(this.props) // Where is the props came from??
-		// console.log("NAV", this.props.checked)
 		return(
 			<div>
 				<div className="app__title">
@@ -29,7 +27,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-	// console.log("TEST")
 	return {
 		checked: state.navigationReducer.checked,
 	}
@@ -38,5 +35,6 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
 	return bindActionCreators({ toggleNavebar }, dispatch)
 }
+
 
 export default connect(mapStateToProps, matchDispatchToProps)(App);
