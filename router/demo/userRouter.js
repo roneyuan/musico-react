@@ -23,6 +23,14 @@ router.put('/:eventId', (req, res) => {
 		})
 		.exec()
 		.then(user => {
+			return Event
+				.findOne({_id: eventId})
+				.exec()
+				.then(event => {
+					event.numberOfRsvp += 1;
+					event.save();
+				})
+				
 			res.json(user);
 		})
 		.catch(err => {

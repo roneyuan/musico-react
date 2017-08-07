@@ -1,27 +1,32 @@
 import React , { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import DemoEvent from '../event';
-import { demoClickRsvp, demoGetAllEvents, getUserRsvpEvents } from '../../actions/demo/index';
+import Event from '../event';
+import { demoClickRsvp, demoGetAllEvents, getUserRsvpEvents, positiveExpectation, negativeExpectation } from '../../actions/demo/index';
+// import * as Cookies from 'js-cookie';
 import Moment from 'moment';
+
 
 class EventList extends Component {
 
 	componentWillMount() {
-		this.props.getUserRsvpEvents();
+		// const accessToken = Cookies.get('accessToken');
+
+		/* Get the user latest RSVP list */
+		this.props.getUserRsvpEvents();		
 		this.props.demoGetAllEvents();
 	}
 
 	createEventList() {
-		// console.log("PREV", this.props.events)
-		let reverseList = this.props.events.slice().reverse(); // Need to use slice to copy, otherwise props cannot be changed which will not work
-		// console.log("REV", reverseList)
+		// const accessToken = Cookies.get('accessToken'); // Better way to refactor?
 
+		// TODO - Filter out passed events
+		let reverseList = this.props.events.slice().reverse(); // Need to use slice to copy, otherwise props cannot be changed which will not work
 		return reverseList.map((event, index) => {
-			
 			let ifRsvp = false;
 			let rsvpNotice = '';
 
+			/* Need optimization here */
 			this.props.rsvp.forEach(rsvpEvent => {
 				if (event._id === rsvpEvent._id) {
 					ifRsvp = true;
@@ -31,22 +36,19 @@ class EventList extends Component {
 
 			return (
 				<div className="content__event-box" key={ index }>
-					<DemoEvent name={ event.name }
+					<Event name={ event.name }
 								 tag={ event.tag }
 								 description={ event.description }
 								 price={ event.price }
 								 location={ event.location }
-								 numberOfRsvp={ event.numberOfRsvp }
-								 expectedPositive={ event.expectedPositive }
-								 expectedNegative={ event.expectedNegative }								 
 								 time={ Moment(event.time).format('LLLL') }
 								 buttonEvent={ "btn__rsvp" }
 								 ifRsvp={ ifRsvp }
-								 notice={ rsvpNotice }
+								 notice={ rsvpNotice }								 
 								 eventClick={
 								 	() => {
 								 		this.props.demoClickRsvp(event);
-								 		this.props.getUserRsvpEvents();
+								 		this.props.getUserRsvpEvents(); // Put the access token in the state
 								 	}
 								 } />
 				</div>
@@ -64,7 +66,6 @@ class EventList extends Component {
 }
 
 function mapStateToProps(state) {
-	// console.log("STATE", state)
 	return {
 		events: state.eventsDatabase.events,
 		rsvp: state.eventsDatabase.rsvp
@@ -72,7 +73,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch) {
-	return bindActionCreators({ demoClickRsvp, demoGetAllEvents, getUserRsvpEvents }, dispatch)
+	return bindActionCreators({ demoClickRsvp, demoGetAllEvents, getUserRsvpEvents, positiveExpectation, negativeExpectation }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(EventList);

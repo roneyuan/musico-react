@@ -57,6 +57,105 @@ const receiveToken = (token) => {
 	}
 }
 
+const receivePositive = (user) => {
+	return {
+		type: 'RECEIVE_POSITIVE',
+		user
+	}
+}
+
+const receiveNegative = (user) => {
+	return {
+		type: 'RECEIVE_NEGATIVE',
+		user
+	}
+}
+
+const receiveComment = (user) => {
+	return {
+		type: 'RECEIVE_COMMENT',
+		user
+	}
+}
+
+export const positiveExpectation = (event) => {
+	return dispatch => {
+		fetch('/api/event/updatePositive', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: 
+				JSON.stringify({
+				eventId: event,
+				username: 'demo'
+			})
+		})
+		.then(response => response.json())
+		.then(user => dispatch(receivePositive(user)))
+	}
+}
+
+export const negativeExpectation = (event) => {
+	return dispatch => {
+		fetch('/api/event/updateNegative', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: 
+				JSON.stringify({
+				eventId: event,
+				username: 'demo'
+			})			
+		})
+		.then(response => response.json())
+		.then(user => dispatch(receiveNegative(user)))
+	}	
+}
+
+export const displayCommentForm = (eventId, eventTitle) => {
+	return {
+		type: 'REQUEST_COMMENT_FORM',
+		eventId,
+		eventTitle
+	}
+}
+
+export const cancelComment = () => {
+	return {
+		type: 'CLOSE_COMMENT_FORM'
+	}
+}
+
+export const toggleNavebar = () => {
+	// console.log("CALLED")
+	return {
+		type: 'TOGGLE_NAVIATION'
+	}
+}
+
+export const postComment = (eventId, comment) => {
+	return dispatch => {
+		fetch('/api/event/postComment', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: 
+				JSON.stringify({
+				eventId: eventId,
+				comment: comment,
+				username: 'demo'
+			})
+			
+		})
+		.then(response => response.json())
+		.then(user => {
+			dispatch(receiveComment(user))})
+	}
+}
+
 export const getUserRsvpEvents = () => {
 	return dispatch => {
 		fetch('/api/demo/user/profile/demo', {

@@ -17,6 +17,93 @@ router.get('/all', (req, res) => {
 		});
 });
 
+router.put('/updatePositive', (req, res) => {
+	// console.log("ID", req.body.eventId)
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			// console.log("BePOSTIVE", event)
+			event.expectedPositive += 1;
+			event.save().then(function(event) {
+				return User
+					.findOne({username: req.body.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})			
+			});
+		})
+});
+
+router.put('/updateNegative', (req, res) => {
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			event.expectedNegative += 1;
+			event.save().then(function(event) {
+				return User
+					.findOne({username: req.body.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})			
+			});
+		})
+});
+
+// TODO - Need to put at userRouter
+router.put('/postComment', (req, res) => {
+	return Event
+		.findOne({_id: req.body.eventId})
+		.exec()
+		.then(event => {
+			event.comments.push(req.body.comment);
+			event.save().then(function(event) {
+				return User
+					.findOne({username: req.body.username})
+					.populate('eventsRsvp')  
+					.populate('eventsCreated')
+					.exec()
+					.then(user => {
+						res.status(200).json({
+							username: user.username,
+							nickname: user.nickname,
+							eventsRsvp: user.eventsRsvp,
+							eventsCreated: user.eventsCreated
+						})
+					})
+					.catch(err => {
+						/* istanbul ignore next */
+						console.log(err);
+					})				
+			});
+		})
+});
+
 router.post('/', (req, res) => {
 	return Event
 		.create({

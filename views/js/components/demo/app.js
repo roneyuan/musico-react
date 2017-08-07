@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import Navigation from './navigation';
-
+import DemoNavigation from './navigation';
+import { toggleNavebar } from '../../actions/index';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 class App extends Component {
+	/* How??? Why cant I use function? */
 	render() {
+		// console.log(this.props) // Where is the props came from??
+		// console.log("NAV", this.props.checked)
 		return(
 			<div>
 				<div className="app__title">
@@ -13,8 +18,9 @@ class App extends Component {
 					<h3> find the music that you love and enjoy </h3>
 				</div>			
 				<div className="content">
-					<Navigation />
-					<div className="welcome"></div>					
+					<DemoNavigation toggleNavbar={() => this.props.toggleNavebar() } 
+											checked={this.props.checked } />
+					<div className="welcome"></div>
 					{ this.props.children } 
 				</div>
 			</div>
@@ -22,5 +28,15 @@ class App extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	// console.log("TEST")
+	return {
+		checked: state.navigationReducer.checked,
+	}
+}
 
-export default App;
+function matchDispatchToProps(dispatch) {
+	return bindActionCreators({ toggleNavebar }, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(App);
