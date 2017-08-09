@@ -5,8 +5,8 @@ import Comment from './comment';
 import Event from '../event';
 import EventCreated from '../event-created';
 import PastEvent from '../past-event';
-import { cancelRsvp, 
-         cancelEvent,
+import { demoCancelRsvp, 
+         demoCancelEvent,
          displayCommentForm,
          demoGetUserProfile, 
          postComment, 
@@ -68,7 +68,7 @@ class Profile extends Component {
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }              
                  eventClick={() => 
-                  this.props.cancelEvent(event)
+                  this.props.demoCancelRsvp(event)
                  } />
         </div>        
       )    
@@ -90,7 +90,7 @@ class Profile extends Component {
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }                 
                  eventClick={() => 
-                  this.props.cancelEvent(event)
+                  this.props.demoCancelEvent(event)
                  } />
         </div>
       )
@@ -128,8 +128,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
   { 
-    cancelEvent, 
-    cancelRsvp,
+    demoCancelEvent, 
+    demoCancelRsvp,
     displayCommentForm,     
     demoGetUserProfile, 
     postComment, 

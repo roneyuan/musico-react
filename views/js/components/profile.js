@@ -68,7 +68,7 @@ class Profile extends Component {
                  cancel={ "Cancel" } 
                  buttonEvent={ "btn__cancel" }              
                  eventClick={() => 
-                  this.props.cancelEvent(event, this.props.accessToken)
+                  this.props.cancelRsvp(event, this.props.accessToken)
                  } />
         </div>        
       )    
