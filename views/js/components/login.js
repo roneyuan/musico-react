@@ -12,14 +12,10 @@ export default function Login() {
           <h2> If yes, come join now! </h2>
         </div>
         <div className="login__button">
-          <button className="btn__google">
-          	<a href="api/user/auth/google">Login with Google</a>
-          </button>
+          <a href="api/user/auth/google"><button className="btn__google">Login with Google</button></a> 
         </div>
         <div className="login__button">
-          <button className="btn__demo">
-          	<a href="/#/demo/home">Explore with Demo Account</a>
-          </button>
+          <a href="/#/demo/home"><button className="btn__demo">Explore with Demo Account</button></a>  
         </div>
       </div>
     </div>
