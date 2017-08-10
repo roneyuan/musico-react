@@ -35,7 +35,11 @@ class PostEvent extends Component {
           <div className="form-control">
             <label> Date: </label>
             <input type="datetime-local" name="time" />
-          </div>          
+          </div>    
+          <div className="form-control ">
+            <label> &nbsp; </label>
+            (Format: 01/01/2017, 10:00 AM)
+          </div>                
           <div className="form-control">
             <label> Price: </label>
             <input type="number" name="price" />
