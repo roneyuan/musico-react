@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { postEvent, newPostForm } from '../actions/index';
 import * as Cookies from 'js-cookie';
+import 'date-input-polyfill';
+// import 'react-datetime';
 
 
 class PostEvent extends Component {
@@ -36,10 +38,13 @@ class PostEvent extends Component {
             <input type="text" name="location" />
           </div>
           <div className="form-control">
-            <label> Date: </label>
+            <label> When: </label>
             <input type="datetime-local" name="time" />
-          </div>   
-          <div className="form-control date-example">(Example: 01/01/2017 10:00 AM)</div>
+          </div>               
+          <div className="form-control ">
+            <label> &nbsp; </label>
+            (Format: 01/01/2017, 10:00 AM)
+          </div>
           <div className="form-control">
             <label> Price: </label>
             <input type="number" name="price" />
