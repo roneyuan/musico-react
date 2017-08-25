@@ -9,6 +9,10 @@ class App extends Component {
 	render() {
 		return(
 			<div>
+				<div>
+					<DemoNavigation toggleNavbar={() => this.props.toggleNavebar() } 
+									checked={this.props.checked } />	
+				</div>
 				<div className="app__title">
 					<h1> Musico </h1>
 					<h3> find what you love, </h3>
@@ -16,8 +20,6 @@ class App extends Component {
 					<h3> find the music that you love and enjoy </h3>
 				</div>			
 				<div className="content">
-					<DemoNavigation toggleNavbar={() => this.props.toggleNavebar() } 
-											checked={this.props.checked } />
 					<div className="welcome"></div>
 					{ this.props.children } 
 				</div>

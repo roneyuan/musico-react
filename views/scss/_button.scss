@@ -13,17 +13,17 @@
 /* use -- */
 .btn__cancel {
 	@extend .btn;
-	background-color: rgba(255, 0, 21, 0.65);
+	background-color: rgba(231, 76, 60, 0.65);
 }
 
 .btn__rsvp {
 	@extend .btn;
-	background-color: rgba(33, 150, 243, 0.9);
+	background-color: rgba(52, 152, 219, 0.9);
 }
 
 .btn__submit {
   @extend .btn;
-  background-color: rgba(135, 232, 139, 0.8);
+  background-color: rgba(41, 128, 185, 0.8);
 }
 
 .btn__refresh {
@@ -70,8 +70,10 @@
 
 .btn__demo {
   @extend .btn;
-  background-color: #23234c;
+  background-color: #2980B9;
   width: 280px;
+  padding-left: 12px;
+  padding-right: 12px;
   a {
     text-decoration: none;
     &:visited {

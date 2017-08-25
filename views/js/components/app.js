@@ -10,16 +10,20 @@ class App extends Component {
 		// console.log(this.props) // Where is the props came from??
 		// console.log("NAV", this.props.checked)
 		return(
-			<div>
-				<div className="app__title">
-					<h1> Musico </h1>
-					<h3> find what you love, </h3>
-					<h3> find what you enjoy, </h3>
-					<h3> find the music that you love and enjoy </h3>
+			<div>			
+				<div>
+					<Navigation toggleNavbar={() => this.props.toggleNavebar() } 
+											checked={this.props.checked } />				
+				</div>
+				<div className="app__title">					
+					<div>
+						<h1> Musico </h1>
+						<h3> find what you love, </h3>
+						<h3> find what you enjoy, </h3>
+						<h3> find the music that you love and enjoy </h3>
+					</div>
 				</div>			
 				<div className="content">
-					<Navigation toggleNavbar={() => this.props.toggleNavebar() } 
-											checked={this.props.checked } />
 					<div className="welcome"></div>
 					{ this.props.children } 
 				</div>
