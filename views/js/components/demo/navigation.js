@@ -12,7 +12,7 @@ export default function Navigation(props) {
         <li className="nav__item"><Link onClick={ props.toggleNavbar }  activeStyle={{ color: '#63ccff' }} to="/demo/postevents" >Create</Link></li>
         <li className="nav__item"><Link onClick={ props.toggleNavbar }  activeStyle={{ color: '#63ccff' }} to="/demo/events" >Events</Link></li>
         <li className="nav__item"><Link onClick={ props.toggleNavbar } activeStyle={{ color: '#63ccff' }} to="/demo/profile">My Account</Link></li>
-        <li className="nav__item"><Link onClick={ props.toggleNavbar } activeStyle={{ color: '#63ccff' }} to="/">Quit</Link></li>
+        <li className="nav__item"><Link onClick={ props.toggleNavbar } activeStyle={{ color: '#63ccff' }} to="/">Logout</Link></li>
       </ul>
     </div>
   );
