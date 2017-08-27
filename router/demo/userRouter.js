@@ -23,7 +23,7 @@ router.put('/:eventId', (req, res) => {
 		})
 		.exec()
 		.then(user => {
-			return Event
+			Event
 				.findOne({_id: eventId})
 				.exec()
 				.then(event => {
