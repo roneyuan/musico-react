@@ -6,8 +6,8 @@ const should = chai.should();
 
 import Event from '../views/js/components/event';
 
-describe('Event component', function() {
-  it('Renders the event and description',  function() {
+describe('Event component', function () {
+  it('Renders the event and description', function () {
     // const url = "http://www.example.com/image.png";
     const description = "Example description";
     const name = "TEST";

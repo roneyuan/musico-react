@@ -7,11 +7,11 @@ import NavigationReducer from './navigation-reducer';
 
 
 const AllReducers = combineReducers({
-	commentReducer: CommentReducer,
-	eventsDatabase: EventDatabase,
-	postedEvent: PostedEvent,
-	userDatabase: UserDatabase,
-	navigationReducer: NavigationReducer
+  commentReducer: CommentReducer,
+  eventsDatabase: EventDatabase,
+  postedEvent: PostedEvent,
+  userDatabase: UserDatabase,
+  navigationReducer: NavigationReducer
 });
 
 

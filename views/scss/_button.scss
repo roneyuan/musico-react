@@ -12,13 +12,13 @@
 
 /* use -- */
 .btn__cancel {
-	@extend .btn;
-	background-color: rgba(231, 76, 60, 0.65);
+  @extend .btn;
+  background-color: rgba(231, 76, 60, 0.65);
 }
 
 .btn__rsvp {
-	@extend .btn;
-	background-color: rgba(52, 152, 219, 0.9);
+  @extend .btn;
+  background-color: rgba(52, 152, 219, 0.9);
 }
 
 .btn__submit {
@@ -79,5 +79,5 @@
     &:visited {
       color: white;
     }
-  }  
+  }
 }

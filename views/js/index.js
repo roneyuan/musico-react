@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM  from 'react-dom';
+import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
@@ -24,28 +24,28 @@ require("!style-loader!css-loader!sass-loader!../scss/main.scss");
 // Play with browserHistory
 const routes = (
   <Provider store={store}>
-		<Router history={hashHistory}>
-			<Route path='/' component={Login} />
-			<Route path='/app' component={App}>
-				<Route path="/app/home" component={Home} />
-				<Route path="/app/events" component={EventList} />
-				<Route path="/app/postevents" component={PostEvent} />		
-				<Route path="/app/profile" component={Profile} />		
-			</Route>
-			<Route path='/demo' component={DemoApp}>
-				<Route path="/demo/home" component={DemoHome} />
-				<Route path="/demo/events" component={DemoEventList} />
-				<Route path="/demo/postevents" component={DemoPostEvent} />		
-				<Route path="/demo/profile" component={DemoProfile} />		
-			</Route>			
-			<Route path='/login' component={Login} />
-			<Route path='/register' component={Registration} />	
-		</Router>
-	</Provider>
+    <Router history={hashHistory}>
+      <Route path='/' component={Login} />
+      <Route path='/app' component={App}>
+        <Route path="/app/home" component={Home} />
+        <Route path="/app/events" component={EventList} />
+        <Route path="/app/postevents" component={PostEvent} />
+        <Route path="/app/profile" component={Profile} />
+      </Route>
+      <Route path='/demo' component={DemoApp}>
+        <Route path="/demo/home" component={DemoHome} />
+        <Route path="/demo/events" component={DemoEventList} />
+        <Route path="/demo/postevents" component={DemoPostEvent} />
+        <Route path="/demo/profile" component={DemoProfile} />
+      </Route>
+      <Route path='/login' component={Login} />
+      <Route path='/register' component={Registration} />
+    </Router>
+  </Provider>
 )
 
 document.addEventListener('DOMContentLoaded', () =>
   ReactDOM.render(
-		routes, document.getElementById('app')
-	)
+    routes, document.getElementById('app')
+  )
 ); 
